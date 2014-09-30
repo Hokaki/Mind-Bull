@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package model;
 
 import java.io.Serializable;
@@ -12,10 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-/**
- *
- * @author huub
- */
 
 @Entity(name="ClubMember")
 public class Member implements Serializable {
@@ -27,17 +17,17 @@ public class Member implements Serializable {
   private String lastName = null;
   
   @ManyToOne
-  private Team team;
+  private Excercise excercise;
   
   public Member() {
     super();
   }
   
-  public Member(String firstName, String lastName, Team team) {
+  public Member(String firstName, String lastName, Excercise excercise) {
     super();
     this.firstName = firstName;
     this.lastName = lastName;
-    this.team = team;
+    this.excercise = excercise;
   }
 
   public void setFirstName(String firstName) {
@@ -48,8 +38,8 @@ public class Member implements Serializable {
     this.lastName = lastName;
   }
 
-  public void setTeam(Team team) {
-    this.team = team;
+  public void setExcercise(Excercise excercise) {
+    this.excercise = excercise;
   }
 
   public String getFirstName() {
@@ -60,8 +50,8 @@ public class Member implements Serializable {
     return lastName;
   }
 
-  public Team getTeam() {
-    return team;
+  public Excercise getExcercise() {
+    return excercise;
   }
   
   public long getId() {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package formhandler;
 
 import dao.MemberDao;
@@ -16,10 +11,6 @@ import javax.servlet.http.HttpSession;
 import model.Member;
 import support.Dispatcher;
 
-/**
- *
- * @author huub
- */
 @WebServlet(name = "WijzigLidHandler", urlPatterns = {"/wijziglidhandler"})
 public class WijzigLid extends HttpServlet {
 

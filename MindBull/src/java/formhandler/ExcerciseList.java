@@ -7,8 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "MenuHandler", urlPatterns = {"/menuhandler"})
-public class Menu extends HttpServlet {
+@WebServlet(name = "ExcerciseListHandler", urlPatterns = {"/excerciselisthandler"})
+public class ExcerciseList extends HttpServlet {
+
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -18,19 +19,13 @@ public class Menu extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    String command = request.getParameter("command");
-    String nextPageAddress = null;
-    switch (command) {
-      case "0":
-        nextPageAddress = "ledenlijst.jsp";
-        break;
-      case "1":
-        nextPageAddress = "excerciselist.jsp";
-        break;
-      case "2":
-        nextPageAddress = "wedstrijdkalender.jsp";
-        break;
+    String edit = request.getParameter("edit");
+    String nextPage = null;
+    if ( edit != null ) {
+      Long id = Long.parseLong(edit);
+      request.setAttribute("id", id);
+      nextPage = "changeexcercise.jsp";
     }
-    request.getRequestDispatcher(nextPageAddress).forward(request, response);
+    request.getRequestDispatcher(nextPage).forward(request, response);
   }
 }

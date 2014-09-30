@@ -22,7 +22,7 @@
                         <td><button type="submit" name="command" value="0">Patient list</button></td>
                     </tr>
                     <tr>
-                        <td><button type="submit" name="command" value="1">Team list</button></td>
+                        <td><button type="submit" name="command" value="1">Excercise list</button></td>
                     </tr>
                     <tr>
                         <td><button type="submit" name="command" value="2">Calendar</button></td>

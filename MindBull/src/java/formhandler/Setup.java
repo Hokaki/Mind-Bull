@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package formhandler;
 
 import dao.MemberDao;
-import dao.TeamDao;
+import dao.ExcerciseDao;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Member;
-import model.Team;
+import model.Excercise;
 
-/**
- *
- * @author huub
- */
 @WebServlet(name = "SetupHandler", urlPatterns = {"/setuphandler"})
 public class Setup extends HttpServlet {
 
@@ -80,22 +71,22 @@ public class Setup extends HttpServlet {
     member = new Member("Frits", "Fabriek", null);
     members.add(member);
 
-    List<Team> teams = new ArrayList<>();
-    Team team = new Team("Les champions du monde", "Du pain, du vin, du jeu de boules!");
-    teams.add(team);
-    team.addMember(members.get(0));
-    team.addMember(members.get(2));
-    team.addMember(members.get(7));
+    List<Excercise> excercises = new ArrayList<>();
+    Excercise excercise = new Excercise("Hip sideways", "This helps improve the motion capabilities of the hip and inner thigh muscles.");
+    excercises.add(excercise);
+    excercise.addMember(members.get(0));
+    excercise.addMember(members.get(2));
+    excercise.addMember(members.get(7));
 
-    team = new Team("Les champignons du monde", "Go, go, go!");
-    team.addMember(members.get(1));
-    team.addMember(members.get(3));
-    teams.add(team);
+    excercise = new Excercise("Hip backwards", "The backwards motion helps building strength in the front thigh muscles.");
+    excercise.addMember(members.get(1));
+    excercise.addMember(members.get(3));
+    excercises.add(excercise);
 
-    team = new Team("Comme des Francais", "Alors, enfants du jeu de boules!");
-    teams.add(team);
+    excercise = new Excercise("Knee stretch", "Strengthen the front thigh muscle.");
+    excercises.add(excercise);
     
-    TeamDao.storeAllTeams(teams);
+    ExcerciseDao.storeAllExcercises(excercises);
     MemberDao.storeAllMembers(members);
   }
 }

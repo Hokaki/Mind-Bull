@@ -4,7 +4,7 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/WEB-JEE-Club</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Mindbull-club</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">hamburger</property>
     
@@ -18,7 +18,7 @@
     <property name="hbm2ddl.auto">update</property>
 
     <mapping class="model.Member"/>
-    <mapping class="model.Team"/>
+    <mapping class="model.Excercise"/>
 
   </session-factory>
 </hibernate-configuration>
