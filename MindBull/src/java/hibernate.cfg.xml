@@ -4,21 +4,16 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Mindbull-club</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mindbull-club</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">hamburger</property>
-    
+    <property name="hibernate.connection.password">root</property>
     <!-- Enable Hibernate's automatic session context management -->
     <property name="current_session_context_class">thread</property>
-
     <!-- Echo all executed SQL to stdout -->
     <property name="show_sql">true</property>
-    
     <!-- Drop and re-create the database schema on startup (values:create, update, none)  -->
     <property name="hbm2ddl.auto">update</property>
-
     <mapping class="model.Member"/>
     <mapping class="model.Excercise"/>
-
   </session-factory>
 </hibernate-configuration>

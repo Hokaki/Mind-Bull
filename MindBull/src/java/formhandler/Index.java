@@ -34,8 +34,8 @@ public class Index extends HttpServlet {
         String action = request.getParameter("action");
         RequestDispatcher dispatch;
         switch (action) {
-            case "menu":
-                dispatch = request.getRequestDispatcher("menu.jsp");
+            case "login":
+                dispatch = request.getRequestDispatcher("login.jsp");
                 break;
             case "dba":
                 dispatch = request.getRequestDispatcher("setup.jsp");

@@ -16,7 +16,7 @@
         <section id="main_section">
         <h1>Welcome to project: MindBull</h1>
         <p>
-            Go to the <a href="indexhandler?action=menu">main menu</a>
+            First you need to login <a href="loginhandler?action=login">Login</a>
         </p>
         <p>
             Or click <a href="indexhandler?action=dba">here</a> for the database setup.

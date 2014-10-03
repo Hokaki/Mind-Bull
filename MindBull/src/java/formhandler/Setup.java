@@ -1,7 +1,6 @@
 package formhandler;
 
-import dao.MemberDao;
-import dao.ExcerciseDao;
+import dao.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Member;
-import model.Excercise;
+import model.*;
 
 @WebServlet(name = "SetupHandler", urlPatterns = {"/setuphandler"})
 public class Setup extends HttpServlet {
@@ -88,5 +86,16 @@ public class Setup extends HttpServlet {
     
     ExcerciseDao.storeAllExcercises(excercises);
     MemberDao.storeAllMembers(members);
+    
+    List<User> users = new ArrayList<>();
+    User user = new User("admin","admin");
+    users.add(user);
+    user = new User("pim","pam");
+    users.add(user);
+    user = new User("tom","tim");
+    users.add(user);
+    
+    UserDao.storeAllUsers(users);
+    
   }
 }
