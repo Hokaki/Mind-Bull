@@ -7,11 +7,13 @@ package formhandler;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import model.User;
 import org.hibernate.Session;
 import support.HibernateUtil;
@@ -80,9 +82,35 @@ public class LoginController extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         
-        out.print(username);
-       
+        try {
+            boolean b = validate(username, password);
+            if(b){
+            RequestDispatcher rs = request.getRequestDispatcher("menu.jsp");
+            rs.forward(request, response);
+            }
+            else{
+            RequestDispatcher rs = request.getRequestDispatcher("login.jsp");
+            rs.forward(request, response);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
         
+    }
+    
+    public boolean validate(String user, String pass) throws ClassNotFoundException, SQLException{
+        boolean b;
+        //loading driver
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mindbull-club", "root", "root");
+        PreparedStatement ps = con.prepareStatement("Select * FROM user WHERE username=? and password=?");
+        ps.setString(1, user);
+        ps.setString(2, pass);
+        ResultSet rs = ps.executeQuery();
+        b = rs.next();
+    
+        return b;
     }
 
     /**
