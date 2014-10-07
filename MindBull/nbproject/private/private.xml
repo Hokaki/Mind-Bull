@@ -2,16 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Mohamed/Documents/GitHub/Mind-Bull/MindBull/web/setup.jsp</file>
-            <file>file:/C:/Users/Mohamed/Documents/GitHub/Mind-Bull/MindBull/src/java/model/User.java</file>
-            <file>file:/C:/Users/Mohamed/Documents/GitHub/Mind-Bull/MindBull/src/java/dao/UserDao.java</file>
-            <file>file:/C:/Users/Mohamed/Documents/GitHub/Mind-Bull/MindBull/src/java/model/Member.java</file>
-            <file>file:/C:/Users/Mohamed/Documents/GitHub/Mind-Bull/MindBull/src/java/formhandler/Index.java</file>
-            <file>file:/C:/Users/Mohamed/Documents/GitHub/Mind-Bull/MindBull/web/login.jsp</file>
-            <file>file:/C:/Users/Mohamed/Documents/GitHub/Mind-Bull/MindBull/src/java/formhandler/LoginController.java</file>
-            <file>file:/C:/Users/Mohamed/Documents/GitHub/Mind-Bull/MindBull/src/java/formhandler/Setup.java</file>
-            <file>file:/C:/Users/Mohamed/Documents/GitHub/Mind-Bull/MindBull/src/java/model/Excercise.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

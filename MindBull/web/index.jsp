@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="support.HibernateUtil" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +17,7 @@
         <section id="main_section">
         <h1>Welcome to project: MindBull</h1>
         <p>
-            First you need to login <a href="loginhandler?action=login">Login</a>
+            First you need to login <a href="indexhandler?action=login">Login</a>
         </p>
         <p>
             Or click <a href="indexhandler?action=dba">here</a> for the database setup.

@@ -15,5 +15,6 @@
     <property name="hbm2ddl.auto">update</property>
     <mapping class="model.Member"/>
     <mapping class="model.Excercise"/>
+    <mapping class="model.User"/>
   </session-factory>
 </hibernate-configuration>
