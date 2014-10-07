@@ -8,6 +8,8 @@ package formhandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -77,18 +79,26 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
         
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        User user = new User();
         
+        user.setUsername(request.getParameter("username"));
+        user.setPassword(request.getParameter("password"));
+        
+        List<String> errors = new ArrayList<>();
+
         try {
-            boolean b = validate(username, password);
+            errors = validate(user);
+            boolean b = checkLogin(user);
             if(b){
             RequestDispatcher rs = request.getRequestDispatcher("menu.jsp");
             rs.forward(request, response);
             }
             else{
+                if (!errors.isEmpty()) {
+                    request.setAttribute("errors", errors);
+                }
+            
             RequestDispatcher rs = request.getRequestDispatcher("login.jsp");
             rs.forward(request, response);
             }
@@ -99,20 +109,43 @@ public class LoginController extends HttpServlet {
         
     }
     
-    public boolean validate(String user, String pass) throws ClassNotFoundException, SQLException{
+    public boolean checkLogin(User user) throws ClassNotFoundException, SQLException{
         boolean b;
         //loading driver
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mindbull-club", "root", "root");
         PreparedStatement ps = con.prepareStatement("Select * FROM user WHERE username=? and password=?");
-        ps.setString(1, user);
-        ps.setString(2, pass);
+        ps.setString(1, user.getUsername());
+        ps.setString(2, user.getPassword());
         ResultSet rs = ps.executeQuery();
         b = rs.next();
     
         return b;
     }
-
+    
+    List<String> errors = new ArrayList<>();
+        
+    public List<String> validate(User user) throws ClassNotFoundException, SQLException{
+        
+        if(!errors.isEmpty()){
+            errors.clear();
+        }
+        
+        String username=user.getUsername();
+        if ( username== null || username.trim().isEmpty()) {
+			errors.add("Username must be filled in");
+        }
+        
+        String password=user.getPassword();
+        if ( password== null || password.trim().isEmpty()) {
+			errors.add("password must be filled in");
+		}
+        if(!checkLogin(user)){
+            errors.add("Unsuccesvol login");
+        }
+        
+        return errors;
+     }
     /**
      * Returns a short description of the servlet.
      *
