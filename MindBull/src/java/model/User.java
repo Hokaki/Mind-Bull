@@ -17,11 +17,11 @@ import javax.persistence.*;
 public class User implements Serializable {
     @Id 
     @GeneratedValue
-    private int Id;
+    int Id;
     
-    private String username;
+    String username;
     
-    private String password;
+    String password;
     
     public User(){
     super();

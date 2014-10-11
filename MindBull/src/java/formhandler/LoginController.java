@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -18,40 +19,47 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import model.User;
 import org.hibernate.Session;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.portlet.ModelAndView;
 import support.HibernateUtil;
 
 /**
  *
  * @author Mohamed
  */
-@WebServlet(name = "loginhandler", urlPatterns = {"/loginhandler"})
+@Controller
+@SessionAttributes
 public class LoginController extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LoginController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+    
+        
+	@RequestMapping(value="/login" , method = RequestMethod.POST)
+	public String login(@ModelAttribute("username")
+                                User user, BindingResult result){
+        
+                System.out.println("Welkom, "+user.getUsername());
+                
+                return "redirect:login.jsp";
         }
-    }
+        
+        @RequestMapping ("/login")
+        public ModelAndView showLogin(){
+            
+        
+            return new ModelAndView("login", "command", User());
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -76,7 +84,6 @@ public class LoginController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         

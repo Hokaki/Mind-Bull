@@ -3,12 +3,9 @@
     Created on : 3-okt-2014, 12:47:57
     Author     : Mohamed
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form"%>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
         <style>
             li {
@@ -16,17 +13,25 @@
             }            
         </style>
     </head>
+    
     <body>
         <h2>Log into a new world</h2>
-        <c:if test="${errors != null}">
-            <c:forEach var="error" items="${errors}">
-                <li>${error}</li>
-            </c:forEach>
-        </c:if>
-        <form method="post" action="loginhandler">
-            Username: <input type="text" name="username">
-            Password: <input type="password" name="password">
-            <input type="Submit" name="submit" value="Login">
-        </form>
+        
+         <spring:form method="POST" action="login">
+            
+            <table>
+                <tr>
+                    <td>UserName : </td>
+                    <td><spring:input path="username" /></td>
+                </tr>
+                <tr>
+                    <td>Password : </td>
+                    <td><spring:password path="password" /></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><input type="submit" /></td>
+                </tr>
+            </table>
+        </form:form>
     </body>
 </html>
