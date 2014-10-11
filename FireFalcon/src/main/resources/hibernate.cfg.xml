@@ -4,8 +4,9 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
     <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
-    <property name="hibernate.connection.url">jdbc:derby://localhost:1527/sample</property>
-    <property name="hibernate.connection.username">app</property>
-    <property name="hibernate.connection.password">app</property>
+    <property name="hibernate.connection.url">jdbc:derby://localhost:3306/firefalcon</property>
+    <property name="hibernate.connection.password">root</property>
+    <property name="hibernate.connection.username">root</property>
+    <class-cache class="User" include="all" usage="read-only"/>
   </session-factory>
 </hibernate-configuration>

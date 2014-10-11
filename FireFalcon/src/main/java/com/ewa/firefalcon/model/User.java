@@ -5,20 +5,31 @@
  */
 package com.ewa.firefalcon.model;
 
+import javax.persistence.*;
+
 /**
  *
  * @author Mohamed
  */
+@Entity
 public class User {
-    
+    @Id @GeneratedValue
+    @Column(name = "id")
     private int Id;
+    
+    @Column(name = "username")
     private String username;
+    
+    @Column(name = "password")
     private String password;
+    
+    @Column(name = "first name")
     private String firstName;
+    
+    @Column(name = "last name")
     private String lastName;
 
-    public User(int Id, String username, String password, String firstName, String lastName) {
-        this.Id = Id;
+    public User(String username, String password, String firstName, String lastName) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
