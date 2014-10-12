@@ -9,21 +9,25 @@ package com.firefalcon.controller;
  *
  * @author Mohamed
  */
+
 import java.io.IOException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping(value="/index")
 public class IndexController {
     
-        @RequestMapping(value="/")
-	public ModelAndView home() throws IOException{
-		return new ModelAndView("index");
-	}
-        @RequestMapping(value="/index")
 	public ModelAndView index() throws IOException{
-		return new ModelAndView("index");
-	}
+            
+            return new ModelAndView("index");
+            
+        }
+
+        
+        
     
 }

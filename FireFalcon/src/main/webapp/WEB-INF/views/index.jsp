@@ -12,19 +12,6 @@
     </head>
     <body>
         <h1>Welcome</h1>
-        <form>
-            <div class="col-sm-3 col-xs-12">
-            <div class="form-group">
-                <label for="username">Username</label> 
-                <input class="form-control" id="username" placeholder="username">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label> 
-                <input class="form-control" id="password" placeholder="password">
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-            </div>
-        </form>
         
         
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
