@@ -20,14 +20,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping(value="/index")
 public class IndexController {
-    
+        
 	public ModelAndView index() throws IOException{
             
             return new ModelAndView("index");
             
         }
-
-        
         
     
 }

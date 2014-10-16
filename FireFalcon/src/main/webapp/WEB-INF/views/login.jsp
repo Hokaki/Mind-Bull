@@ -19,13 +19,13 @@
             <div class="col-sm-3 col-xs-12">
             <div class="form-group">
                 <label for="username">Username</label> 
-                <form:input path="" class="form-control" placeholder="username" />
+                <form:input path="username" class="form-control" placeholder="username" />
             </div>
             <div class="form-group">
                 <label for="password">Password</label> 
-                <form:password path="" class="form-control" placeholder="username" />
+                <form:password path="password" class="form-control" placeholder="username" />
             </div>
-                <form:button type="submit" class="btn btn-primary">Login</form:button>
+                <form:button type="submit" value="login" class="btn btn-primary">Login</form:button>
             </div>
         </form:form>
         
