@@ -15,13 +15,15 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
+
 /**
  *
  * @author Mohamed
  */
 @Repository
 public class UserDAO {
-     @Autowired
+
+    @Autowired
     private SessionFactory sessionFactory;
 
     private Session getCurrentSession() {
@@ -38,7 +40,7 @@ public class UserDAO {
         userToUpdate.setPassword(user.getPassword());
         userToUpdate.setFirstName(user.getFirstName());
         userToUpdate.setLastName(user.getLastName());
-        
+
         getCurrentSession().update(userToUpdate);
 
     }
@@ -54,32 +56,31 @@ public class UserDAO {
             getCurrentSession().delete(user);
         }
     }
-    
 
     @SuppressWarnings("unchecked")
     public List<User> getUsers() {
         return getCurrentSession().createQuery("from User").list();
     }
 
-    public  void storeAllUsers(List<User> users) {
-             
+    public void storeAllUsers(List<User> users) {
+
         for (User user : users) {
             getCurrentSession().save(user);
         }
-       
+
     }
-    
-    public List<User> getResultList(String userName, String password){
+
+    public List<User> getResultList(String userName, String password) {
         Criteria cr = getCurrentSession().createCriteria(User.class);
-        
-        Criterion name = Restrictions.eq("username",  userName);
-        Criterion pass= Restrictions.eq("password",  password);
-        
+
+        Criterion name = Restrictions.eq("username", userName);
+        Criterion pass = Restrictions.eq("password", password);
+
         LogicalExpression eqExp = Restrictions.and(name, pass);
         cr.add(eqExp);
-        
+
         List rs = cr.list();
-        
+
         return rs;
     }
 }

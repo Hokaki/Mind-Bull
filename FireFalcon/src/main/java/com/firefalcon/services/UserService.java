@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.firefalcon.dao.UserDAO;
 import com.firefalcon.model.User;
+
 /**
  *
  * @author Mohamed
@@ -47,11 +48,12 @@ public class UserService {
         userDAO.storeAllUsers(users);
 
     }
-    
-    public int checkRow(User user){
-       
-       int numRow = userDAO.getResultList(user.getUsername(), user.getPassword()).size();
-       
-       return numRow;
+
+    public int checkRow(User user) {
+        System.out.println(user.getUsername() + user.getPassword());
+
+        List userList = userDAO.getResultList(user.getUsername(), user.getPassword());
+        int numRow = userList.size();
+        return numRow;
     }
 }
