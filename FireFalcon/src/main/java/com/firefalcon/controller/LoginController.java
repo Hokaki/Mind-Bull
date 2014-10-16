@@ -30,23 +30,23 @@ public class LoginController {
         return mav;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = {"/login", "/index"}, method = RequestMethod.POST)
     public ModelAndView checkLogin(@ModelAttribute User user) {
         ModelAndView mavIndex = new ModelAndView("index");
         ModelAndView mavLogin = new ModelAndView("login");
         mavLogin.addObject("login", new User());
 
         int numRow = userService.checkRow(user);
-
-        String message = "Unsuccesvol login";
-
+        
         String userName = user.getUsername();
+        boolean hasValue = true;
+        
         if (numRow == 1) {
             mavIndex.addObject("user", userName);
 
             return mavIndex;
         } else {
-            mavLogin.addObject("message", message);
+            mavLogin.addObject("hasValue", hasValue);
             return mavLogin;
         }
     }
