@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.firefalcon.model;
 
 import javax.persistence.Column;
@@ -17,9 +16,14 @@ import javax.persistence.Id;
  */
 @Entity
 public class Patient extends Person {
-    @Id @GeneratedValue
+
+    @Id
+    @GeneratedValue
     @Column(name = "bsn")
     private int BSN;
+
+    public Patient() {
+    }
 
     public Patient(int BSN, String firstName, String lastName) {
         super(firstName, lastName);
@@ -34,6 +38,4 @@ public class Patient extends Person {
         this.BSN = BSN;
     }
 
-    
-    
 }
