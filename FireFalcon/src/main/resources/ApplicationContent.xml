@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+ 
+    <!--Definition for ExerciseDOA bean-->
+    <bean id="ExerciseDAO" class="com.firefalcon.dao.ExerciseDAO">
+        <constructor-arg value="com.firefalcon.model.Exercise"/>
+    </bean>
+    
+    <!--Definition for PatientDOA bean-->
+     <bean id="PatientDAO" class="com.firefalcon.dao.ExerciseDAO">
+        <constructor-arg value="come.firefalcon.model.Patient"/>
+    </bean>
+    
+    <!--Definition for UserDOA bean-->
+     <bean id="UserDAO" class="com.firefalcon.dao.UserDAO">
+        <constructor-arg value="com.firefalcon.model.User"/>
+    </bean>
+    
+</beans>
+
+<bean id="stringEncryptor"  class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor" lazy-init="false">
+  <property name="algorithm" value="PBEWithMD5AndDES" />
+  <property name="password" value="${jasypt_password}" />
+</bean>
+ 
+<bean id="hibernateEncryptor" class="org.jasypt.hibernate.encryptor.HibernatePBEStringEncryptor" lazy-init="false">
+  <!-- This property value must match "encryptorRegisteredName" used when defining hibernate user types -->
+  <property name="registeredName" value="jasyptHibernateEncryptor" />
+  <property name="encryptor" ref="stringEncryptor" />
+</bean>

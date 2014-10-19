@@ -25,7 +25,7 @@
 	   <version>1.7.1</version>
 	</dependency>
         
-        <!--Jasypt Encryption-->
+        <!--Encryption with Jasypt-Hibernate-->
       <dependency>
          <groupId>org.jasypt</groupId>
          <artifactId>jasypt-hibernate4</artifactId>
