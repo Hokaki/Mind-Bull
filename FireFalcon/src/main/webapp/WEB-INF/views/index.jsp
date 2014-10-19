@@ -28,7 +28,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="">Therapist control</a>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/index">Therapist control</a>
                 </div>
                 <!-- Top Menu Items -->
                 <ul class="nav navbar-right top-nav">
@@ -42,7 +42,7 @@
                                             <img class="media-object" src="http://placehold.it/50x50" alt="">
                                         </span>
                                         <div class="media-body">
-                                            <h5 class="media-heading"><strong>Username</strong>
+                                            <h5 class="media-heading"><strong>${user}</strong>
                                             </h5>
                                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                             <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -61,7 +61,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Username <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${user}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -83,7 +83,7 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
                         <li class="active">
-                            <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Control Panel</a>
+                            <a href=""><i class="fa fa-fw fa-dashboard"></i> Control Panel</a>
                         </li>
                         <li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Patients <i class="fa fa-fw fa-caret-down"></i></a>
@@ -137,7 +137,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/patient/list">
                                     <div class="panel-footer">
                                         <span class="pull-left">View patients</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -203,7 +203,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/exercise/list">
                                     <div class="panel-footer">
                                         <span class="pull-left">View Exercises</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

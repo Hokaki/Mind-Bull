@@ -43,7 +43,7 @@ public class LoginController {
         
         if (numRow == 1) {
             mavIndex.addObject("user", userName);
-
+            
             return mavIndex;
         } else {
             mavLogin.addObject("hasValue", hasValue);
