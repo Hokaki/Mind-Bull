@@ -30,7 +30,7 @@ public class LoginController {
         return mav;
     }
 
-    @RequestMapping(value = {"/login", "/index"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/index"}, method = RequestMethod.POST)
     public ModelAndView checkLogin(@ModelAttribute User user) {
         ModelAndView mavIndex = new ModelAndView("index");
         ModelAndView mavLogin = new ModelAndView("login");
