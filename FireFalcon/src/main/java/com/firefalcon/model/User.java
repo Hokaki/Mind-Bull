@@ -1,5 +1,8 @@
 package com.firefalcon.model;
 
+import java.io.Serializable;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 
 /**
@@ -7,7 +10,7 @@ import javax.persistence.*;
  * @author Mohamed
  */
 @Entity
-public class User extends Person {
+public class User extends Person implements Serializable {
 
     @Id
     @Column(name = "username")
@@ -30,6 +33,7 @@ public class User extends Person {
     public User() {
     }
 
+    @Type(type="encryptedString")
     public String getUsername() {
         return username;
     }
@@ -37,7 +41,8 @@ public class User extends Person {
     public void setUsername(String username) {
         this.username = username;
     }
-
+    
+    @Type(type="encryptedString")
     public String getPassword() {
         return password;
     }
