@@ -9,10 +9,11 @@ package com.firefalcon.init;
  *
  * @author Mohamed
  */
-
 import java.util.Properties;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jasypt.hibernate4.encryptor.HibernatePBEStringEncryptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -34,8 +35,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
 
-public class MvcConfiguration extends WebMvcConfigurerAdapter{
-    
+public class MvcConfiguration extends WebMvcConfigurerAdapter {
+
     private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";
     private static final String PROPERTY_NAME_DATABASE_PASSWORD = "db.password";
     private static final String PROPERTY_NAME_DATABASE_URL = "db.url";
@@ -65,6 +66,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
         sessionFactoryBean.setDataSource(dataSource());
+        sessionFactoryBean.setMappingResources(new String[]{"jasyptHibernateTypes.hbm.xml"});
         sessionFactoryBean.setPackagesToScan(env.getRequiredProperty(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN));
         sessionFactoryBean.setHibernateProperties(hibProperties());
         return sessionFactoryBean;
@@ -93,10 +95,25 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
         return resolver;
     }
 
+    @Bean
+    public StandardPBEStringEncryptor stringEncryptor() {
+        StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+        encryptor.setAlgorithm("PBEWithMD5AndDES");
+        encryptor.setPassword("FireFalcon");
+        return encryptor;
+    }
+    
+    @Bean
+    public HibernatePBEStringEncryptor hibernateEncryptor() {
+        HibernatePBEStringEncryptor encryptor = new HibernatePBEStringEncryptor();
+        encryptor.setRegisteredName("jasyptHibernateEncryptor");
+        encryptor.setEncryptor(stringEncryptor());
+        return encryptor;
+    }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("/css/");
     }
-    
-    
+
 }

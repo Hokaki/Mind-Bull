@@ -11,51 +11,51 @@ and open the template in the editor.
  
     <!-- VARCHAR, CLOB, TEXT based types -->
      
-    <typedef name="encryptedString" class="org.jasypt.hibernate.type.EncryptedStringType">
+    <typedef name="encryptedString" class="org.jasypt.hibernate4.type.EncryptedStringType">
         <param name="encryptorRegisteredName">jasyptHibernateEncryptor</param>
     </typedef>
      
-    <typedef name="encryptedBigDecimalAsString" class="org.jasypt.hibernate.type.EncryptedBigDecimalAsStringType">
+    <typedef name="encryptedBigDecimalAsString" class="org.jasypt.hibernate4.type.EncryptedBigDecimalAsStringType">
         <param name="encryptorRegisteredName">jasyptHibernateEncryptor</param>
     </typedef>
  
-    <typedef name="encryptedBigIntegerAsString" class="org.jasypt.hibernate.type.EncryptedBigIntegerAsStringType">
+    <typedef name="encryptedBigIntegerAsString" class="org.jasypt.hibernate4.type.EncryptedBigIntegerAsStringType">
         <param name="encryptorRegisteredName">jasyptHibernateEncryptor</param>
     </typedef>
  
-    <typedef name="encryptedBooleanAsString" class="org.jasypt.hibernate.type.EncryptedBooleanAsStringType">
+    <typedef name="encryptedBooleanAsString" class="org.jasypt.hibernate4.type.EncryptedBooleanAsStringType">
         <param name="encryptorRegisteredName">jasyptHibernateEncryptor</param>
     </typedef>
  
-    <typedef name="encryptedByteAsString" class="org.jasypt.hibernate.type.EncryptedByteAsStringType">
+    <typedef name="encryptedByteAsString" class="org.jasypt.hibernate.type4.EncryptedByteAsStringType">
         <param name="encryptorRegisteredName">jasyptHibernateEncryptor</param>
     </typedef>
  
-    <typedef name="encryptedCalendarAsString" class="org.jasypt.hibernate.type.EncryptedCalendarAsStringType">
+    <typedef name="encryptedCalendarAsString" class="org.jasypt.hibernate4.type.EncryptedCalendarAsStringType">
         <param name="encryptorRegisteredName">jasyptHibernateEncryptor</param>
     </typedef>
  
-    <typedef name="encryptedDateAsString" class="org.jasypt.hibernate.type.EncryptedDateAsStringType">
+    <typedef name="encryptedDateAsString" class="org.jasypt.hibernate4.type.EncryptedDateAsStringType">
         <param name="encryptorRegisteredName">jasyptHibernateEncryptor</param>
     </typedef>
  
-    <typedef name="encryptedDoubleAsString" class="org.jasypt.hibernate.type.EncryptedDoubleAsStringType">
+    <typedef name="encryptedDoubleAsString" class="org.jasypt.hibernate4.type.EncryptedDoubleAsStringType">
         <param name="encryptorRegisteredName">jasyptHibernateEncryptor</param>
     </typedef>
  
-    <typedef name="encryptedFloatAsString" class="org.jasypt.hibernate.type.EncryptedFloatAsStringType">
+    <typedef name="encryptedFloatAsString" class="org.jasypt.hibernate4.type.EncryptedFloatAsStringType">
         <param name="encryptorRegisteredName">jasyptHibernateEncryptor</param>
     </typedef>
  
-    <typedef name="encryptedIntegerAsString" class="org.jasypt.hibernate.type.EncryptedIntegerAsStringType">
+    <typedef name="encryptedIntegerAsString" class="org.jasypt.hibernate4.type.EncryptedIntegerAsStringType">
         <param name="encryptorRegisteredName">jasyptHibernateEncryptor</param>
     </typedef>
  
-    <typedef name="encryptedLongAsString" class="org.jasypt.hibernate.type.EncryptedLongAsStringType">
+    <typedef name="encryptedLongAsString" class="org.jasypt.hibernate4.type.EncryptedLongAsStringType">
         <param name="encryptorRegisteredName">jasyptHibernateEncryptor</param>
     </typedef>
  
-    <typedef name="encryptedShortAsString" class="org.jasypt.hibernate.type.EncryptedShortAsStringType">
+    <typedef name="encryptedShortAsString" class="org.jasypt.hibernate4.type.EncryptedShortAsStringType">
         <param name="encryptorRegisteredName">jasyptHibernateEncryptor</param>
     </typedef>
  
