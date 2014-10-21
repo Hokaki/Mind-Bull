@@ -12,14 +12,12 @@
         <link href="<c:url value="/css/font-awesome-4.1.0/css/font-awesome.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/therapist-control.css" />" rel="stylesheet" >
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
-        <title>Home page</title>
+        <title>Patient list</title>
 
     </head>
     <body>  
         <div id="wrapper">
-            <!-- Navigation -->
             <%@ include file="navbar.jsp" %>
-            <!-- Navigation -->
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <h2>patients</h2>
