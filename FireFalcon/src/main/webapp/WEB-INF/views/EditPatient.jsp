@@ -104,41 +104,29 @@
             <div id="page-wrapper">
 
                 <div class="container-fluid">
+                    <form:form method="POST" commandName="patient" action="${pageContext.request.contextPath}/patient/edit">  
+                        <table border="0">
+                            <tbody>
+                                <tr>
+                                    <td>First name</td>
+                                    <td><form:input path="firstName" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Last name</td>
+                                    <td><form:input path="lastName" /></td>
+                                    <td>
+                                    <td><form:hidden path="BSN"/>
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td><input type="submit" value="edit" /></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
 
-                                    <h2>patients</h2>
-                            <h3>${message}</h3>
-                            <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/add">add</a></td>
-                            <c:choose>
-                                <c:when test="${patientList.size() != 0}">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>BSN</th>
-                                                    <th>Name</th>
-                                                    <th>Enroll</th>
-                                                    <th>Edit</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach var="patient" items="${patientList}">
-                                                    <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
-                                                    <tr>
-                                                        <td>${patient.BSN}</td>
-                                                        <td>${patient.firstName} ${patient.lastName}</td>
-                                                        <td><a class="btn btn-primary">Enroll</a></td>
-                                                        <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/edit/${patient.BSN}">Edit</a></td>
-                                                    </tr>
-                                                </c:forEach>
-                                            </tbody>
-                                        </table>
-                                    </div>        
-                                </c:when>
-                                <c:otherwise>
-                                    There were no patients found.
-                                </c:otherwise>
-                            </c:choose>
 
+                    </form:form>
                 </div>
                 <!-- /.container-fluid -->
 

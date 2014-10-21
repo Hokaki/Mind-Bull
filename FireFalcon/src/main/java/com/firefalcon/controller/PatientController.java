@@ -1,4 +1,5 @@
 package com.firefalcon.controller;
+import com.firefalcon.model.Patient;
 import com.firefalcon.services.PatientService;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,5 +28,45 @@ public class PatientController {
         patientListView.addObject("patientList", patientService.getPatients());
 
         return patientListView;
+    }
+    
+     @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public ModelAndView patientAddPage() throws IOException {
+
+        ModelAndView userAddView = new ModelAndView("AddPatient");
+        userAddView.addObject("patient", new Patient());
+        return userAddView;
+
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public ModelAndView patientAdd(@ModelAttribute Patient patient)  {
+
+        ModelAndView patientListView = new ModelAndView("PatientList");
+        patientService.addPatient(patient);
+        patientListView.addObject("patientList", patientService.getPatients());
+
+        return patientListView;
+
+    }
+    
+    @RequestMapping(value = "/edit/{bsn}", method = RequestMethod.GET)
+    public ModelAndView patientEditPage(@PathVariable int bsn) throws IOException {
+
+        ModelAndView userAddView = new ModelAndView("EditPatient");
+        userAddView.addObject("patient", patientService.getPatient(bsn));
+        return userAddView;
+
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public ModelAndView patientEditAdd(@ModelAttribute Patient patient)  {
+
+        ModelAndView patientListView = new ModelAndView("PatientList");
+        patientService.updatePatient(patient);
+        patientListView.addObject("patientList", patientService.getPatients());
+
+        return patientListView;
+
     }
 }

@@ -50,7 +50,7 @@ public class PatientDAO {
         return getCurrentSession().createQuery("from Patient").list();
     }
 
-    public  void storeAllUsers(List<Patient> patients) {
+    public  void storeAllPatients(List<Patient> patients) {
              
         for (Patient patient : patients) {
             getCurrentSession().save(patient);

@@ -23,11 +23,11 @@ public class PatientService {
     @Autowired
     private PatientDAO patientDAO;
 
-    public void addUser(Patient patient) {
+    public void addPatient(Patient patient) {
         patientDAO.addPatient(patient);
     }
 
-    public void updateUser(Patient patient) {
+    public void updatePatient(Patient patient) {
         patientDAO.updatePatient(patient);
     }
 
@@ -35,7 +35,7 @@ public class PatientService {
         return patientDAO.getPatient(bsn);
     }
 
-    public void deleteUser(int bsn) {
+    public void deletePatient(int bsn) {
         patientDAO.deletePatient(bsn);
     }
 
@@ -43,9 +43,9 @@ public class PatientService {
         return patientDAO.getPatients();
     }
 
-    public void storeAllUsers(List<Patient> users) {
+    public void storeAllPatient(List<Patient> users) {
 
-        patientDAO.storeAllUsers(users);
+        patientDAO.storeAllPatients(users);
 
     }
 }
