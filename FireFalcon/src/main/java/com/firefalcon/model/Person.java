@@ -6,6 +6,9 @@
 
 package com.firefalcon.model;
 
+import java.io.Serializable;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
@@ -14,7 +17,7 @@ import javax.persistence.MappedSuperclass;
  * @author Joost
  */
 @MappedSuperclass
-public abstract class Person {
+public abstract class Person implements Serializable{
     @Column(name = "firstName")
     private String firstName;
     @Column(name = "userLast")
@@ -26,6 +29,7 @@ public abstract class Person {
     }
     public Person() {}
 
+    @Type(type="encryptedIntegerAsString")
     public String getFirstName() {
         return firstName;
     }
@@ -33,7 +37,8 @@ public abstract class Person {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
+    
+    @Type(type="encryptedIntegerAsString")
     public String getLastName() {
         return lastName;
     }
