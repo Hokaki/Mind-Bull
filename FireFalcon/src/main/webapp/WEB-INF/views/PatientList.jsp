@@ -33,6 +33,7 @@
                                             <th>Name</th>
                                             <th>Enroll</th>
                                             <th>Edit</th>
+                                            <th>Affliction</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -43,6 +44,7 @@
                                                 <td>${patient.firstName} ${patient.lastName}</td>
                                                 <td><a class="btn btn-primary">Enroll</a></td>
                                                 <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/edit/${patient.BSN}">Edit</a></td>
+                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/affliction/add/">Add</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

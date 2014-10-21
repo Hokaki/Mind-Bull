@@ -24,6 +24,10 @@ and open the template in the editor.
         <constructor-arg value="com.firefalcon.model.User"/>
     </bean>
     
+    <!--Definition for UserDOA bean-->
+     <bean id="AfflictionDAO" class="com.firefalcon.dao.AfflictionDAO">
+        <constructor-arg value="com.firefalcon.model.Affliction"/>
+    </bean>
 </beans>
 
 <bean id="stringEncryptor"  class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor" lazy-init="false">
