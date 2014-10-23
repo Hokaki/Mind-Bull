@@ -26,6 +26,7 @@
                 <div class="container-fluid">
                     <h2>exercises</h2>
                     <h3>${message}</h3>
+                    <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/exercise/add">add</a></td>
                     <c:choose>
                         <c:when test="${exerciseList.size() != 0}">
                             <div class="table-responsive">
