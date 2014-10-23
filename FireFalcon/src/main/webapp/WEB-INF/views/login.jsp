@@ -14,61 +14,33 @@
 
     </head>
     <body>
-        <c:choose>
-            <c:when test="${hasValue == true}">
-                <div class="container">    
-                    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                        <div class="panel panel-info" >
-                            <div class="panel-heading">
-                                <div class="panel-title">Sign In</div>
+        <div class="container">    
+            <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <div class="panel panel-info" >
+                    <div class="panel-heading">
+                        <div class="panel-title">Sign In</div>
+                    </div>
+                    <div style="padding-top:30px" class="panel-body" >
+                        <form:form class="form-horizontal" role="form" method="POST" commandName="login" action="${pageContext.request.contextPath}/index">
+                          <form:errors path="*" class="error" element="div"/>
+                            <div style="margin-bottom: 25px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
+                                    <form:input path="username" class="form-control" placeholder="username" />
+                                    <form:errors path="username" class="error"/>
                             </div>
-                            <div style="padding-top:30px" class="panel-body" >
-                            <form:form class="form-horizontal" role="form" method="POST" commandName="login" action="${pageContext.request.contextPath}/index">
-                                            <div style="margin-bottom: 25px" class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
-                                            <form:input path="username" class="form-control" placeholder="username" />
-                                        </div>
-                                        <div style="margin-bottom: 25px" class="input-group">
-                                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                            <form:password path="password" class="form-control" placeholder="password" />
-                                        </div>
-                                        <div class="col-sm-12 controls">
-                                            <form:button type="submit" value="login" class="btn btn-danger">Login</form:button>
-                                            <p class="message">Unsuccesvol login, user does not exist</p>
-                                        </div>
-                                </form:form>
+                            <div style="margin-bottom: 25px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                    <form:password path="password" class="form-control" placeholder="password" />
+                                    <form:errors path="password" class="error" ></form:errors>
                             </div>
-                        </div>
+                            <div class="col-sm-12 controls">
+                                <form:button type="submit" value="login" class="btn btn-danger">Login</form:button>
+                                </div>
+                        </form:form>
                     </div>
                 </div>
-            </c:when>
-            <c:otherwise>
-                <div class="container">    
-                    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                        <div class="panel panel-info" >
-                            <div class="panel-heading">
-                                <div class="panel-title">Sign In</div>
-                            </div> 
-                           <div style="padding-top:30px" class="panel-body" >
-                            <form:form class="form-horizontal" role="form" method="POST" commandName="login" action="${pageContext.request.contextPath}/index">
-                                            <div style="margin-bottom: 25px" class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
-                                            <form:input path="username" class="form-control" placeholder="username" />
-                                        </div>
-                                        <div style="margin-bottom: 25px" class="input-group">
-                                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                            <form:password path="password" class="form-control" placeholder="password" />
-                                        </div>
-                                        <div class="col-sm-12 controls">
-                                        <form:button type="submit" value="login" class="btn btn-primary">Login</form:button>
-                                        </div>
-                                </form:form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </c:otherwise>
-        </c:choose>
+            </div>
+        </div>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     </body>

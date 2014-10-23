@@ -2,7 +2,7 @@ package com.firefalcon.model;
 
 import java.io.Serializable;
 import org.hibernate.annotations.Type;
-
+import javax.validation.constraints.*;
 import javax.persistence.*;
 
 /**
@@ -15,7 +15,7 @@ public class User extends Person implements Serializable {
     @Id
     @Column(name = "username")
     private String username;
-
+    
     @Column(name = "password")
     private String password;
 

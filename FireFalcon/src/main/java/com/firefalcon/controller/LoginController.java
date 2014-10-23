@@ -6,15 +6,17 @@ package com.firefalcon.controller;
  */
 import com.firefalcon.model.User;
 import com.firefalcon.services.UserService;
+
 import java.io.IOException;
-import java.util.List;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import com.firefalcon.validator.ObjectValidator;
 
 @Controller
 public class LoginController {
@@ -22,6 +24,8 @@ public class LoginController {
     @Autowired
     UserService userService;
 
+    ObjectValidator objectValidator;
+    
     @RequestMapping(value = {"/", "/login"})
     public ModelAndView login(@ModelAttribute User user) throws IOException {
         ModelAndView mav = new ModelAndView("login");
@@ -31,22 +35,28 @@ public class LoginController {
     }
 
     @RequestMapping(value = {"/index"}, method = RequestMethod.POST)
-    public ModelAndView checkLogin(@ModelAttribute User user) {
+    public ModelAndView checkLogin(@Valid @ModelAttribute("user") User user, BindingResult result,
+            HttpSession session) {
         ModelAndView mavIndex = new ModelAndView("index");
         ModelAndView mavLogin = new ModelAndView("login");
         mavLogin.addObject("login", new User());
-
+        
+        objectValidator = new ObjectValidator();
+        objectValidator.validate(user, result);
+        
         int numRow = userService.checkRow(user);
-        
+
         String userName = user.getUsername();
-        boolean hasValue = true;
-        
+
         if (numRow == 1) {
             mavIndex.addObject("user", userName);
-            
+            session.setAttribute("user", user);
             return mavIndex;
-        } else {
-            mavLogin.addObject("hasValue", hasValue);
+        }
+        else if (result.hasErrors()) {
+
+            return mavLogin;
+        }else{
             return mavLogin;
         }
     }
