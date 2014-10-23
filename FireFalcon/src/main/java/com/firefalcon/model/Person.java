@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.firefalcon.model;
 
 import java.io.Serializable;
@@ -17,19 +16,22 @@ import javax.persistence.MappedSuperclass;
  * @author Joost
  */
 @MappedSuperclass
-public abstract class Person implements Serializable{
-    @Column(name = "firstName")
+public abstract class Person implements Serializable {
+
     private String firstName;
-    @Column(name = "userLast")
+
     private String lastName;
 
     public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-    public Person() {}
 
-    @Type(type="encryptedIntegerAsString")
+    public Person() {
+    }
+
+    @Column(name = "firstName")
+    @Type(type = "encryptedString")
     public String getFirstName() {
         return firstName;
     }
@@ -37,8 +39,9 @@ public abstract class Person implements Serializable{
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-    
-    @Type(type="encryptedIntegerAsString")
+
+    @Column(name = "lastName")
+    @Type(type = "encryptedString")
     public String getLastName() {
         return lastName;
     }
@@ -46,6 +49,5 @@ public abstract class Person implements Serializable{
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    
-    
+
 }

@@ -20,9 +20,6 @@ import javax.persistence.Id;
 @Entity
 public class Patient extends Person implements Serializable {
 
-    @Id
-    @Type(type = "encryptedIntegerAsString")
-    @Column(name = "bsn")
     private int BSN;
 
     public Patient() {
@@ -33,6 +30,9 @@ public class Patient extends Person implements Serializable {
         this.BSN = BSN;
     }
 
+    @Id
+    @Column(name = "bsn")
+    @Type(type = "encryptedIntegerAsString")
     public int getBSN() {
         return BSN;
     }

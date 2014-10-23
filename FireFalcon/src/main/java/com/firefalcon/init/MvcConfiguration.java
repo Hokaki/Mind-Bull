@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.hibernate4.encryptor.HibernatePBEStringEncryptor;
+import org.jasypt.salt.ZeroSaltGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -100,6 +101,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
         StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
         encryptor.setAlgorithm("PBEWithMD5AndDES");
         encryptor.setPassword("FireFalcon");
+        encryptor.setSaltGenerator(new ZeroSaltGenerator());
         return encryptor;
     }
     

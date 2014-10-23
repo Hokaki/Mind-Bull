@@ -33,9 +33,9 @@ public class PatientController {
      @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView patientAddPage() throws IOException {
 
-        ModelAndView userAddView = new ModelAndView("AddPatient");
-        userAddView.addObject("patient", new Patient());
-        return userAddView;
+        ModelAndView patientAddView = new ModelAndView("AddPatient");
+        patientAddView.addObject("patient", new Patient());
+        return patientAddView;
 
     }
 
@@ -53,9 +53,9 @@ public class PatientController {
     @RequestMapping(value = "/edit/{bsn}", method = RequestMethod.GET)
     public ModelAndView patientEditPage(@PathVariable int bsn) throws IOException {
 
-        ModelAndView userAddView = new ModelAndView("EditPatient");
-        userAddView.addObject("patient", patientService.getPatient(bsn));
-        return userAddView;
+        ModelAndView patientEditView = new ModelAndView("EditPatient");
+        patientEditView.addObject("patient", patientService.getPatient(bsn));
+        return patientEditView;
 
     }
 
