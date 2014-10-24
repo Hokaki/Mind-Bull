@@ -46,6 +46,7 @@
                                 <input class="btn btn-default" type="submit" value="Edit" />
                             </div>
                         </div>
+                            <form:hidden path="username"/>
                     </form:form>
                 </div>
                 <!-- /.container-fluid -->
