@@ -45,6 +45,7 @@
                                                 <td>${exercise.id}</td>
                                                 <td>${exercise.name}</td>
                                                 <td>${exercise.description}</td>
+                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/exercise/edit/${exercise.id}">Edit</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

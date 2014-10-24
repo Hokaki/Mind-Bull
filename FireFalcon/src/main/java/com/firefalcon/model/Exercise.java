@@ -14,10 +14,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Exercise implements Serializable{
-
-    @GeneratedValue
-    @Id
-    @Column(name = "id")
+    
     private int id;
     private String name;
     private String description;
@@ -30,16 +27,20 @@ public class Exercise implements Serializable{
         this.description = description;
     }
 
-    
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     public int getId() {
         return id;
     }
 
+    @Column(name = "name")
     @Type(type= "encryptedString")
     public String getName() {
         return name;
     }
 
+    @Column(name = "description")
     @Type(type= "encryptedString")
     public String getDescription() {
         return description;
