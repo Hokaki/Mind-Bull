@@ -75,6 +75,9 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Patients <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
+                        <a href="${pageContext.request.contextPath}/user/list">Users</a>
+                    </li>
+                    <li>
                         <a href="${pageContext.request.contextPath}/patient/list">Patients overview</a>
                     </li>
                     <li>

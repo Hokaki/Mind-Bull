@@ -89,6 +89,9 @@
                             <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Patients <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="demo" class="collapse">
                                 <li>
+                                    <a href="${pageContext.request.contextPath}/user/list">Users</a>
+                                </li>
+                                <li>
                                     <a href="${pageContext.request.contextPath}/patient/list">Patients overview</a>
                                 </li>
                                 <li>
@@ -132,8 +135,8 @@
                                             <i class="fa fa-plus-square fa-5x"></i>
                                         </div>
                                         <div class="col-xs-9 text-right">
-                                            <div class="huge">2</div>
-                                            <div>New messages</div>
+                                            <div class="huge">0</div>
+                                            <div>New patients</div>
                                         </div>
                                     </div>
                                 </div>
@@ -154,12 +157,12 @@
                                             <i class="fa fa-user-md fa-5x"></i>
                                         </div>
                                         <div class="col-xs-9 text-right">
-                                            <div class="huge">12</div>
+                                            <div class="huge">0</div>
                                             <div>New messages</div>
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/user/list">
                                     <div class="panel-footer">
                                         <span class="pull-left">View Therapist</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -176,7 +179,7 @@
                                             <i class="fa fa-calendar fa-5x"></i>
                                         </div>
                                         <div class="col-xs-9 text-right">
-                                            <div class="huge">10</div>
+                                            <div class="huge">0</div>
                                             <div>New items</div>
                                         </div>
                                     </div>
@@ -198,7 +201,7 @@
                                             <i class="fa fa-heart fa-5x"></i>
                                         </div>
                                         <div class="col-xs-9 text-right">
-                                            <div class="huge">4</div>
+                                            <div class="huge">0</div>
                                             <div>New excercises</div>
                                         </div>
                                     </div>
