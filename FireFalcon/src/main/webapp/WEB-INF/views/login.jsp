@@ -21,8 +21,7 @@
                         <div class="panel-title">Sign In</div>
                     </div>
                     <div style="padding-top:30px" class="panel-body" >
-                        <form:form class="form-horizontal" role="form" method="POST" commandName="login" action="${pageContext.request.contextPath}/index">
-                          <form:errors path="*" class="error" element="div"/>
+                        <form:form class="form-horizontal" role="form" method="POST" commandName="user" action="${pageContext.request.contextPath}/index">
                             <div style="margin-bottom: 25px" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
                                     <form:input path="username" class="form-control" placeholder="username" />

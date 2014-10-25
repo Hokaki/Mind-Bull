@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.firefalcon.validator.ObjectValidator;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class LoginController {
@@ -36,10 +37,10 @@ public class LoginController {
 
     @RequestMapping(value = {"/index"}, method = RequestMethod.POST)
     public ModelAndView checkLogin(@Valid @ModelAttribute("user") User user, BindingResult result,
-            HttpSession session) {
+            HttpServletRequest request) {
         ModelAndView mavIndex = new ModelAndView("index");
         ModelAndView mavLogin = new ModelAndView("login");
-        mavLogin.addObject("login", new User());
+        mavLogin.addObject("user", new User());
         
         objectValidator = new ObjectValidator();
         objectValidator.validate(user, result);
@@ -47,10 +48,10 @@ public class LoginController {
         int numRow = userService.checkRow(user);
 
         String userName = user.getUsername();
-
+        
         if (numRow == 1) {
+            request.getSession().setAttribute(userName, user);
             mavIndex.addObject("user", userName);
-            session.setAttribute("user", user);
             return mavIndex;
         }
         else if (result.hasErrors()) {
@@ -60,4 +61,13 @@ public class LoginController {
             return mavLogin;
         }
     }
+    
+    @RequestMapping(value = "/index")
+     public ModelAndView logout(){
+         ModelAndView mavLogout = new ModelAndView("login");
+         
+         
+
+         return mavLogout;
+     }
 }

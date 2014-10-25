@@ -25,10 +25,10 @@ public class ObjectValidator implements Validator{
 	public void validate(Object target, Errors errors) {
 		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username",
-				"required.username", "Field name is required.");
+				"login.username", "Field name is required.");
 		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password",
-				"required.password", "Field name is required.");
+				"login.username", "Field name is required.");
 		
                 
 		
