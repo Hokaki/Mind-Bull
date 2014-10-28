@@ -24,13 +24,13 @@
                         <div class="form-group">
                             <label for="inputFN" class="col-sm-2 control-label">Name</label>
                             <div class="col-sm-10">     
-                                <form:input path="name" class="form-control" id="inputFN" placeholder="name" />
+                                <form:input path="name" class="form-control" id="inputFN" placeholder="Name" />
                             </div>
                         </div>
                          <div class="form-group">
-                             <label for="inputLN" class="col-sm-2 control-label">Description</label>
+                             <label for="inputDescription" class="col-sm-2 control-label">description</label>
                             <div class="col-sm-10">
-                                <form:input path="description" class="form-control" id="inputLN" placeholder="description" />
+                                <form:input path="description" class="form-control" id="inputLN" placeholder="Description" />
                             </div>
                         </div>
                             <div class="form-group">                                
