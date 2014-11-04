@@ -32,9 +32,9 @@ public class ExerciseDAO {
 
     public void updateExercise(Exercise exercise) {
         Exercise exerciseToUpdate = getExercise(exercise.getId());
+        exerciseToUpdate.setId(exercise.getId());
         exerciseToUpdate.setName(exercise.getName());
         exerciseToUpdate.setDescription(exercise.getDescription());
-//        exerciseToUpdate.setBSN(exercise.getBSN());
         getCurrentSession().update(exerciseToUpdate);
     }
 

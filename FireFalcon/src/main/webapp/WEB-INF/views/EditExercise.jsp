@@ -20,17 +20,17 @@
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <h2>Edit exercise</h2>
-                    <form:form class="form-horizontal" role="form" method="POST" commandName="exercise" action="${pageContext.request.contextPath}/exercise/edit">  
+                    <form:form class="form-horizontal" role="form" method="POST" commandName="exercise" action="${pageContext.request.contextPath}/exercise/edit">            
                         <div class="form-group">
-                            <label for="inputFN" class="col-sm-2 control-label">Name</label>
+                            <label for="inputName" class="col-sm-2 control-label">Name</label>
                             <div class="col-sm-10">     
-                                <form:input path="name" class="form-control" id="inputFN" placeholder="Name" />
+                                <form:input path="name" class="form-control" id="inputName" placeholder="Name" />
                             </div>
                         </div>
                          <div class="form-group">
                              <label for="inputDescription" class="col-sm-2 control-label">description</label>
                             <div class="col-sm-10">
-                                <form:input path="description" class="form-control" id="inputLN" placeholder="Description" />
+                                <form:input path="description" class="form-control" id="inputDescription" placeholder="Description" />
                             </div>
                         </div>
                             <div class="form-group">                                

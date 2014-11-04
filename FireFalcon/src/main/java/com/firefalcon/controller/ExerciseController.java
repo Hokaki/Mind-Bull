@@ -3,6 +3,14 @@ package com.firefalcon.controller;
 import com.firefalcon.model.Exercise;
 import com.firefalcon.services.ExerciseService;
 import java.io.IOException;
+import java.io.Serializable;
+
+//import java.util.List;
+//import org.hibernate.Query;
+//import org.hibernate.SessionFactory;
+//import org.hibernate.Session;
+//import org.hibernate.cfg.Configuration;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping(value = "/exercise")
-public class ExerciseController {
+public class ExerciseController implements Serializable{
 
     @Autowired
     private ExerciseService exerciseService;
@@ -41,8 +49,20 @@ public class ExerciseController {
     
      @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView exerciseAdd(@ModelAttribute Exercise exercise)  {
+        
+//        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+//        Session session = sessionFactory.openSession();
+//        session.beginTransaction();
+//        
+//        Query query = session.createQuery("SELECT MAX(id) FROM exercise");
+//        List list = query.list();
+//        query.list();
+//        session.getTransaction().commit();
+//        session.close();
 
-        ModelAndView exerciseAddView = new ModelAndView("ExerciseList");
+//        String hql = "INSERT INTO firefalcon.exercise  ()"
+ 
+        ModelAndView exerciseAddView = new ModelAndView("exerciseList");
         exerciseService.addExercise(exercise);
         exerciseAddView.addObject("exerciseList", exerciseService.getExercises());
 
@@ -68,3 +88,4 @@ public class ExerciseController {
  
     }
 }
+
