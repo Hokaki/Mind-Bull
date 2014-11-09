@@ -42,7 +42,7 @@
                                         <c:forEach var="affliction" items="${affliction}">
                                             <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                                             <tr>
-                                                <td>${affliction.bsn}</td>
+                                                <td>${affliction.bsn.bsn}</td>
                                                 <td>${affliction.description}</td>
                                                 <td>${affliction.sideNote} </td>
                                                 <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/affliction/edit/${affliction.bsn}">Edit</a></td>
