@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label for="bsn" class="col-sm-2 control-label">bsn</label>
                             <div class="col-sm-10">
-                                <form:input path="bsn"  class="form-control" id="bsn" value="${affliction.bsn.bsn}"/>
+                                <label class="control-label">${affliction.bsn.bsn}</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -45,7 +45,7 @@
                                 <input class="btn btn-default" type="submit" value="Add" />
                             </div>
                         </div>
-
+                            <form:hidden path="bsn" value="${affliction.bsn.bsn}"/>
                     </form:form>
                 </div>
                 <!-- /.container-fluid -->
