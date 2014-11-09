@@ -47,11 +47,13 @@ public class LoginController {
         
         int numRow = userService.checkRow(user);
 
-        String userName = user.getUsername();
-        
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
+        user = (User)session.getAttribute("user");
+        String name = user.getUsername();
+
         if (numRow == 1) {
-            request.getSession().setAttribute(userName, user);
-            mavIndex.addObject("user", userName);
+            mavIndex.addObject("name",name);
             return mavIndex;
         }
         else if (result.hasErrors()) {
@@ -63,11 +65,11 @@ public class LoginController {
     }
     
     @RequestMapping(value = "/index")
-     public ModelAndView logout(){
+     public ModelAndView logout(HttpServletRequest request){
          ModelAndView mavLogout = new ModelAndView("login");
          
-         
-
+         HttpSession session = request.getSession();
+         session.invalidate();
          return mavLogout;
      }
 }

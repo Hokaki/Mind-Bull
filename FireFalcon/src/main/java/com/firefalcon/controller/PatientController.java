@@ -24,7 +24,7 @@ public class PatientController {
     
     @RequestMapping(value = "/list")
     public ModelAndView patientList() throws IOException {
-        ModelAndView patientListView = new ModelAndView("PatientList");
+        ModelAndView patientListView = new ModelAndView("patient/PatientList");
         patientListView.addObject("patientList", patientService.getPatients());
 
         return patientListView;
@@ -33,7 +33,7 @@ public class PatientController {
      @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView patientAddPage() throws IOException {
 
-        ModelAndView patientAddView = new ModelAndView("AddPatient");
+        ModelAndView patientAddView = new ModelAndView("patient/AddPatient");
         patientAddView.addObject("patient", new Patient());
         return patientAddView;
 
@@ -42,7 +42,7 @@ public class PatientController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView patientAdd(@ModelAttribute Patient patient)  {
 
-        ModelAndView patientListView = new ModelAndView("PatientList");
+        ModelAndView patientListView = new ModelAndView("patient/PatientList");
         patientService.addPatient(patient);
         patientListView.addObject("patientList", patientService.getPatients());
 
@@ -53,7 +53,7 @@ public class PatientController {
     @RequestMapping(value = "/edit/{bsn}", method = RequestMethod.GET)
     public ModelAndView patientEditPage(@PathVariable int bsn) throws IOException {
 
-        ModelAndView patientEditView = new ModelAndView("EditPatient");
+        ModelAndView patientEditView = new ModelAndView("patient/EditPatient");
         patientEditView.addObject("patient", patientService.getPatient(bsn));
         return patientEditView;
 
@@ -62,7 +62,7 @@ public class PatientController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ModelAndView patientEditAdd(@ModelAttribute Patient patient)  {
 
-        ModelAndView patientListView = new ModelAndView("PatientList");
+        ModelAndView patientListView = new ModelAndView("patient/PatientList");
         patientService.updatePatient(patient);
         patientListView.addObject("patientList", patientService.getPatients());
 

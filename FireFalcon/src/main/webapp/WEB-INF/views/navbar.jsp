@@ -83,6 +83,9 @@
                     <li>
                         <a href="${pageContext.request.contextPath}/exercise/list">Patients exercises</a>
                     </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/afflication/list">Affliction overview</a>
+                    </li>
                 </ul>
             </li>
         </ul>

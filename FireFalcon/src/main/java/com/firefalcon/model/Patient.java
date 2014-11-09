@@ -7,7 +7,6 @@ package com.firefalcon.model;
 
 import java.io.Serializable;
 import org.hibernate.annotations.Type;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,26 +18,26 @@ import javax.persistence.Id;
  */
 @Entity
 public class Patient extends Person implements Serializable {
-
-    private int BSN;
+    
+    private int bsn;
 
     public Patient() {
     }
 
-    public Patient(int BSN, String firstName, String lastName) {
+    public Patient(int bsn, String firstName, String lastName) {
         super(firstName, lastName);
-        this.BSN = BSN;
+        this.bsn = bsn;
     }
-
+    
     @Id
     @Column(name = "bsn")
-    @Type(type = "encryptedIntegerAsString")
-    public int getBSN() {
-        return BSN;
+    //@Type(type = "encryptedIntegerAsString")
+    public int getBsn() {
+        return bsn;
     }
 
-    public void setBSN(int BSN) {
-        this.BSN = BSN;
+    public void setBsn(int bsn) {
+        this.bsn = bsn;
     }
 
 }
