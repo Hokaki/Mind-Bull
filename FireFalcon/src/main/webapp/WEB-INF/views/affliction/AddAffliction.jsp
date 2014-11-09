@@ -22,8 +22,10 @@
                     <h2>Add Affliction</h2>
                     <form:form class="form-horizontal" role="form" method="POST" commandName="affliction" action="${pageContext.request.contextPath}/affliction/add">  
                         <div class="form-group">
-                            <label for="inputBSN" class="col-sm-2 control-label">BSN</label>
-                            <label class="control-label">${patientBsn}</label>
+                            <label for="bsn" class="col-sm-2 control-label">bsn</label>
+                            <div class="col-sm-10">
+                                <form:input path="bsn"  class="form-control" id="bsn" value="${affliction.bsn.bsn}"/>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="description" class="col-sm-2 control-label">description</label>
@@ -42,7 +44,8 @@
                             <div class="col-sm-4">     
                                 <input class="btn btn-default" type="submit" value="Add" />
                             </div>
-                        </div>  
+                        </div>
+
                     </form:form>
                 </div>
                 <!-- /.container-fluid -->

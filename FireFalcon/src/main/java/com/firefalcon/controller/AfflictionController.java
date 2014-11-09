@@ -5,6 +5,7 @@
  */
 package com.firefalcon.controller;
 
+import com.firefalcon.editor.PatientEditor;
 import com.firefalcon.model.Affliction;
 import com.firefalcon.model.Patient;
 import com.firefalcon.services.AfflictionService;
@@ -13,6 +14,8 @@ import com.firefalcon.services.PatientService;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +35,13 @@ public class AfflictionController {
     private AfflictionService afflictionService;
     @Autowired
     private PatientService patientService;
+    @Autowired
+    private PatientEditor patientEditor;
+    
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Patient.class, this.patientEditor);
+    }
     
     @RequestMapping(value = "/list")
     public ModelAndView AfflictionList() throws IOException {
@@ -46,9 +56,9 @@ public class AfflictionController {
 
         ModelAndView afflictionAddView = new ModelAndView("affliction/AddAffliction");
         Patient patient = patientService.getPatient(bsn);
-        int patientBsn = patient.getBsn();
-        afflictionAddView.addObject("affliction", new Affliction());
-        afflictionAddView.addObject("patientBsn", patientBsn);
+        Affliction affliction =new Affliction();
+        affliction.setBsn(patient);
+        afflictionAddView.addObject("affliction", affliction);
         return afflictionAddView;
 
     }
