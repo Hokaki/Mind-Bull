@@ -75,16 +75,26 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Patients <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
-                        <a href="${pageContext.request.contextPath}/user/list">Users</a>
-                    </li>
-                    <li>
                         <a href="${pageContext.request.contextPath}/patient/list">Patients overview</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/exercise/list">Patients exercises</a>
+                        <a href="${pageContext.request.contextPath}/affliction/list">Affliction overview</a>
                     </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-arrows-v"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo2" class="collapse">
                     <li>
-                        <a href="${pageContext.request.contextPath}/afflication/list">Affliction overview</a>
+                        <a href="${pageContext.request.contextPath}/user/list">Users overview</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo3"><i class="fa fa-fw fa-arrows-v"></i> Exercises <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo3" class="collapse">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/exercise/list">Exercise overview</a>
                     </li>
                 </ul>
             </li>
