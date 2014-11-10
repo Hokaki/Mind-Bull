@@ -6,6 +6,7 @@
 package com.firefalcon.services;
 
 import com.firefalcon.dao.PatientDAO;
+import com.firefalcon.model.AssignmentResult;
 import com.firefalcon.model.Patient;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,10 @@ public class PatientService {
 
     public List<Patient> getPatients() {
         return patientDAO.getPatients();
+    }
+
+    public List<AssignmentResult> getResults(int bsn) {
+        return patientDAO.getResults(bsn);
     }
 
     public void storeAllPatient(List<Patient> users) {

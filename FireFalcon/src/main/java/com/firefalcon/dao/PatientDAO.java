@@ -1,5 +1,6 @@
 package com.firefalcon.dao;
 
+import com.firefalcon.model.AssignmentResult;
 import com.firefalcon.model.Patient;
 import java.util.List;
 import org.hibernate.Session;
@@ -13,7 +14,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class PatientDAO {
-   @Autowired
+
+    @Autowired
     private SessionFactory sessionFactory;
 
     private Session getCurrentSession() {
@@ -50,11 +52,16 @@ public class PatientDAO {
         return getCurrentSession().createQuery("from Patient").list();
     }
 
-    public  void storeAllPatients(List<Patient> patients) {
-             
+    @SuppressWarnings("unchecked")
+    public List<AssignmentResult> getResults(int bsn) {
+        return getCurrentSession().createQuery("from AssignmentResult where patient_bsn = '" + bsn + "' order by date ASC").list();
+    }
+
+    public void storeAllPatients(List<Patient> patients) {
+
         for (Patient patient : patients) {
             getCurrentSession().save(patient);
         }
-       
-    } 
+
+    }
 }

@@ -22,7 +22,7 @@
                 <div class="container-fluid">
                     <h2>patients</h2>
                     <h3>${message}</h3>
-                    <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/add">add</a></td>
+                    <a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/add">add</a>
                     <c:choose>
                         <c:when test="${patientList.size() != 0}">
                             <div class="table-responsive">
@@ -34,6 +34,7 @@
                                             <th>Enroll</th>
                                             <th>Edit</th>
                                             <th>Affliction</th>
+                                            <th>Result Graph</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -45,6 +46,7 @@
                                                 <td><a class="btn btn-primary">Enroll</a></td>
                                                 <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/edit/${patient.bsn}">Edit</a></td>
                                                 <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/affliction/add/${patient.bsn}">Add</a></td>
+                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/view/${patient.bsn}">View</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

@@ -69,4 +69,16 @@ public class PatientController {
         return patientListView;
 
     }
+    
+        @RequestMapping(value = "/view/{bsn}", method = RequestMethod.GET)
+    public ModelAndView patienGraph(@PathVariable int bsn) throws IOException {
+
+        ModelAndView patientGraphView = new ModelAndView("patient/ResultView");
+        patientGraphView.addObject("patient", patientService.getPatient(bsn));
+        patientGraphView.addObject("resultList", patientService.getResults(bsn));
+
+        return patientGraphView;
+
+    }
+
 }
