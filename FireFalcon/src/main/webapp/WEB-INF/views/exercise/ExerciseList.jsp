@@ -21,32 +21,31 @@
     </head>
     <body>
         <div id="wrapper">
-            <%@ include file="navbar.jsp" %>
+            <%@ include file="../navbar.jsp" %>
             <div id="page-wrapper">
                 <div class="container-fluid">
-                    <h2>overviews</h2>
+                    <h2>exercises</h2>
                     <h3>${message}</h3>
-                    <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/overview/assign/${overview.patientBSN}">Assign Exercise</a></td>
+                    <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/exercise/add">add</a></td>
                     <c:choose>
-                        <c:when test="${overviewList.size() != 0}">
+                        <c:when test="${exerciseList.size() != 0}">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Patient BSN</th>
-                                            <th>ID Exercise</th>
+                                            <th>ID</th>
                                             <th>Name</th>
-                                            <th>Exercise</th>
+                                            <th>Description</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="exercise" items="${overviewList}">
+                                        <c:forEach var="exercise" items="${exerciseList}">
                                             <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                                             <tr>
-                                                <td>${overview.patientBSN}</td>
-                                                <td>${overview.id}</td>
-                                                <td>${overview.name}</td>
-                                                <td>${overview.exercise}</td>
+                                                <td>${exercise.id}</td>
+                                                <td>${exercise.name}</td>
+                                                <td>${exercise.description}</td>
+                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/exercise/edit/${exercise.id}">Edit</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -54,7 +53,7 @@
                             </div>
                         </c:when>
                         <c:otherwise>
-                            There were no assignment found.
+                            There were no exercises found.
                         </c:otherwise>
                     </c:choose>
                 </div>

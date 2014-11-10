@@ -28,7 +28,7 @@
                                 <img class="media-object" src="http://placehold.it/50x50" alt="">
                             </span>
                             <div class="media-body">
-                                <h5 class="media-heading"><strong>${user}</strong>
+                                <h5 class="media-heading"><strong>${user.username}</strong>
                                 </h5>
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -47,7 +47,7 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${user}<b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${user.username}<b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
                     <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -75,13 +75,26 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Patients <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
-                        <a href="${pageContext.request.contextPath}/user/list">Users</a>
-                    </li>
-                    <li>
                         <a href="${pageContext.request.contextPath}/patient/list">Patients overview</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/exercise/list">Patients exercises</a>
+                        <a href="${pageContext.request.contextPath}/affliction/list">Affliction overview</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-arrows-v"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo2" class="collapse">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/user/list">Users overview</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo3"><i class="fa fa-fw fa-arrows-v"></i> Exercises <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo3" class="collapse">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/exercise/list">Exercise overview</a>
                     </li>
                 </ul>
             </li>

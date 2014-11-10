@@ -24,7 +24,7 @@ public class UserController {
     
     @RequestMapping(value = "/list")
     public ModelAndView userList() throws IOException {
-        ModelAndView userListView = new ModelAndView("UserList");
+        ModelAndView userListView = new ModelAndView("user/UserList");
         userListView.addObject("userList", userService.getUsers());
 
         return userListView;
@@ -33,7 +33,7 @@ public class UserController {
      @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView userAddPage() throws IOException {
 
-        ModelAndView userAddView = new ModelAndView("AddUser");
+        ModelAndView userAddView = new ModelAndView("user/AddUser");
         userAddView.addObject("user", new User());
         return userAddView;
 
@@ -42,7 +42,7 @@ public class UserController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView userAdd(@ModelAttribute User user)  {
 
-        ModelAndView userListView = new ModelAndView("UserList");
+        ModelAndView userListView = new ModelAndView("user/UserList");
         userService.addUser(user);
         userListView.addObject("userList", userService.getUsers());
 
@@ -53,7 +53,7 @@ public class UserController {
     @RequestMapping(value = "/edit/{username}", method = RequestMethod.GET)
     public ModelAndView userEditPage(@PathVariable String username) throws IOException {
 
-        ModelAndView userEditView = new ModelAndView("EditUser");
+        ModelAndView userEditView = new ModelAndView("user/EditUser");
         userEditView.addObject("user", userService.getUser(username));
         return userEditView;
 
@@ -62,7 +62,7 @@ public class UserController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ModelAndView userEditAdd(@ModelAttribute User user)  {
 
-        ModelAndView userListView = new ModelAndView("UserList");
+        ModelAndView userListView = new ModelAndView("user/UserList");
         userService.updateUser(user);
         userListView.addObject("userList", userService.getUsers());
 

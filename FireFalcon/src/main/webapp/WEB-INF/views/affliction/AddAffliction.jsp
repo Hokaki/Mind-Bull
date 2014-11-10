@@ -12,31 +12,31 @@
         <link href="<c:url value="/css/font-awesome-4.1.0/css/font-awesome.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/therapist-control.css" />" rel="stylesheet" >
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
-        <title>Add exercise</title>
+        <title>Add Affliction</title>
     </head>
     <body>  
         <div id="wrapper">
-            <%@ include file="navbar.jsp" %>
+            <%@ include file="../navbar.jsp" %>
             <div id="page-wrapper">
                 <div class="container-fluid">
-                    <h2>Add exercise</h2>
-                    <form:form class="form-horizontal" role="form" method="POST" commandName="exercise" action="${pageContext.request.contextPath}/exercise/add">  
+                    <h2>Add Affliction</h2>
+                    <form:form class="form-horizontal" role="form" method="POST" commandName="affliction" action="${pageContext.request.contextPath}/affliction/add">  
                         <div class="form-group">
-                            <label for="inputID" class="col-sm-2 control-label">ID</label>
-                            <div class="col-sm-10">                                
-                                <form:input path="id" class="form-control" id="inputID" placeholder="Id" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputName" class="col-sm-2 control-label">Name</label>
-                            <div class="col-sm-10">     
-                                <form:input path="name" class="form-control" id="inputName" placeholder="Name" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputDescription" class="col-sm-2 control-label">Description</label>
+                            <label for="bsn" class="col-sm-2 control-label">bsn</label>
                             <div class="col-sm-10">
-                                <form:input path="description" class="form-control" id="inputDescription" placeholder="Description" />
+                                <label class="control-label">${affliction.bsn.bsn}</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label">description</label>
+                            <div class="col-sm-10">     
+                                <form:input path="description" class="form-control" id="description" placeholder="description" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sideNote" class="col-sm-2 control-label">Side Note</label>
+                            <div class="col-sm-10">
+                                <form:input path="sideNote" class="form-control" id="sideNote" placeholder="Side Note" />
                             </div>
                         </div>
                         <div class="form-group">                                
@@ -45,6 +45,7 @@
                                 <input class="btn btn-default" type="submit" value="Add" />
                             </div>
                         </div>
+                            <form:hidden path="bsn" value="${affliction.bsn.bsn}"/>
                     </form:form>
                 </div>
                 <!-- /.container-fluid -->

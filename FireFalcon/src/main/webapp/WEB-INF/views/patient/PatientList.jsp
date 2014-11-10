@@ -17,7 +17,7 @@
     </head>
     <body>  
         <div id="wrapper">
-            <%@ include file="navbar.jsp" %>
+            <%@ include file="../navbar.jsp" %>
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <h2>patients</h2>
@@ -34,19 +34,17 @@
                                             <th>Enroll</th>
                                             <th>Edit</th>
                                             <th>Affliction</th>
-                                            <th>Overview</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <c:forEach var="patient" items="${patientList}">
                                             <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                                             <tr>
-                                                <td>${patient.BSN}</td>
+                                                <td>${patient.bsn}</td>
                                                 <td>${patient.firstName} ${patient.lastName}</td>
                                                 <td><a class="btn btn-primary">Enroll</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/edit/${patient.BSN}">Edit</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/affliction/add/">Add</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/overview/list/">Overview</a></td>                                  
+                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/edit/${patient.bsn}">Edit</a></td>
+                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/affliction/add/${patient.bsn}">Add</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
