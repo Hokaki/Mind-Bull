@@ -16,7 +16,7 @@
     </head>
     <body>  
         <div id="wrapper">
-            <%@ include file="../navbar.jsp" %>
+            <%@ include file="navbar.jsp" %>
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <h2>Add User</h2>

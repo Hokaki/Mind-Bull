@@ -6,38 +6,39 @@
 package com.firefalcon.model;
 
 //import java.io.Serializable;
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import org.hibernate.annotations.Type;
 
 /**
  *
  * @author chrisvanderheijden
  */
 @Entity
-public class Affliction implements Serializable{
+public class Affliction {
     
+    
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private int id;
-    
     @Column(name = "description")
     private String description;
     @Column(name = "sideNote")
     private String sideNote;
-    private Patient bsn;
+    @Column(name = "BSN")
+    private int BSN;
 
     
     
-    public Affliction(String description, String sideNote, Patient bsn) {
+    public Affliction(int id, String description, String sideNote, int BSN) {
       
+     
+        this.id = id;
         this.description = description;
         this.sideNote = sideNote;
-        this.bsn = bsn;
+        this.BSN = BSN;
        
     }
     
@@ -45,8 +46,6 @@ public class Affliction implements Serializable{
     
     }
 
-    @Id
-    @GeneratedValue
     public int getId() {
         return id;
     }
@@ -54,7 +53,7 @@ public class Affliction implements Serializable{
     public void setId(int id) {
         this.id = id;
     }
-    
+
     public String getDescription() {
         return description;
     }
@@ -70,16 +69,17 @@ public class Affliction implements Serializable{
     public void setSideNote(String sideNote) {
         this.sideNote = sideNote;
     }
+
+    public int getBSN() {
+        return BSN;
+    }
+
+    public void setBSN(int BSN) {
+        this.BSN = BSN;
+    }
     
-    @ManyToOne
-    @JoinColumn(name = "bsn")
-    //@Type(type = "encryptedIntegerAsString")
-    public Patient getBsn() {
-        return bsn;
-    }
-
-    public void setBsn(Patient bsn) {
-        this.bsn = bsn;
-    }
-
+    
+    
+    
+    
 }

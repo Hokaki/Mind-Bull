@@ -32,7 +32,7 @@ public class ExerciseController implements Serializable{
 
     @RequestMapping(value = "/list")
     public ModelAndView exerciseList() throws IOException {
-        ModelAndView exerciseListView = new ModelAndView("exercise/ExerciseList");
+        ModelAndView exerciseListView = new ModelAndView("ExerciseList");
         exerciseListView.addObject("exerciseList", exerciseService.getExercises());
 
         return exerciseListView;
@@ -41,7 +41,7 @@ public class ExerciseController implements Serializable{
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView exerciseAddPage() throws IOException {
 
-        ModelAndView exerciseAddView = new ModelAndView("exercise/AddExercise");
+        ModelAndView exerciseAddView = new ModelAndView("AddExercise");
         exerciseAddView.addObject("exercise", new Exercise());
         return exerciseAddView;
 
@@ -62,7 +62,7 @@ public class ExerciseController implements Serializable{
 
 //        String hql = "INSERT INTO firefalcon.exercise  ()"
  
-        ModelAndView exerciseAddView = new ModelAndView("exercise/ExerciseList");
+        ModelAndView exerciseAddView = new ModelAndView("exerciseList");
         exerciseService.addExercise(exercise);
         exerciseAddView.addObject("exerciseList", exerciseService.getExercises());
 
@@ -80,7 +80,7 @@ public class ExerciseController implements Serializable{
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ModelAndView exerciseEditAdd(@ModelAttribute Exercise exercise) {
         
-        ModelAndView exerciseListView = new ModelAndView("exercise/ExerciseList");
+        ModelAndView exerciseListView = new ModelAndView("ExerciseList");
         exerciseService.updateExercise(exercise);
         exerciseListView.addObject("exerciseList", exerciseService.getExercises());
         
@@ -88,4 +88,3 @@ public class ExerciseController implements Serializable{
  
     }
 }
-

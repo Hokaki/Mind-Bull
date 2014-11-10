@@ -1,6 +1,11 @@
+<%-- 
+    Document   : ExerciseList
+    Created on : Oct 19, 2014, 4:08:53 PM
+    Author     : Jeff
+--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -12,58 +17,49 @@
         <link href="<c:url value="/css/font-awesome-4.1.0/css/font-awesome.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/therapist-control.css" />" rel="stylesheet" >
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
-        <title>Add affliction</title>
+        <title>Exercise list</title>
     </head>
-    <body>  
+    <body>
         <div id="wrapper">
-            <%@ include file="../navbar.jsp" %>
-
+            <%@ include file="navbar.jsp" %>
             <div id="page-wrapper">
-
                 <div class="container-fluid">
-
-                    <h2>Afflictions</h2>
+                    <h2>exercises</h2>
                     <h3>${message}</h3>
-
+                    <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/exercise/add">add</a></td>
                     <c:choose>
-                        <c:when test="${affliction.size() != 0}">
+                        <c:when test="${exerciseList.size() != 0}">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
                                         <tr>
-                                            <th>BSN</th>
+                                            <th>ID</th>
+                                            <th>Name</th>
                                             <th>Description</th>
-                                            <th>Side Note</th>
-                                            <th>Edit</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="affliction" items="${affliction}">
+                                        <c:forEach var="exercise" items="${exerciseList}">
                                             <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                                             <tr>
-                                                <td>${affliction.bsn.bsn}</td>
-                                                <td>${affliction.description}</td>
-                                                <td>${affliction.sideNote} </td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/affliction/edit/${affliction.bsn}">Edit</a></td>
-
+                                                <td>${exercise.id}</td>
+                                                <td>${exercise.name}</td>
+                                                <td>${exercise.description}</td>
+                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/exercise/edit/${exercise.id}">Edit</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
                                 </table>
-                            </div>        
+                            </div>
                         </c:when>
                         <c:otherwise>
-                            There were no patients found.
+                            There were no exercises found.
                         </c:otherwise>
                     </c:choose>
-
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- /#page-wrapper -->
-
         </div>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

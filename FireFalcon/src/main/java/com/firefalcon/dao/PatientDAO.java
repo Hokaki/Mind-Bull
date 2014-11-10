@@ -25,10 +25,10 @@ public class PatientDAO {
     }
 
     public void updatePatient(Patient patient) {
-        Patient patientToUpdate = getPatient(patient.getBsn());
+        Patient patientToUpdate = getPatient(patient.getBSN());
         patientToUpdate.setFirstName(patient.getFirstName());
         patientToUpdate.setLastName(patient.getLastName());
-        patientToUpdate.setBsn(patient.getBsn());
+        patientToUpdate.setBSN(patient.getBSN());
         getCurrentSession().update(patientToUpdate);
 
     }

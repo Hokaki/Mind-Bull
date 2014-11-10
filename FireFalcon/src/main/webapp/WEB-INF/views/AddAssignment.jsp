@@ -12,41 +12,39 @@
         <link href="<c:url value="/css/font-awesome-4.1.0/css/font-awesome.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/therapist-control.css" />" rel="stylesheet" >
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
-        <title>Edit User</title>
+        <title>Add exercise</title>
     </head>
     <body>  
         <div id="wrapper">
-            <%@ include file="../navbar.jsp" %>
+            <%@ include file="navbar.jsp" %>
             <div id="page-wrapper">
                 <div class="container-fluid">
-                    <h2>Edit User</h2>
-                    <form:form class="form-horizontal" role="form" method="POST" commandName="user" action="${pageContext.request.contextPath}/user/edit">  
+                    <h2>Assign </h2>
+                    <form:form class="form-horizontal" role="form" method="POST" commandName="overview" action="${pageContext.request.contextPath}/overview/assignment">  
                         <div class="form-group">
-                            <label for="inputFN" class="col-sm-2 control-label">First name</label>
+                            <label for="inputID" class="col-sm-2 control-label">ID</label>
+                            <div class="col-sm-10">                                
+                                <form:input path="id" class="form-control" id="inputID" placeholder="Id" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputName" class="col-sm-2 control-label">Name</label>
                             <div class="col-sm-10">     
-                                <form:input path="firstName" class="form-control" id="inputFN" placeholder="First name" />
-                            </div>
-                        </div>
-                         <div class="form-group">
-                            <label for="inputLN" class="col-sm-2 control-label">Last name</label>
-                            <div class="col-sm-10">
-                                <form:input path="lastName" class="form-control" id="inputLN" placeholder="Last name" />
+                                <form:input path="name" class="form-control" id="inputName" placeholder="Name" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputLN" class="col-sm-2 control-label">Password</label>
+                            <label for="inputDescription" class="col-sm-2 control-label">Exercise</label>
                             <div class="col-sm-10">
-                                <form:password path="password" class="form-control" id="inputPW" placeholder="password" />
+                                <form:input path="exercise" class="form-control" id="inputExercise" placeholder="Exercise" />
                             </div>
                         </div>
-
-                            <div class="form-group">                                
+                        <div class="form-group">                                
                             <div class="col-sm-2"></div>
-                            <div class="col-sm-4">
-                                <input class="btn btn-default" type="submit" value="Edit" />
+                            <div class="col-sm-4">     
+                                <input class="btn btn-default" type="submit" value="Assign" />
                             </div>
                         </div>
-                            <form:hidden path="username"/>
                     </form:form>
                 </div>
                 <!-- /.container-fluid -->

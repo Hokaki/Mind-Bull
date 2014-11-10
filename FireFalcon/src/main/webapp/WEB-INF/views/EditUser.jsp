@@ -12,34 +12,41 @@
         <link href="<c:url value="/css/font-awesome-4.1.0/css/font-awesome.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/therapist-control.css" />" rel="stylesheet" >
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
-        <title>Edit exercise</title>
+        <title>Edit User</title>
     </head>
     <body>  
         <div id="wrapper">
-            <%@ include file="../navbar.jsp" %>
+            <%@ include file="navbar.jsp" %>
             <div id="page-wrapper">
                 <div class="container-fluid">
-                    <h2>Edit exercise</h2>
-                    <form:form class="form-horizontal" role="form" method="POST" commandName="exercise" action="${pageContext.request.contextPath}/exercise/edit">            
+                    <h2>Edit User</h2>
+                    <form:form class="form-horizontal" role="form" method="POST" commandName="user" action="${pageContext.request.contextPath}/user/edit">  
                         <div class="form-group">
-                            <label for="inputName" class="col-sm-2 control-label">Name</label>
+                            <label for="inputFN" class="col-sm-2 control-label">First name</label>
                             <div class="col-sm-10">     
-                                <form:input path="name" class="form-control" id="inputName" placeholder="Name" />
+                                <form:input path="firstName" class="form-control" id="inputFN" placeholder="First name" />
                             </div>
                         </div>
                          <div class="form-group">
-                             <label for="inputDescription" class="col-sm-2 control-label">description</label>
+                            <label for="inputLN" class="col-sm-2 control-label">Last name</label>
                             <div class="col-sm-10">
-                                <form:input path="description" class="form-control" id="inputDescription" placeholder="Description" />
+                                <form:input path="lastName" class="form-control" id="inputLN" placeholder="Last name" />
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="inputLN" class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-10">
+                                <form:password path="password" class="form-control" id="inputPW" placeholder="password" />
+                            </div>
+                        </div>
+
                             <div class="form-group">                                
                             <div class="col-sm-2"></div>
-                            <div class="col-sm-4">     
+                            <div class="col-sm-4">
                                 <input class="btn btn-default" type="submit" value="Edit" />
                             </div>
                         </div>
-                      <form:hidden path="id"/>
+                            <form:hidden path="username"/>
                     </form:form>
                 </div>
                 <!-- /.container-fluid -->

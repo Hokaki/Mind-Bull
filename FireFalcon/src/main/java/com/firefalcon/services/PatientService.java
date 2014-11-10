@@ -5,6 +5,7 @@
  */
 package com.firefalcon.services;
 
+import com.firefalcon.dao.OverviewDAO;
 import com.firefalcon.dao.PatientDAO;
 import com.firefalcon.model.Patient;
 import java.util.List;
@@ -22,9 +23,13 @@ public class PatientService {
 
     @Autowired
     private PatientDAO patientDAO;
+//    @Autowired
+//    private OverviewDAO overviewDAO;
 
     public void addPatient(Patient patient) {
         patientDAO.addPatient(patient);
+//        int patientBSN = patient.getBSN();
+//        overviewDAO.addOverviewBSN(patientBSN);
     }
 
     public void updatePatient(Patient patient) {
