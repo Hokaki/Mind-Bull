@@ -81,12 +81,12 @@ public class AfflictionController {
     }
     
     
-       @RequestMapping(value = "/edit/{bsn}", method = RequestMethod.GET)
-    public ModelAndView afflictionEditPage(@PathVariable int bsn) throws IOException {
+       @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public ModelAndView afflictionEditPage(@PathVariable int id) throws IOException {
 
         ModelAndView afflictionAddView = new ModelAndView("affliction/EditAffliction");
-     //   userAddView.addObject("patient", patientService.getPatient(bsn));
-        afflictionAddView.addObject("affliction", afflictionService.getAffliction(bsn));
+
+        afflictionAddView.addObject("affliction", afflictionService.getAffliction(id));
         return afflictionAddView;
 
     }
@@ -95,9 +95,8 @@ public class AfflictionController {
     public ModelAndView afflictionEditAdd(@ModelAttribute Affliction affliction)  {
 
         ModelAndView afflictionListView = new ModelAndView("affliction/AfflictionList");
-        //patientService.updatePatient(patient);
+
         afflictionService.updateAffliction(affliction);
-       // patientListView.addObject("patientList", patientService.getPatients());
         afflictionListView.addObject("affliction", afflictionService.getAfflictions());
 
         return afflictionListView;

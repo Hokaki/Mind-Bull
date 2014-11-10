@@ -72,7 +72,7 @@ public class ExerciseController implements Serializable{
       @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public ModelAndView exerciseEditPage(@PathVariable int id) throws IOException {
         
-        ModelAndView exerciseEditView = new ModelAndView("EditExercise");
+        ModelAndView exerciseEditView = new ModelAndView("exercise/EditExercise");
         exerciseEditView.addObject("exercise", exerciseService.getExercise(id));
         return exerciseEditView;
     }

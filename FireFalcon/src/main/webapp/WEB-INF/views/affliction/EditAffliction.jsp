@@ -39,7 +39,7 @@
                                 <input class="btn btn-default" type="submit" value="Edit" />
                             </div>
                         </div>
-                      <form:hidden path="bsn"/>
+                      <form:hidden path="id"/>
                     </form:form>
                 </div>
                 <!-- /.container-fluid -->

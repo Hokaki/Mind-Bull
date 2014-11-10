@@ -45,7 +45,7 @@
                                                 <td>${affliction.bsn.bsn}</td>
                                                 <td>${affliction.description}</td>
                                                 <td>${affliction.sideNote} </td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/affliction/edit/${affliction.bsn}">Edit</a></td>
+                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/affliction/edit/${affliction.id}">Edit</a></td>
 
                                             </tr>
                                         </c:forEach>

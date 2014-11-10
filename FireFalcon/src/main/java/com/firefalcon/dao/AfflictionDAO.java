@@ -38,7 +38,6 @@ public class AfflictionDAO {
         Affliction afflictionToUpdate = getAffliction(affliction.getId());
         afflictionToUpdate.setSideNote(affliction.getSideNote());
         afflictionToUpdate.setDescription(affliction.getDescription());
-//        exerciseToUpdate.setBSN(exercise.getBSN());
         getCurrentSession().update(afflictionToUpdate);
     }
 
