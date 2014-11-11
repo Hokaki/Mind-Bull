@@ -26,22 +26,68 @@
             google.load("visualization", "1", {packages: ["corechart"]});
             google.setOnLoadCallback(drawChart);
             function drawChart() {
-                var data = google.visualization.arrayToDataTable([
+
+                var repetitionsData = google.visualization.arrayToDataTable([
                     ['Date', 'Repetitions'],
             <c:forEach var ="entry" items="${resultList}">
                     ['${entry.date} \n ${entry.exercise.name}', ${entry.repetitions}],
             </c:forEach>
+                            ]);
+                var timeData = google.visualization.arrayToDataTable([
+                                ['Date', 'Repetitions'],
+            <c:forEach var ="entry" items="${resultList}">
+                                ['${entry.date} \n ${entry.exercise.name}', ${entry.repetitions}],
+            </c:forEach>
+                             ]);
+                var timeData = google.visualization.arrayToDataTable([
+                                            ['Date', 'Avg time' , 'Min time' , 'Max time'],
+            <c:forEach var ="entry" items="${resultList}">
+                                            ['${entry.date} \n ${entry.exercise.name}', ${entry.avgTime},${entry.minTime},${entry.maxTime} ],
+            </c:forEach>
+                              ]);
+                var heightData = google.visualization.arrayToDataTable([
+                                            ['Date', 'Height'],
+            <c:forEach var ="entry" items="${resultList}">
+                                            ['${entry.date} \n ${entry.exercise.name}', ${entry.hieght}],
+            </c:forEach>
+                              ]);
+                var maxAccData = google.visualization.arrayToDataTable([
+                                            ['Date', 'max Acc'],
+            <c:forEach var ="entry" items="${resultList}">
+                                            ['${entry.date} \n ${entry.exercise.name}', ${entry.maxAcc}],
+            </c:forEach>
+                              ]);
+                var maxSpeedData = google.visualization.arrayToDataTable([
+                                            ['Date', 'max Speed'],
+            <c:forEach var ="entry" items="${resultList}">
+                                            ['${entry.date} \n ${entry.exercise.name}', ${entry.maxSpeed}],
+            </c:forEach>
+                              ]);
 
-                ]);
+                                                    var options = {
+                                                        title: 'Exercise results'
+                                                    };
 
-                var options = {
-                    title: 'Exercise results'
-                };
+                                                    var repetitions = new google.visualization.LineChart(document.getElementById('chart_repetitions'));
 
-                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                                                    repetitions.draw(repetitionsData, options);
 
-                chart.draw(data, options);
-            }
+                                                    var time = new google.visualization.LineChart(document.getElementById('chart_time'));
+
+                                                    time.draw(timeData, options);
+
+                                                    var height = new google.visualization.LineChart(document.getElementById('chart_height'));
+
+                                                    height.draw(heightData, options);
+                                                    
+                                                    var maxAcc = new google.visualization.LineChart(document.getElementById('chart_maxAcc'));
+
+                                                    maxAcc.draw(maxAccData, options);
+                                                    
+                                                    var maxSpeed = new google.visualization.LineChart(document.getElementById('chart_maxSpeed'));
+
+                                                    maxSpeed.draw(maxSpeedData, options);
+                                                }
         </script>
     </head>
     <body>  
@@ -52,36 +98,102 @@
                     <h1>Patient progress</h1>
                     <h2>${patient.firstName} ${patient.lastName}</h2>
 
-                        <c:choose>
-                            <c:when test="${resultList.size() != 0}">
-                                <div id="chart_div" style="width: 1000px; height: 500px;"></div>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
+                    <c:choose>
+                        <c:when test="${resultList.size() != 0}">
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                repetitions
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                            <div id="chart_repetitions" style="width: 1000px; height: 500px;"></div>                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingTwo">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                time
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                                        <div class="panel-body">
+                                            <div id="chart_time" style="width: 1000px; height: 500px;"></div>                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingThree">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                height
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+                                        <div class="panel-body">
+                                            <div id="chart_height" style="width: 1000px; height: 500px;"></div>                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingFour">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                maxAcc
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
+                                        <div class="panel-body">
+                                            <div id="chart_maxAcc" style="width: 1000px; height: 500px;"></div>                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingFive">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                                max Speed
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
+                                        <div class="panel-body">
+                                            <div id="chart_maxSpeed" style="width: 1000px; height: 500px;"></div>                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Patient</th>
+                                            <th>Exercise</th>
+                                            <th>Date</th>
+                                            <th>Repetitions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="result" items="${resultList}">
                                             <tr>
-                                                <th>Patient</th>
-                                                <th>Exercise</th>
-                                                <th>Date</th>
-                                                <th>Repetitions</th>
+                                                <td>${result.patient.firstName} ${result.patient.lastName}</td>
+                                                <td>${result.exercise.name}</td>
+                                                <td>${result.date}</td>
+                                                <td>${result.repetitions}</td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:forEach var="result" items="${resultList}">
-                                                <tr>
-                                                    <td>${result.patient.firstName} ${result.patient.lastName}</td>
-                                                    <td>${result.exercise.name}</td>
-                                                    <td>${result.date}</td>
-                                                    <td>${result.repetitions}</td>
-                                                </tr>
-                                            </c:forEach>
-                                        </tbody>
-                                    </table>
-                                </div>        
-                            </c:when>
-                            <c:otherwise>
-                                There were no results found.
-                            </c:otherwise>
-                        </c:choose>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>        
+                        </c:when>
+                        <c:otherwise>
+                            There were no results found.
+                        </c:otherwise>
+                    </c:choose>
                 </div>
                 <!-- /.container-fluid -->
             </div>
