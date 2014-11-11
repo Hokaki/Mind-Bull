@@ -5,6 +5,8 @@ import com.firefalcon.model.Patient;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jasypt.salt.ZeroSaltGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -54,7 +56,11 @@ public class PatientDAO {
 
     @SuppressWarnings("unchecked")
     public List<AssignmentResult> getResults(int bsn) {
-        return getCurrentSession().createQuery("from AssignmentResult where patient_bsn = '" + bsn + "' order by date ASC").list();
+        StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+        encryptor.setAlgorithm("PBEWithMD5AndDES");
+        encryptor.setPassword("FireFalcon");
+        encryptor.setSaltGenerator(new ZeroSaltGenerator());
+        return getCurrentSession().createQuery("from AssignmentResult where patient_bsn = '" + encryptor.encrypt(String.valueOf(bsn)) + "' order by date ASC").list();
     }
 
     public void storeAllPatients(List<Patient> patients) {
