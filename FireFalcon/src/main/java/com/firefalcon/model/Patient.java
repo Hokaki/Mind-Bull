@@ -31,7 +31,7 @@ public class Patient extends Person implements Serializable {
     
     @Id
     @Column(name = "bsn")
-    //@Type(type = "encryptedIntegerAsString")
+    @Type(type = "encryptedIntegerAsString")
     public int getBsn() {
         return bsn;
     }

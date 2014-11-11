@@ -35,7 +35,6 @@
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Exercise</th>
-                                            <!--<th>Description</th>-->
 
                                         </tr>
                                     </thead>
@@ -46,8 +45,7 @@
                                                 <td>${assignment.bsn.bsn}</td>
                                                 <td>${assignment.id}</td>
                                                 <td>${assignment.name} </td>
-                                                <td>${assignment.exercise}</td>  
-                                                <!--<th>${assignment.description.description}</th>-->
+                                                <td>${assignment.exercise}</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

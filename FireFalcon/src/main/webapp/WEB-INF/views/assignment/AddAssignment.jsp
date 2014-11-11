@@ -39,12 +39,6 @@
                                 <form:input path="exercise" class="form-control" id="inputExercise" placeholder="exercise" />
                             </div>
                         </div>
-<!--                        <div class="form-group">
-                            <label for="bsn" class="col-sm-2 control-label">description</label>
-                            <div class="col-sm-10">
-                                <label class="control-label"></label>
-                            </div>
-                        </div>-->
                         <div class="form-group">                                
                             <div class="col-sm-2"></div>
                             <div class="col-sm-4">     
