@@ -7,7 +7,6 @@ package com.firefalcon.services;
 
 import com.firefalcon.dao.AssignmentDAO;
 import com.firefalcon.model.Assignment;
-import com.firefalcon.model.Patient;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,17 +24,17 @@ public class AssignmentService {
         assignmentDAO.addAssignment(assignment);
     }
 
-    public void updateAssignment(Assignment assignment) {
-        assignmentDAO.updateAssignment(assignment);
-        
+//    public void updateAssignment(Assignment assignment) {
+//        assignmentDAO.updateAssignment(assignment);
+//        
+//    }
+
+    public Assignment getAssignment(int id) {
+        return assignmentDAO.getAssignment(id);
     }
 
-    public Assignment getAssignment(int bsn) {
-        return assignmentDAO.getAssignment(bsn);
-    }
-
-    public void deleteAssignment(int bsn) {
-        assignmentDAO.deleteAssignment(bsn);
+    public void deleteAssignment(int id) {
+        assignmentDAO.deleteAssignment(id);
     }
 
     public List<Assignment> getAssignments() {

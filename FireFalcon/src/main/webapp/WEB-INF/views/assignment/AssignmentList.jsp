@@ -12,40 +12,38 @@
         <link href="<c:url value="/css/font-awesome-4.1.0/css/font-awesome.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/therapist-control.css" />" rel="stylesheet" >
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
-        <title>Assignment</title>
+        <title>Assingments</title>
     </head>
     <body>  
         <div id="wrapper">
             <%@ include file="../navbar.jsp" %>
-
             <div id="page-wrapper">
 
                 <div class="container-fluid">
 
                     <h2>Assignments</h2>
-                    <h3>${message}</h3>
 
                     <c:choose>
-                        <c:when test="${assignment.size() != 0}">
+                        <c:when test="${assignments.size() != 0}">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
                                         <tr>
-                                            <th>BSN</th>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Exercise</th>
+                                            <th>ID Assignment</th>
+                                            <th>Patient Name</th>
+                                            <th>Exercise Name</th>
+                                            <th>Description</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="assignment" items="${assignment}">
+                                        <c:forEach var="assignments" items="${assignment}">
                                             <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                                             <tr>
-                                                <td>${assignment.bsn.bsn}</td>
-                                                <td>${assignment.id}</td>
-                                                <td>${assignment.name} </td>
-                                                <td>${assignment.exercise}</td>
+                                                <td>${assignments.idAssignment}</td>
+                                                <td>${assignments.bsn.firstName} ${assignments.bsn.lastName}</td>
+                                                <td>${assignments.exerciseId.name}</td>
+                                                <td>${assignments.exerciseId.description}</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -53,7 +51,7 @@
                             </div>        
                         </c:when>
                         <c:otherwise>
-                            There were no patients found.
+                            There were no Assingment found.
                         </c:otherwise>
                     </c:choose>
 

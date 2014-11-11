@@ -31,13 +31,12 @@ public class AssignmentDAO {
         getCurrentSession().save(assignment);
     }
 
-    public void updateAssignment(Assignment assignment) {
-        Assignment assignmentToUpdate = getAssignment(assignment.getId());
-        assignmentToUpdate.setName(assignment.getName());
-        assignmentToUpdate.setExercise(assignment.getExercise());
-//        assignmentToUpdate.setDescription(assignment.getDescription());
-        getCurrentSession().update(assignmentToUpdate);
-    }
+    // public void updateAssignment(Assignment assignment) {
+    //     Assignment assignmentToUpdate = getAssignment(assignment.getId());
+    //     assignmentToUpdate.setExercise(assignment.getExercise());
+    //     assignmentToUpdate.setDescription(assignment.getDescription());
+    //     getCurrentSession().update(assignmentToUpdate);
+    // }
 
     public Assignment getAssignment(int id) {
         Assignment assignment = (Assignment) getCurrentSession().get(Assignment.class, id);
@@ -53,7 +52,7 @@ public class AssignmentDAO {
 
     @SuppressWarnings("unchecked")
     public List<Assignment> getAssignments() {
-        return getCurrentSession().createQuery("From Assignment").list();
+        return getCurrentSession().createQuery("from Assignment").list();
     }
 
     public void storeAllAssignments(List<Assignment> assignments) {
