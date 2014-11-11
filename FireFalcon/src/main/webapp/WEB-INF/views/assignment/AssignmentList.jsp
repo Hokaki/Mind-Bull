@@ -12,43 +12,42 @@
         <link href="<c:url value="/css/font-awesome-4.1.0/css/font-awesome.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/therapist-control.css" />" rel="stylesheet" >
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
-        <title>Patient list</title>
-
+        <title>Assignment</title>
     </head>
     <body>  
         <div id="wrapper">
             <%@ include file="../navbar.jsp" %>
+
             <div id="page-wrapper">
+
                 <div class="container-fluid">
-                    <h2>patients</h2>
+
+                    <h2>Assignments</h2>
                     <h3>${message}</h3>
-                    <a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/add">add</a>
+
                     <c:choose>
-                        <c:when test="${patientList.size() != 0}">
+                        <c:when test="${assignment.size() != 0}">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
                                         <tr>
                                             <th>BSN</th>
+                                            <th>ID</th>
                                             <th>Name</th>
-                                            <th>Enroll</th>
-                                            <th>Edit</th>
-                                            <th>Affliction</th>
-                                            <th>Assign</th>
-                                            <th>Result Graph</th>
+                                            <th>Exercise</th>
+                                            <!--<th>Description</th>-->
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="patient" items="${patientList}">
+                                        <c:forEach var="assignment" items="${assignment}">
                                             <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                                             <tr>
-                                                <td>${patient.bsn}</td>
-                                                <td>${patient.firstName} ${patient.lastName}</td>
-                                                <td><a class="btn btn-primary">Enroll</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/edit/${patient.bsn}">Edit</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/affliction/add/${patient.bsn}">Add</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/assignment/add/${patient.bsn}">Assign</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/view/${patient.bsn}">View</a></td>
+                                                <td>${assignment.bsn.bsn}</td>
+                                                <td>${assignment.id}</td>
+                                                <td>${assignment.name} </td>
+                                                <td>${assignment.exercise}</td>  
+                                                <!--<th>${assignment.description.description}</th>-->
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -59,10 +58,13 @@
                             There were no patients found.
                         </c:otherwise>
                     </c:choose>
+
                 </div>
                 <!-- /.container-fluid -->
+
             </div>
             <!-- /#page-wrapper -->
+
         </div>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
