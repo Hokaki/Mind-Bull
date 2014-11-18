@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href="<c:url value="/css/font-awesome-4.1.0/css/font-awesome.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/therapist-control.css" />" rel="stylesheet" >
+        <link href="css/fontello/css/fontello.css" rel="stylesheet">
+        <link href="css/fontello/css/animation.css" rel="stylesheet">
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
         <title>Home page</title>
 
@@ -47,7 +49,7 @@
                                 <div class="panel-heading">
                                     <div class="row">
                                         <div class="col-xs-3">
-                                            <i class="fa fa-plus-square fa-5x"></i>
+                                            <i class="fa fa-users fa-5x"></i>
                                         </div>
                                         <div class="col-xs-9 text-right">
                                             <div class="huge">0</div>
@@ -57,7 +59,7 @@
                                 </div>
                                 <a href="${pageContext.request.contextPath}/patient/list">
                                     <div class="panel-footer">
-                                        <span class="pull-left">View patients</span>
+                                        <span class="pull-left">Manage patients</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                         <div class="clearfix"></div>
                                     </div>
@@ -79,7 +81,7 @@
                                 </div>
                                 <a href="#">
                                     <div class="panel-footer">
-                                        <span class="pull-left">View schedule</span>
+                                        <span class="pull-left">Manage schedule</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                         <div class="clearfix"></div>
                                     </div>
@@ -91,7 +93,7 @@
                                 <div class="panel-heading">
                                     <div class="row">
                                         <div class="col-xs-3">
-                                            <i class="fa fa-heart fa-5x"></i>
+                                            <i class="fa icon-strekkende-homo fa-5x"></i>
                                         </div>
                                         <div class="col-xs-9 text-right">
                                             <div class="huge">0</div>
@@ -101,7 +103,7 @@
                                 </div>
                                 <a href="${pageContext.request.contextPath}/exercise/list">
                                     <div class="panel-footer">
-                                        <span class="pull-left">View Exercises</span>
+                                        <span class="pull-left">Manage Exercises</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                         <div class="clearfix"></div>
                                     </div>
@@ -110,7 +112,7 @@
                         </div>
                     </div>
                     <!-- /.row -->
-                    <div class="col-lg-4">
+<!--                    <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Tasks Panel</h3>
@@ -151,7 +153,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                     <!-- /.row -->
 
