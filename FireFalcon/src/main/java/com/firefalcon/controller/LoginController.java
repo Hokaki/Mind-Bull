@@ -26,7 +26,7 @@ public class LoginController {
     UserService userService;
 
     ObjectValidator objectValidator;
-    
+
     @RequestMapping(value = {"/", "/login"})
     public ModelAndView login(@ModelAttribute User user) throws IOException {
         ModelAndView mav = new ModelAndView("login");
@@ -38,38 +38,45 @@ public class LoginController {
     @RequestMapping(value = {"/index"}, method = RequestMethod.POST)
     public ModelAndView checkLogin(@Valid @ModelAttribute("user") User user, BindingResult result,
             HttpServletRequest request) {
-        ModelAndView mavIndex = new ModelAndView("index");
         ModelAndView mavLogin = new ModelAndView("login");
         mavLogin.addObject("user", new User());
-        
+
         objectValidator = new ObjectValidator();
         objectValidator.validate(user, result);
-        
+
         int numRow = userService.checkRow(user);
+        user = userService.getUser(user.getUsername());
 
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
-        user = (User)session.getAttribute("user");
+        user = (User) session.getAttribute("user");
         String name = user.getUsername();
 
         if (numRow == 1) {
-            mavIndex.addObject("name",name);
-            return mavIndex;
-        }
-        else if (result.hasErrors()) {
+            if (user.isAdmin()) {
+                ModelAndView mavIndex = new ModelAndView("index/adminIndex");
+                mavIndex.addObject("name", name);
+                return mavIndex;
+            } else {
+                ModelAndView mavIndex = new ModelAndView("index/therapistIndex");
+                mavIndex.addObject("name", name);
+                return mavIndex;
+            }
+
+        } else if (result.hasErrors()) {
 
             return mavLogin;
-        }else{
+        } else {
             return mavLogin;
         }
     }
-    
+
     @RequestMapping(value = "/index")
-     public ModelAndView logout(HttpServletRequest request){
-         ModelAndView mavLogout = new ModelAndView("login");
-         
-         HttpSession session = request.getSession();
-         session.invalidate();
-         return mavLogout;
-     }
+    public ModelAndView logout(HttpServletRequest request) {
+        ModelAndView mavLogout = new ModelAndView("login");
+
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return mavLogout;
+    }
 }

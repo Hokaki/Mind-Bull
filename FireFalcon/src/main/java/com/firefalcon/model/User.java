@@ -18,16 +18,20 @@ public class User extends Person implements Serializable {
     
     @Column(name = "password")
     private String password;
+    @Column(name = "isAdmin")
+    private boolean isAdmin;
 
-    public User(String username, String password) {
+    public User(String username, String passwordm, boolean isAdmin) {
         this.username = username;
         this.password = password;
+        this.isAdmin = isAdmin;
     }
 
-    public User(String username, String password, String firstName, String lastName) {
+    public User(String username, String password, String firstName, String lastName , boolean isAdmin) {
         super(firstName, lastName);
         this.username = username;
         this.password = password;
+        this.isAdmin = isAdmin;
     }
 
     public User() {
@@ -50,5 +54,15 @@ public class User extends Person implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+    
+    
 
 }
