@@ -39,10 +39,6 @@ public class AssignmentResult implements Serializable {
     private int minTime;
     @Column(name = "maxTime")
     private int maxTime;
-    @Column(name = "hieght")
-    private int hieght;
-    @Column(name = "maxAcc")
-    private int maxAcc;
     @Column(name = "maxSpeed")
     private int maxSpeed;
 
@@ -81,23 +77,7 @@ public class AssignmentResult implements Serializable {
     public void setMaxTime(int maxTime) {
         this.maxTime = maxTime;
     }
-
-    public int getHieght() {
-        return hieght;
-    }
-
-    public void setHieght(int hieght) {
-        this.hieght = hieght;
-    }
-
-    public int getMaxAcc() {
-        return maxAcc;
-    }
-
-    public void setMaxAcc(int maxAcc) {
-        this.maxAcc = maxAcc;
-    }
-
+    
     public int getMaxSpeed() {
         return maxSpeed;
     }
