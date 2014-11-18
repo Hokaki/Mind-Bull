@@ -21,23 +21,20 @@
                 <div class="container-fluid">
                     <h2>Assignment</h2>
                     <form:form class="form-horizontal" role="form" method="POST" commandName="assignment" action="${pageContext.request.contextPath}/assignment/add">  
+                            
                         <div class="form-group">
-                            <label for="bsn" class="col-sm-2 control-label">bsn</label>
+                            <label for="bsn" class="col-sm-2 control-label">Patient</label>
                             <div class="col-sm-10">
-                                <label class="control-label">${assignment.bsn.bsn}</label>
+                                <label class="control-label">${assignment.bsn.firstName} ${assignment.bsn.lastName}</label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="inputName" class="col-sm-2 control-label">name</label>
-                            <div class="col-sm-10">     
-                                <form:input path="name" class="form-control" id="inputName" placeholder="name" />
-                            </div>
-                        </div>
+                            
                         <div class="form-group">
                             <label for="inputExercise" class="col-sm-2 control-label">exercise</label>
-                            <div class="col-sm-10">
-                                <form:input path="exercise" class="form-control" id="inputExercise" placeholder="exercise" />
-                            </div>
+                            <form:select path="exerciseId">
+                                <form:option value="0">Select exercise</form:option>
+                                <form:options items="${exercises}" itemValue="id" itemLabel="name"/>
+                            </form:select>
                         </div>
                         <div class="form-group">                                
                             <div class="col-sm-2"></div>

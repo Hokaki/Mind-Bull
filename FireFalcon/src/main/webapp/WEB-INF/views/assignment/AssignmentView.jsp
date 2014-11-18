@@ -20,37 +20,28 @@
             <%@ include file="../navbar.jsp" %>
             <div id="page-wrapper">
                 <div class="container-fluid">
-                    <h2>patients</h2>
-                    <h3>${message}</h3>
-                    <a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/add">add</a>
+                    <h2>Assignment view</h2>
                     <c:choose>
-                        <c:when test="${patientList.size() != 0}">
+                        <c:when test="${assignments.size() != 0}">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
                                         <tr>
-                                            <th>BSN</th>
-                                            <th>Name</th>
-                                            <th>Enroll</th>
-                                            <th>Edit</th>
-                                            <th>Affliction</th>
-                                            <th>Assign</th>
-                                            <th>Assignment</th>
-                                            <th>Result Graph</th>
+                                            <th>ID Assignment</th>
+                                            <th>Patient Name</th>
+                                            <th>Exercise Name</th>
+                                            <th>Description</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="patient" items="${patientList}">
+                                        <c:forEach var="assignments" items="${assignment}">
                                             <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                                             <tr>
-                                                <td>${patient.bsn}</td>
-                                                <td>${patient.firstName} ${patient.lastName}</td>
-                                                <td><a class="btn btn-primary">Enroll</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/edit/${patient.bsn}">Edit</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/affliction/add/${patient.bsn}">Add</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/assignment/add/${patient.bsn}">Assign</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/assignment/view/${patient.bsn}">Overview</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/view/${patient.bsn}">View</a></td>
+                                                <td>${assignments.idAssignment}</td>
+                                                <td>${assignments.bsn.firstName} ${assignments.bsn.lastName}</td>
+                                                <td>${assignments.exerciseId.name}</td>
+                                                <td>${assignments.exerciseId.description}</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -58,13 +49,16 @@
                             </div>        
                         </c:when>
                         <c:otherwise>
-                            There were no patients found.
+                            There were no Assingment found.
                         </c:otherwise>
                     </c:choose>
+
                 </div>
                 <!-- /.container-fluid -->
+
             </div>
             <!-- /#page-wrapper -->
+
         </div>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

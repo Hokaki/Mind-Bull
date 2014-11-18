@@ -31,12 +31,12 @@ public class AssignmentDAO {
         getCurrentSession().save(assignment);
     }
 
-    // public void updateAssignment(Assignment assignment) {
-    //     Assignment assignmentToUpdate = getAssignment(assignment.getId());
-    //     assignmentToUpdate.setExercise(assignment.getExercise());
-    //     assignmentToUpdate.setDescription(assignment.getDescription());
-    //     getCurrentSession().update(assignmentToUpdate);
-    // }
+     public void updateAssignment(Assignment assignment) {
+         Assignment assignmentToUpdate = getAssignment(assignment.getIdAssignment());
+         assignmentToUpdate.setExerciseId(assignment.getExerciseId());
+         assignmentToUpdate.setBsn(assignment.getBsn());
+         getCurrentSession().update(assignmentToUpdate);
+     }
 
     public Assignment getAssignment(int id) {
         Assignment assignment = (Assignment) getCurrentSession().get(Assignment.class, id);

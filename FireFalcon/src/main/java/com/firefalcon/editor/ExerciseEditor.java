@@ -23,7 +23,7 @@ public class ExerciseEditor extends PropertyEditorSupport {
     public void setAsText(String text) {
        Exercise E = this.ExerciseService.getExercise(Integer.valueOf(text));
   
-        this.setValue(E.getDescription());
+        this.setValue(E);
     }
 
 }

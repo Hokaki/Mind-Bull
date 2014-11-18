@@ -15,6 +15,8 @@ import com.firefalcon.services.ExerciseService;
 import com.firefalcon.services.PatientService;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -60,59 +62,77 @@ public class AssignmentController {
         return assignmentListView;
     }
     
-//      @RequestMapping(value = "/assignment/add/{bsn}", method = RequestMethod.GET)
-//    public ModelAndView assignmentAddPage(@PathVariable int bsn) throws IOException {
-//
-//        ModelAndView assignmentAddView = new ModelAndView("assignment/AddAssignment");
-//        Patient patient = patientService.getPatient(bsn);
-////        Exercise exercise = (Exercise) exerciseService.getExercises();
-//        Assignment assignment =new Assignment();
-//        assignment.setBsn(patient);
-////        assignment.setDescription(exercise);
-//        assignmentAddView.addObject("assignment", assignment);
-//        return assignmentAddView;
-//
-//    }
+      @RequestMapping(value = "/view/{bsn}", method = RequestMethod.GET)
+    public ModelAndView AssigntmentView(@PathVariable int bsn) throws IOException { 
+        ModelAndView assignmentListView = new ModelAndView("assignment/AssignmentView");
+        
+        List<Assignment> assignment = assignmentService.getAssignments();
+        List<Assignment> newAssignment = new ArrayList<Assignment>();
+        for (Assignment  x : assignment) {
+            if ((x.getBsn().getBsn() == bsn))
+                newAssignment.add(x);
+        }
+        
+        assignmentListView.addObject("assignment", newAssignment);
+
+        return assignmentListView;
+    }
     
-//    @RequestMapping(value = "/assignment/add", method = RequestMethod.POST)
-//    public ModelAndView assignmentAdd(@ModelAttribute Assignment assignment)  {
-//
-//       ModelAndView assignmentListView = new ModelAndView("assignment/AssignmentList");
-//
-//       assignmentService.addAssignment(assignment);
-//
-//       assignmentListView.addObject("assignment", assignmentService.getAssignments());
-//        
-//       
-//        String message = "assignment was successfully added.";
-//        assignmentListView.addObject("message", message);
-//
-//        return assignmentListView;
-//
-//    }
+      @RequestMapping(value = "/add/{bsn}", method = RequestMethod.GET)
+    public ModelAndView assignmentAddPage(@PathVariable int bsn) throws IOException {
+
+        ModelAndView assignmentAddView = new ModelAndView("assignment/AddAssignment");
+        Patient patient = patientService.getPatient(bsn);
+        List<Exercise> exercises = exerciseService.getExercises();
+        
+        Assignment assignment = new Assignment();
+        assignment.setBsn(patient);
+        
+
+        assignmentAddView.addObject("assignment", assignment);
+        assignmentAddView.addObject("exercises", exercises);
+        return assignmentAddView;
+
+    }
+    
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public ModelAndView assignmentAdd(@ModelAttribute Assignment assignment)  {
+
+       ModelAndView assignmentListView = new ModelAndView("assignment/AssignmentList");
+
+       assignmentService.addAssignment(assignment);
+
+       assignmentListView.addObject("assignment", assignmentService.getAssignments());
+        
+       
+        String message = "assignment was successfully added.";
+        assignmentListView.addObject("message", message);
+
+        return assignmentListView;
+
+    }
     
     
-//       @RequestMapping(value = "/edit/{bsn}", method = RequestMethod.GET)
-//    public ModelAndView assignmentEditPage(@PathVariable int bsn) throws IOException {
-//
-//        ModelAndView assignmentAddView = new ModelAndView("assignment/EditAssignment");
-//     //   userAddView.addObject("patient", patientService.getPatient(bsn));
-//        assignmentAddView.addObject("assignment", assignmentService.getAssignment(bsn));
-//        return assignmentAddView;
-//
-//    }
-//
-//    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-//    public ModelAndView assignmentEditAdd(@ModelAttribute Assignment assignment)  {
-//
-//        ModelAndView assignmentListView = new ModelAndView("assignment/AssignmentList");
-//        //patientService.updatePatient(patient);
-//        assignmentService.updateAssignment(assignment);
-//       // patientListView.addObject("patientList", patientService.getPatients());
-//        assignmentListView.addObject("assignment", assignmentService.getAssignments());
-//
-//        return assignmentListView;
-//
-//    }
+       @RequestMapping(value = "/edit/{bsn}", method = RequestMethod.GET)
+    public ModelAndView assignmentEditPage(@PathVariable int bsn) throws IOException {
+
+        ModelAndView assignmentAddView = new ModelAndView("assignment/EditAssignment");
+        assignmentAddView.addObject("assignment", assignmentService.getAssignment(bsn));
+        return assignmentAddView;
+
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public ModelAndView assignmentEditAdd(@ModelAttribute Assignment assignment)  {
+
+        ModelAndView assignmentListView = new ModelAndView("assignment/AssignmentList");
+
+        assignmentService.updateAssignment(assignment);
+
+        assignmentListView.addObject("assignment", assignmentService.getAssignments());
+
+        return assignmentListView;
+
+   }
     
 }

@@ -24,10 +24,10 @@ public class AssignmentService {
         assignmentDAO.addAssignment(assignment);
     }
 
-//    public void updateAssignment(Assignment assignment) {
-//        assignmentDAO.updateAssignment(assignment);
-//        
-//    }
+    public void updateAssignment(Assignment assignment) {
+        assignmentDAO.updateAssignment(assignment);
+        
+    }
 
     public Assignment getAssignment(int id) {
         return assignmentDAO.getAssignment(id);
