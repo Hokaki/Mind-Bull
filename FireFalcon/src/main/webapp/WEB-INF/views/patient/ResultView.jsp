@@ -28,41 +28,41 @@
             function drawChart() {
 
                 var repetitionsData = google.visualization.arrayToDataTable([
-                                            ['Date', 'Repetitions'],
+                    ['Date', 'Repetitions'],
             <c:forEach var ="entry" items="${resultList}">
-                                            ['${entry.date} \n ${entry.exercise.name}', ${entry.repetitions}],
+                    ['${entry.date} \n ${entry.exercise.name}', ${entry.repetitions}],
             </c:forEach>
                             ]);
-                var timeData = google.visualization.arrayToDataTable([
-                                            ['Date', 'Max duration' , 'Avg duration' , 'Min duration'],
+                            var timeData = google.visualization.arrayToDataTable([
+                                ['Date', 'Max duration', 'Avg duration', 'Min duration'],
             <c:forEach var ="entry" items="${resultList}">
-                                            ['${entry.date} \n ${entry.exercise.name}', ${entry.maxTime},${entry.avgTime},${entry.minTime} ],
+                                ['${entry.date} \n ${entry.exercise.name}', ${entry.maxTime},${entry.avgTime},${entry.minTime} ],
             </c:forEach>
-                              ]);
-                var maxSpeedData = google.visualization.arrayToDataTable([
+                                        ]);
+                                        var maxSpeedData = google.visualization.arrayToDataTable([
                                             ['Date', 'max Speed'],
             <c:forEach var ="entry" items="${resultList}">
                                             ['${entry.date} \n ${entry.exercise.name}', ${entry.maxSpeed}],
             </c:forEach>
-                              ]);
+                                                    ]);
 
-            var options = {
-                title: '',
-                lineWidth: 3
-            };
+                                                    var options = {
+                                                        title: '',
+                                                        lineWidth: 3
+                                                    };
 
-            var repetitions = new google.visualization.LineChart(document.getElementById('chart_repetitions'));
+                                                    var repetitions = new google.visualization.LineChart(document.getElementById('chart_repetitions'));
 
-            repetitions.draw(repetitionsData, {vAxis: {title: "Repetitions"},hAxis: {title: "Date"}, legend:'none'});
+                                                    repetitions.draw(repetitionsData, {vAxis: {title: "Repetitions"}, hAxis: {title: "Date"}, legend: 'none'});
 
-            var time = new google.visualization.LineChart(document.getElementById('chart_time'));
+                                                    var time = new google.visualization.LineChart(document.getElementById('chart_time'));
 
-            time.draw(timeData, {vAxis: {title: "Seconds"},hAxis: {title: "Date"}});
+                                                    time.draw(timeData, {vAxis: {title: "Seconds"}, hAxis: {title: "Date"}});
 
-            var maxSpeed = new google.visualization.LineChart(document.getElementById('chart_maxSpeed'));
+                                                    var maxSpeed = new google.visualization.LineChart(document.getElementById('chart_maxSpeed'));
 
-            maxSpeed.draw(maxSpeedData, {vAxis: {title: "m/s"},hAxis: {title: "Date"}, legend:'none'});
-        }
+                                                    maxSpeed.draw(maxSpeedData, {vAxis: {title: "m/s"}, hAxis: {title: "Date"}, legend: 'none'});
+                                                }
         </script>
     </head>
     <body>  
@@ -72,7 +72,7 @@
                 <div class="container-fluid">
                     <h1>Patient progress</h1>
                     <h2>${patient.firstName} ${patient.lastName}</h2>
-                    
+
                     <c:choose>
                         <c:when test="${resultList.size() != 0}">
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -102,7 +102,7 @@
                                             <div id="chart_time" style="width: 1000px; height: 500px;"></div>                                        </div>
                                     </div>
                                 </div>
-                                 <div class="panel panel-default">
+                                <div class="panel panel-default">
                                     <div class="panel-heading" role="tab" id="headingThree">
                                         <h4 class="panel-title">
                                             <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
@@ -114,7 +114,7 @@
                                         <div class="panel-body">
                                             <div id="chart_maxSpeed" style="width: 1000px; height: 500px;"></div>                                        </div>
                                     </div>
-                                 </div>
+                                </div>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-striped">
@@ -124,6 +124,7 @@
                                             <th>Exercise</th>
                                             <th>Date</th>
                                             <th>Repetitions</th>
+                                            <th>Raw data</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -133,6 +134,7 @@
                                                 <td>${result.exercise.name}</td>
                                                 <td>${result.date}</td>
                                                 <td>${result.repetitions}</td>
+                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/RawData/show/">View</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
