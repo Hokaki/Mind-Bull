@@ -5,7 +5,9 @@
  */
 package com.firefalcon.model;
 
+import com.dhtmlx.planner.DHXEv;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

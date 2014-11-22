@@ -21,7 +21,7 @@
    <dependencies>
        
        <dependency>
-	   <groupId>com.javaplanner</groupId>
+	   <groupId>com.dhtmlx</groupId>
 	   <artifactId>javaplanner</artifactId>
 	   <version>1.5</version>
 	</dependency>
