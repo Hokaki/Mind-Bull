@@ -5,9 +5,10 @@
  */
 package com.firefalcon.model;
 
-import com.dhtmlx.planner.DHXEv;
+import com.dhtmlx.planner.DHXEvent;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,13 +22,12 @@ import org.hibernate.annotations.Type;
  */
 
 @Entity
-public class Assignment implements Serializable{
+public class Assignment extends DHXEvent implements Serializable{
     
     private int idAssignment;
-  
     private Patient bsn;
-    
     private Exercise exerciseId;
+ 
     
     public Assignment(Exercise exerciseId, Patient bsn){
         
@@ -36,7 +36,9 @@ public class Assignment implements Serializable{
     }
     
     public Assignment(){
+        
     }
+    
 
     @Id
     @GeneratedValue  
@@ -68,4 +70,5 @@ public class Assignment implements Serializable{
    public void setExerciseId(Exercise exerciseId) {
        this.exerciseId = exerciseId;
    }
+   
 }
