@@ -41,13 +41,12 @@
                             <%@ page import="com.dhtmlx.planner.*,com.dhtmlx.planner.data.*"%>
                             <%!
                                 String getPlanner(HttpServletRequest request) throws Exception {
-                                    DHXPlanner s = new DHXPlanner("WEB-INF/codebase/", DHXSkin.TERRACE);
+                                    DHXPlanner s = new DHXPlanner("./codebase/", DHXSkin.TERRACE);
                                     s.setWidth(900);
                                     s.setInitialDate(2014, 1, 1);
                                     s.load("AddAssignment.jsp", DHXDataFormat.JSON);
                                     return s.render();
                                 }
-                              
                             %>
 
                             <%= getEvents(request)%>
