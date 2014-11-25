@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.firefalcon.model.User;
+//import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
@@ -47,8 +48,11 @@ public class UserDAO {
 
     public User getUser(String userName) {
         User user = (User) getCurrentSession().get(User.class, userName);
+     //   User user = (User) getCurrentSession().get(User.class, user.);
         return user;
     }
+    
+   
 
     public void deleteUser(String userName) {
         User user = getUser(userName);

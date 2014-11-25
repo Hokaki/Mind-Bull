@@ -43,6 +43,7 @@
 
                     <!-- /.row -->
 
+                    
                     <div class="row">
                         <div class="col-lg-3 col-md-6">
                             <div class="panel panel-primary">
@@ -57,7 +58,38 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="${pageContext.request.contextPath}/patient/list">
+                                
+                                <c:choose>
+      <c:when test="${isAdmin}">
+      <br />
+       <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-green">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-user-md fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">0</div>
+                                            <div>New messages</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="${pageContext.request.contextPath}/user/list">
+                                    <div class="panel-footer">
+                                        <span class="pull-left">View Therapist</span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+      
+      </c:when>
+
+      <c:otherwise>
+          
+            <a href="${pageContext.request.contextPath}/patient/list">
                                     <div class="panel-footer">
                                         <span class="pull-left">Manage patients</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -132,6 +164,84 @@
                                 </a>
                             </div>
                         </div>
+      <br />
+      </c:otherwise>
+</c:choose>
+<!--                                <a href="${pageContext.request.contextPath}/patient/list">
+                                    <div class="panel-footer">
+                                        <span class="pull-left">View patients</span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-green">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-user-md fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">0</div>
+                                            <div>New messages</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="${pageContext.request.contextPath}/user/list">
+                                    <div class="panel-footer">
+                                        <span class="pull-left">View Therapist</span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-yellow">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-calendar fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">0</div>
+                                            <div>New items</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#">
+                                    <div class="panel-footer">
+                                        <span class="pull-left">View schedule</span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-red">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-heart fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">0</div>
+                                            <div>New excercises</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="${pageContext.request.contextPath}/exercise/list">
+                                    <div class="panel-footer">
+                                        <span class="pull-left">View Exercises</span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>-->
                     </div>
                     <!-- /.row -->
                     <div class="col-lg-4">

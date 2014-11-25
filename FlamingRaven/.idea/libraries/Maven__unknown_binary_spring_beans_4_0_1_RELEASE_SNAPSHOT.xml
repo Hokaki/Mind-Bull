@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: unknown.binary:spring-beans-4.0.1.RELEASE:SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/unknown/binary/spring-beans-4.0.1.RELEASE/SNAPSHOT/spring-beans-4.0.1.RELEASE-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/unknown/binary/spring-beans-4.0.1.RELEASE/SNAPSHOT/spring-beans-4.0.1.RELEASE-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/unknown/binary/spring-beans-4.0.1.RELEASE/SNAPSHOT/spring-beans-4.0.1.RELEASE-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

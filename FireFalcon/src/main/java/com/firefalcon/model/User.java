@@ -21,7 +21,7 @@ public class User extends Person implements Serializable {
     @Column(name = "isAdmin")
     private boolean isAdmin;
 
-    public User(String username, String passwordm, boolean isAdmin) {
+    public User(String username, String password, boolean isAdmin) {
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;

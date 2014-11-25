@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href="<c:url value="/css/font-awesome-4.1.0/css/font-awesome.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/therapist-control.css" />" rel="stylesheet" >
+        <link href="/FireFalcon/css/fontello/css/fontello.css" rel="stylesheet">
+        <link href="/FireFalcon/css/fontello/css/animation.css" rel="stylesheet">
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
         <title>Patient list</title>
 
@@ -36,7 +38,7 @@
                                             <th>Affliction</th>
                                             <th>Assign</th>
                                             <th>Assignment</th>
-                                            <th>Result Graph</th>
+                                            <th>Results</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -45,12 +47,12 @@
                                             <tr>
                                                 <td>${patient.bsn}</td>
                                                 <td>${patient.firstName} ${patient.lastName}</td>
-                                                <td><a class="btn btn-primary">Enroll</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/edit/${patient.bsn}">Edit</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/affliction/add/${patient.bsn}">Add</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/assignment/add/${patient.bsn}">Assign</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/assignment/view/${patient.bsn}">Overview</a></td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/patient/view/${patient.bsn}">View</a></td>
+                                                <td><a class="btn btn-primary glyphicon glyphicon-eye-open"></a></td>
+                                                <td><a class="btn btn-danger glyphicon glyphicon-pencil" href="${pageContext.request.contextPath}/patient/edit/${patient.bsn}"></a></td>
+                                                <td><a class="btn btn-danger fa fa-medkit" style="line-height:1.5" href="${pageContext.request.contextPath}/affliction/add/${patient.bsn}"></a></td>
+                                                <td><a class="btn btn-danger glyphicon glyphicon-plus-sign" href="${pageContext.request.contextPath}/assignment/add/${patient.bsn}"></a></td>
+                                                <td><a class="btn btn-danger fa icon-strekkende-homo" style="height:34px" href="${pageContext.request.contextPath}/assignment/view/${patient.bsn}"></a></td>
+                                                <td><a class="btn btn-danger fa fa-bar-chart-o" href="${pageContext.request.contextPath}/patient/view/${patient.bsn}"></a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
