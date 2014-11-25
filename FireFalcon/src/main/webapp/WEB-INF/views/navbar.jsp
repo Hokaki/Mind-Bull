@@ -4,6 +4,7 @@
     Author     : Jeff
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -66,7 +67,63 @@
         </li>
     </ul>
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <div>
+    <c:choose>
+        <c:when test="${isAdmin == 'true'}">
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+            <li class="active">
+                <a href=""><i class="fa fa-fw fa-dashboard"></i> Control Panel</a>
+            </li>
+          
+            <li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-arrows-v"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo2" class="collapse">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/user/list">Users overview</a>
+                    </li>
+                </ul>
+            </li>
+         
+        </ul>
+    </div>
+        </c:when>
+        
+        <c:otherwise>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+            <li class="active">
+                <a href="${pageContext.request.contextPath}/adminIndex"><i class="fa fa-fw fa-dashboard"></i> Control Panel</a>
+            </li>
+            <li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Patients <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo" class="collapse">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/patient/list">Patients overview</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/affliction/list">Affliction overview</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/assignment/list">Assignment overview</a>
+                    </li>
+                </ul>
+            </li>
+           
+            <li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo3"><i class="fa fa-fw fa-arrows-v"></i> Exercises <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo3" class="collapse">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/exercise/list">Exercise overview</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+        </c:otherwise>
+    </c:choose>
+    </div>
+<!--    <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li class="active">
                 <a href=""><i class="fa fa-fw fa-dashboard"></i> Control Panel</a>
@@ -102,6 +159,6 @@
                 </ul>
             </li>
         </ul>
-    </div>
+    </div>-->
     <!-- /.navbar-collapse -->
 </nav>

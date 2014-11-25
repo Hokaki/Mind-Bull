@@ -46,20 +46,28 @@ public class LoginController {
 
         int numRow = userService.checkRow(user);
         user = userService.getUser(user.getUsername());
+        
+       
 
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
         user = (User) session.getAttribute("user");
         String name = user.getUsername();
+        session.setAttribute(name, name);
+        Boolean isAdmin = user.isAdmin();
+        session.setAttribute(isAdmin.toString(), isAdmin);
+        
 
         if (numRow == 1) {
             if (user.isAdmin()) {
                 ModelAndView mavIndex = new ModelAndView("JavaCalender");
                 mavIndex.addObject("name", name);
+                mavIndex.addObject("isAdmin", isAdmin);
                 return mavIndex;
             } else {
                 ModelAndView mavIndex = new ModelAndView("index/therapistIndex");
                 mavIndex.addObject("name", name);
+                mavIndex.addObject("isAdmin", isAdmin);
                 return mavIndex;
             }
 
