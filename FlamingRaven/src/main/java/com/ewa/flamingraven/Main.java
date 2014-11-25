@@ -18,36 +18,26 @@ public class Main {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("files\\KniestrekkenAhmed.txt"));
             String line = null;
-            List<String[]> data = new LinkedList<String[]>();
+            List<double[]> data = new LinkedList<double[]>();
+            line = reader.readLine();
             while ((line = reader.readLine()) != null) {
-                String rawData[] = line.split(",");
-                int count=0;
-                String[] temp = null;
-                for(int i=5;i<rawData.length;i++) {
-                    switch (count) {
-                        case 0:
-                            temp[0]=rawData[i];
-                            break;
-                        case 1:
-                            temp[1]=rawData[i];
-                            break;
-                        case 2:
-                            temp[2]=rawData[i];
-                            break;
-                        case 3:
-                            temp[3]=rawData[i];
-                            break;
-                        case 5:
-                            data.add(temp);
-                            count=-1;
-                            break;
+               String[] rawdata = line.split(",");
+                double[] data2 = new double[6];
+                for(int i=0;i<rawdata.length;i++) {
+                    data2[i] = Double.parseDouble(rawdata[i]);
 
-                    }
-                    count++;
                 }
+                data.add(data2);
+
             }
-            for (int i=0;i<data.size();i++) {
-                System.out.println(data.get(i));
+            int[] windowSizes = {13};
+            for (int windSize : windowSizes) {
+                MovingAverage ma = new MovingAverage(windSize);
+                for(int i=0;i<data.size();i++) {
+                    ma.newNum(data.get(i)[0]);
+                    System.out.println("Next number = " + data.get(i)[0] + ", SMA = " + ma.getAvg());
+                }
+                System.out.println();
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

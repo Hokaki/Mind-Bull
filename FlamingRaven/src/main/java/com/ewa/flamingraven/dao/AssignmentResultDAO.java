@@ -1,9 +1,12 @@
 package com.ewa.flamingraven.dao;
 
+import com.ewa.flamingraven.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * Created by Joost on 11/18/2014.
