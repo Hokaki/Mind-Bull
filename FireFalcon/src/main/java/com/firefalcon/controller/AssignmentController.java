@@ -62,6 +62,13 @@ public class AssignmentController {
         return assignmentListView;
     }
     
+//    @RequestMapping(value = "/planner")
+//    public ModelAndView planner() throws IOException {
+//        ModelAndView assignmentListView = new ModelAndView("assignment/JavaCalender");
+//
+//        return assignmentListView;
+//    }
+//    
       @RequestMapping(value = "/view/{bsn}", method = RequestMethod.GET)
     public ModelAndView AssigntmentView(@PathVariable int bsn) throws IOException { 
         ModelAndView assignmentListView = new ModelAndView("assignment/AssignmentView");

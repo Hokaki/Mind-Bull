@@ -54,7 +54,7 @@ public class LoginController {
 
         if (numRow == 1) {
             if (user.isAdmin()) {
-                ModelAndView mavIndex = new ModelAndView("index/adminIndex");
+                ModelAndView mavIndex = new ModelAndView("JavaCalender");
                 mavIndex.addObject("name", name);
                 return mavIndex;
             } else {

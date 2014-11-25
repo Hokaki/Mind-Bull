@@ -1,4 +1,9 @@
-package com.firefalcon.model;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.dhtmlx.demo;
 
 import java.util.ArrayList;
  
@@ -8,9 +13,9 @@ import com.dhtmlx.planner.DHXEv;
 import com.dhtmlx.planner.DHXEvent;
 import com.dhtmlx.planner.DHXEventsManager;
  
-public class Planner extends DHXEventsManager {
+public class EventManager extends DHXEventsManager {
  
-       public Planner(HttpServletRequest request) {
+       public EventManager(HttpServletRequest request) {
              super(request);
        }
  
