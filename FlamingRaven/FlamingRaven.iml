@@ -22,5 +22,7 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.4.2" level="project" />
     <orderEntry type="library" name="Maven: dom4j:dom4j:1.6.1" level="project" />
     <orderEntry type="library" name="Maven: xml-apis:xml-apis:1.0.b2" level="project" />
+    <orderEntry type="library" name="Maven: unknown.binary:spring-context-4.0.1.RELEASE:SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: unknown.binary:spring-beans-4.0.1.RELEASE:SNAPSHOT" level="project" />
   </component>
 </module>
