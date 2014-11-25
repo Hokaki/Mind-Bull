@@ -9,6 +9,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <script src="<c:url value="/css/codebase/dhtmlxscheduler.js" />" type="text/javascript" charset="utf-8"></script>
+        <link href="<c:url value="/css/codebase/dhtmlxscheduler.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/font-awesome-4.1.0/css/font-awesome.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/therapist-control.css" />" rel="stylesheet" >
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
@@ -18,7 +20,7 @@
         
         <div id="wrapper">
             <%@ include file="../navbar.jsp" %>
-            
+            <%@ include file="../JavaCalender.jsp" %>
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <h2>Assignment</h2>
@@ -38,7 +40,7 @@
                                 <form:options items="${exercises}" itemValue="id" itemLabel="name"/>
                             </form:select>
                         </div>    
-                            
+                        <div class="planner" id="planner">${body}</div>
                             
 
                         <div class="form-group">                                

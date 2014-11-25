@@ -5,6 +5,9 @@
  */
 package com.firefalcon.controller;
 
+import com.dhtmlx.planner.DHXPlanner;
+import com.dhtmlx.planner.DHXSkin;
+import com.dhtmlx.planner.data.DHXDataFormat;
 import com.firefalcon.editor.ExerciseEditor;
 import com.firefalcon.editor.PatientEditor;
 import com.firefalcon.model.Assignment;
@@ -62,14 +65,7 @@ public class AssignmentController {
         return assignmentListView;
     }
     
-//    @RequestMapping(value = "/planner")
-//    public ModelAndView planner() throws IOException {
-//        ModelAndView assignmentListView = new ModelAndView("assignment/JavaCalender");
-//
-//        return assignmentListView;
-//    }
-//    
-      @RequestMapping(value = "/view/{bsn}", method = RequestMethod.GET)
+    @RequestMapping(value = "/view/{bsn}", method = RequestMethod.GET)
     public ModelAndView AssigntmentView(@PathVariable int bsn) throws IOException { 
         ModelAndView assignmentListView = new ModelAndView("assignment/AssignmentView");
         
@@ -86,7 +82,7 @@ public class AssignmentController {
     }
     
       @RequestMapping(value = "/add/{bsn}", method = RequestMethod.GET)
-    public ModelAndView assignmentAddPage(@PathVariable int bsn) throws IOException {
+    public ModelAndView assignmentAddPage(@PathVariable int bsn) throws IOException, Exception {
 
         ModelAndView assignmentAddView = new ModelAndView("assignment/AddAssignment");
         Patient patient = patientService.getPatient(bsn);
@@ -95,7 +91,13 @@ public class AssignmentController {
         Assignment assignment = new Assignment();
         assignment.setBsn(patient);
         
-
+        DHXPlanner s = new DHXPlanner("./codebase/", DHXSkin.TERRACE);
+           s.setWidth(900);
+           s.setInitialDate(2013, 0, 21);
+           s.load("events.jsp", DHXDataFormat.JSON);
+           
+           
+        assignmentAddView.addObject("body", s.render());
         assignmentAddView.addObject("assignment", assignment);
         assignmentAddView.addObject("exercises", exercises);
         return assignmentAddView;
