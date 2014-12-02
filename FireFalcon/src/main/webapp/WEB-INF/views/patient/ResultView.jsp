@@ -4,7 +4,6 @@
     Author     : Jeff
 --%>
 
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
@@ -20,49 +19,73 @@
         <link href="<c:url value="/css/therapist-control.css" />" rel="stylesheet" >
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
         <title>patient graph</title>
-
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript">
-            google.load("visualization", "1", {packages: ["corechart"]});
-            google.setOnLoadCallback(drawChart);
             function drawChart() {
 
                 var repetitionsData = google.visualization.arrayToDataTable([
-                    ['Date', 'Repetitions'],
+                ['Date', 'Repetitions'],
             <c:forEach var ="entry" items="${resultList}">
-                    ['${entry.date} \n ${entry.exercise.name}', ${entry.repetitions}],
+                ['${entry.date}', ${entry.repetitions}],
             </c:forEach>
-                            ]);
-                            var timeData = google.visualization.arrayToDataTable([
-                                ['Date', 'Max duration', 'Avg duration', 'Min duration'],
+                ]);
+                var timeData = google.visualization.arrayToDataTable([
+                ['Date', 'Max duration', 'Avg duration', 'Min duration'],
             <c:forEach var ="entry" items="${resultList}">
-                                ['${entry.date} \n ${entry.exercise.name}', ${entry.maxTime},${entry.avgTime},${entry.minTime} ],
+                ['${entry.date}', ${entry.maxTime},${entry.avgTime},${entry.minTime} ],
             </c:forEach>
-                                        ]);
-                                        var maxSpeedData = google.visualization.arrayToDataTable([
-                                            ['Date', 'max Speed'],
+                ]);
+                var maxSpeedData = google.visualization.arrayToDataTable([
+                ['Date', 'max Speed'],
             <c:forEach var ="entry" items="${resultList}">
-                                            ['${entry.date} \n ${entry.exercise.name}', ${entry.maxSpeed}],
+                ['${entry.date} \n ${entry.exercise.name}', ${entry.maxSpeed}],
             </c:forEach>
-                                                    ]);
+                ]);
 
-                                                    var options = {
-                                                        title: '',
-                                                        lineWidth: 3
-                                                    };
+                var options1 = {
+                    vAxis: {title: "Repetitions"},
+                    hAxis: {title: "Date"},
+                    legend: 'none'
+                };
+                var options2 = {
+                    vAxis: {title: "Seconds"},
+                    hAxis: {title: "Date"}
+                };
+                var options3 = {
+                    vAxis: {title: "m/s"},
+                    hAxis: {title: "Date"},
+                    legend: 'none'
+                };
 
-                                                    var repetitions = new google.visualization.LineChart(document.getElementById('chart_repetitions'));
+                var repetitions = new google.visualization.LineChart(document.getElementById('chart_repetitions'));
+                var time = new google.visualization.LineChart(document.getElementById('chart_time'));
+                var maxSpeed = new google.visualization.LineChart(document.getElementById('chart_maxSpeed'));
+                repetitions.draw(repetitionsData, options1);
+                time.draw(timeData, options2);
+                maxSpeed.draw(maxSpeedData, options3);
+            }
+        google.load("visualization", "1", {packages: ["corechart"]});
+        google.setOnLoadCallback(drawChart);
+        
+        $(document).ready(function () {
+            $(window).resize(function(){
+                drawChart();
+            });
+        });
+        </script>
 
-                                                    repetitions.draw(repetitionsData, {vAxis: {title: "Repetitions"}, hAxis: {title: "Date"}, legend: 'none'});
-
-                                                    var time = new google.visualization.LineChart(document.getElementById('chart_time'));
-
-                                                    time.draw(timeData, {vAxis: {title: "Seconds"}, hAxis: {title: "Date"}});
-
-                                                    var maxSpeed = new google.visualization.LineChart(document.getElementById('chart_maxSpeed'));
-
-                                                    maxSpeed.draw(maxSpeedData, {vAxis: {title: "m/s"}, hAxis: {title: "Date"}, legend: 'none'});
-                                                }
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+        <script type="text/javascript">
+            function showonlyone(thechosenone) {
+                $('.newboxes').each(function(index) {
+                    if ($(this).attr("id") == thechosenone) {
+                        $(this).show();
+                    }
+                    else {
+                        $(this).hide();
+                    }
+                });
+            }
         </script>
     </head>
     <body>  
@@ -72,50 +95,52 @@
                 <div class="container-fluid">
                     <h1>Patient progress</h1>
                     <h2>${patient.firstName} ${patient.lastName}</h2>
+                    <script>
+                        var xarray = [];
+                            <c:forEach var="result" items="${resultList}">
+                                xarray.push("${result.exercise.name}");
+                            </c:forEach>
+                        
+                        var uxarray = [];
+                        $.each(xarray, function(i, el){
+                            if($.inArray(el, uxarray) === -1) uxarray.push(el);
+                        });
+                        
+                        function exerciseChange(ce){
+                            var abe = ce.value;
+                            document.getElementById("paragraph").innerHTML = abe;
+                        }
+                    </script>
+                    <div class="well">
+                        <h2 id="paragraph">Exercise</h2>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-6">
+                                <div class="btn-group-justified">
+                                    <a class="btn btn-primary" id="myHeader1" href="javascript:showonlyone('chart_repetitions');" >Repetitions </a>
+                                    <a class="btn btn-primary" id="myHeader2" href="javascript:showonlyone('chart_time');" >Duration </a>
+                                    <a class="btn btn-primary" id="myHeader3" href="javascript:showonlyone('chart_maxSpeed');" >Max speed</a>
+                                </div>
+                                <br>
+                                <select class="form-control" id="continent" onchange="exerciseChange(this);">
+                                    <option value="...">None</option>
+                                    <script>
+                                     for(i=0;i<uxarray.length;i++){
+                                        document.write('<option value="' + uxarray[i]+ '">' + uxarray[i] + '</option>');
+                                    }   
+                                    </script>
+                                </select>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                            <div class="newboxes" id="chart_repetitions" style="width:100%; height:400px;"></div>
+                            <div class="newboxes" id="chart_time" style="width:100%; height:400px;"></div>
+                            <div class="newboxes" id="chart_maxSpeed" style="width:100%; height:400px;"></div>
 
                     <c:choose>
                         <c:when test="${resultList.size() != 0}">
-                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingOne">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                Repetitions
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                        <div class="panel-body">
-                                            <div id="chart_repetitions" style="width: 1000px; height: 500px;"></div>                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingTwo">
-                                        <h4 class="panel-title">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                Duration
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
-                                        <div class="panel-body">
-                                            <div id="chart_time" style="width: 1000px; height: 500px;"></div>                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingThree">
-                                        <h4 class="panel-title">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                                Max Speed
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
-                                        <div class="panel-body">
-                                            <div id="chart_maxSpeed" style="width: 1000px; height: 500px;"></div>                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
