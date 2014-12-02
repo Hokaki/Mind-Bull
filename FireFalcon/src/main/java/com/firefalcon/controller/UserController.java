@@ -4,7 +4,9 @@ import com.firefalcon.model.User;
 import com.firefalcon.services.UserService;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -23,8 +25,14 @@ public class UserController {
     private UserService userService;
     
     @RequestMapping(value = "/list")
-    public ModelAndView userList() throws IOException {
+    public ModelAndView userList(HttpServletRequest request, User user) throws IOException {
         ModelAndView userListView = new ModelAndView("user/UserList");
+        
+        HttpSession session = request.getSession();
+        user = (User)session.getAttribute("user");
+        String name = user.getUsername();
+        
+        userListView.addObject("oldUser", userService.getUser(name));
         userListView.addObject("userList", userService.getUsers());
 
         return userListView;
@@ -34,16 +42,24 @@ public class UserController {
     public ModelAndView userAddPage() throws IOException {
 
         ModelAndView userAddView = new ModelAndView("user/AddUser");
-        userAddView.addObject("user", new User());
+        userAddView.addObject("newUser", new User());
         return userAddView;
 
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView userAdd(@ModelAttribute User user)  {
+    public ModelAndView userAdd(@ModelAttribute User newUser, User user,
+            HttpServletRequest request)  {
 
         ModelAndView userListView = new ModelAndView("user/UserList");
-        userService.addUser(user);
+        
+        HttpSession session = request.getSession();
+        user = (User)session.getAttribute("user");
+        String name = user.getUsername();
+        
+        userListView.addObject("oldUser", userService.getUser(name));
+        
+        userService.addUser(newUser);
         userListView.addObject("userList", userService.getUsers());
 
         return userListView;
@@ -51,18 +67,31 @@ public class UserController {
     }
     
     @RequestMapping(value = "/edit/{username}", method = RequestMethod.GET)
-    public ModelAndView userEditPage(@PathVariable String username) throws IOException {
-
+    public ModelAndView userEditPage(@PathVariable String username, User oldUser,  HttpServletRequest request) throws IOException {
+        
         ModelAndView userEditView = new ModelAndView("user/EditUser");
+        
+        HttpSession session = request.getSession();
+        oldUser = (User)session.getAttribute("user");
+        String name = oldUser.getUsername();
+        
+        userEditView.addObject("oldUser", userService.getUser(name));
+        
         userEditView.addObject("user", userService.getUser(username));
         return userEditView;
 
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ModelAndView userEditAdd(@ModelAttribute User user)  {
-
+    public ModelAndView userEditAdd(@ModelAttribute User user, User oldUser,  HttpServletRequest request)  {
+        
         ModelAndView userListView = new ModelAndView("user/UserList");
+        
+        HttpSession session = request.getSession();
+        oldUser = (User)session.getAttribute("user");
+        String name = oldUser.getUsername();
+        
+        userListView.addObject("oldUser", userService.getUser(name));
         userService.updateUser(user);
         userListView.addObject("userList", userService.getUsers());
 

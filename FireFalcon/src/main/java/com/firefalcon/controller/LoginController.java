@@ -54,13 +54,13 @@ public class LoginController {
         user = (User) session.getAttribute("user");
         String name = user.getUsername();
         session.setAttribute(name, name);
-        Boolean isAdmin = user.isAdmin();
+        Boolean isAdmin = user.getIsAdmin();
         session.setAttribute(isAdmin.toString(), isAdmin);
         
 
         if (numRow == 1) {
-            if (user.isAdmin()) {
-                ModelAndView mavIndex = new ModelAndView("index");
+            if (user.getIsAdmin()) {
+                ModelAndView mavIndex = new ModelAndView("index/adminIndex");
                 mavIndex.addObject("name", name);
                 mavIndex.addObject("isAdmin", isAdmin);
                 return mavIndex;
@@ -79,12 +79,13 @@ public class LoginController {
         }
     }
 
-    @RequestMapping(value = "/index")
+    @RequestMapping(value = "/logout")
     public ModelAndView logout(HttpServletRequest request) {
         ModelAndView mavLogout = new ModelAndView("login");
 
         HttpSession session = request.getSession();
         session.invalidate();
         return mavLogout;
+        
     }
 }

@@ -9,39 +9,71 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <script src="<c:url value="/css/codebase/dhtmlxscheduler.js" />" type="text/javascript" charset="utf-8"></script>
-        <link href="<c:url value="/css/codebase/dhtmlxscheduler.css" />" rel="stylesheet" type="text/css">
+        <!--<script src="<c:url value="/css/codebase/dhtmlxscheduler.js" />" type="text/javascript" charset="utf-8"></script>-->
         <link href="<c:url value="/css/font-awesome-4.1.0/css/font-awesome.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/therapist-control.css" />" rel="stylesheet" >
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
+        <link href="<c:url value="/css/datepicker3.css" />" rel="stylesheet" >
+        <link href="<c:url value="/css/codebase/dhtmlxscheduler.css" />" rel="stylesheet" type="text/css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="<c:url value="/css/bootstrap-datepicker.js" />" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('.input-daterange').datepicker();
+            });
+            
+            (function(){
+                $('.combobox').combobox();
+            });
+        </script>
         <title>Add exercise</title>
     </head>
     <body>
-        
+
         <div id="wrapper">
             <%@ include file="../navbar.jsp" %>
-            <%@ include file="../JavaCalender.jsp" %>
+
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <h2>Assignment</h2>
                     <form:form class="form-horizontal" role="form" method="POST" commandName="assignment" action="${pageContext.request.contextPath}/assignment/add">  
-                            
+
                         <div class="form-group">
                             <label for="bsn" class="col-sm-2 control-label">Patient</label>
                             <div class="col-sm-10">
                                 <label class="control-label">${assignment.bsn.firstName} ${assignment.bsn.lastName}</label>
                             </div>
                         </div>
-                            
+
+
+
                         <div class="form-group">
                             <label for="inputExercise" class="col-sm-2 control-label">exercise</label>
+                            <div class="combobox">
                             <form:select path="exerciseId">
                                 <form:option value="0">Select exercise</form:option>
                                 <form:options items="${exercises}" itemValue="id" itemLabel="name"/>
                             </form:select>
-                        </div>    
-                        <div class="planner" id="planner">${body}</div>
-                            
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">repetitions</label>
+                            <div class="col-sm-1 ">
+                                <form:input path="repetitions" type="number" class="form-control"/>
+                            </div>
+                        </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Date</label>
+                                    <div class="input-daterange input-group" id="datepicker">
+                                        <form:input path="start_date" type="text" class="input-sm form-control" name="start" />
+                                        <span class="input-group-addon">to</span>
+                                        <form:input path="end_date" type="text" class="input-sm form-control" name="end" />
+                                    </div>
+                                </div>
+
 
                         <div class="form-group">                                
                             <div class="col-sm-2"></div>
@@ -49,15 +81,14 @@
                                 <input class="btn btn-default" type="submit" value="Add" />
                             </div>
                         </div>
-                            
-                           <form:hidden path="bsn" value="${assignment.bsn.bsn}"/>
+
+                        <form:hidden path="bsn" value="${assignment.bsn.bsn}"/>
                     </form:form>
+
                 </div>
                 <!-- /.container-fluid -->
             </div>
             <!-- /#page-wrapper -->
         </div>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     </body>
 </html>

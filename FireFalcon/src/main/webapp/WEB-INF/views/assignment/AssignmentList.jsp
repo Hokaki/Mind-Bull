@@ -32,8 +32,9 @@
                                             <th>ID Assignment</th>
                                             <th>Patient Name</th>
                                             <th>Exercise Name</th>
-                                            <th>Description</th>
-
+                                            <th>Repetition</th>
+                                            <th>Start date</th>
+                                            <th>End date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -43,7 +44,9 @@
                                                 <td>${assignments.idAssignment}</td>
                                                 <td>${assignments.bsn.firstName} ${assignments.bsn.lastName}</td>
                                                 <td>${assignments.exerciseId.name}</td>
-                                                <td>${assignments.exerciseId.description}</td>
+                                                <td>${assignments.repetitions}</td>
+                                                <td>${assignments.start_date}</td>
+                                                <td>${assignments.end_date}</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

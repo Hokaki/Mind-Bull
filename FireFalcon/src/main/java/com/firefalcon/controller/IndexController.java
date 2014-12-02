@@ -35,54 +35,27 @@ public class IndexController {
     ObjectValidator objectValidator;    
     
     
-        @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
+        @RequestMapping(value = {"/Activeindex"}, method = RequestMethod.GET)
 	public ModelAndView index(@Valid @ModelAttribute("user") User user, BindingResult result,
             HttpServletRequest request) throws IOException{
             
-            ModelAndView mavLogin = new ModelAndView("login");
-        mavLogin.addObject("user", new User());
-
-        objectValidator = new ObjectValidator();
-        objectValidator.validate(user, result);
-
-        int numRow = userService.checkRow(user);
-        user = userService.getUser(user.getUsername());
-        
-        
-        
-       
-
-        HttpSession session = request.getSession();
-        session.setAttribute("user", user);
-        user = (User) session.getAttribute("user");
-        String name = user.getUsername();
-        session.setAttribute(name, name);
-        Boolean isAdmin = user.isAdmin();
-        session.setAttribute(isAdmin.toString(), isAdmin);
-        
-
-        if (numRow == 1) {
-            if (user.isAdmin()) {
-                ModelAndView mavIndex = new ModelAndView("index/adminIndex");
-                mavIndex.addObject("name", name);
+            HttpSession session = request.getSession();
+            user = (User) session.getAttribute("user");
+            Boolean isAdmin = user.getIsAdmin();
+            session.setAttribute(isAdmin.toString(), isAdmin);
+            
+            ModelAndView mavIndex = new ModelAndView("index");
+            mavIndex.addObject("isAdmin", isAdmin);
+            
+            if (user.getIsAdmin()) {
+                mavIndex = new ModelAndView("index/adminIndex");
                 mavIndex.addObject("isAdmin", isAdmin);
                 return mavIndex;
             } else {
-                ModelAndView mavIndex = new ModelAndView("index/therapistIndex");
-                mavIndex.addObject("name", name);
+                mavIndex = new ModelAndView("index/therapistIndex");
                 mavIndex.addObject("isAdmin", isAdmin);
                 return mavIndex;
             }
-
-        } else if (result.hasErrors()) {
-
-            return mavLogin;
-        } else {
-            return mavLogin;
-        }
-            
-         //   return new ModelAndView("index");
-            
         }
         
         

@@ -13,21 +13,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.firefalcon.model.Assignment;
 import org.springframework.stereotype.Repository;
 
+
 /**
  *
  * @author chrisvanderheijden
  */
 @Repository
-public class AssignmentDAO {
-     
+public class AssignmentDAO{
+    
     @Autowired
     private SessionFactory sessionFactory;
+
 
     private Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 
     public void addAssignment(Assignment assignment) {
+        
         getCurrentSession().save(assignment);
     }
 

@@ -12,12 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 @Service
 @Transactional
 public class AssignmentService {
     
-      @Autowired
+    @Autowired
     private AssignmentDAO assignmentDAO;
 
     public void addAssignment(Assignment assignment) {

@@ -5,9 +5,6 @@
  */
 package com.firefalcon.controller;
 
-import com.dhtmlx.planner.DHXPlanner;
-import com.dhtmlx.planner.DHXSkin;
-import com.dhtmlx.planner.data.DHXDataFormat;
 import com.firefalcon.editor.ExerciseEditor;
 import com.firefalcon.editor.PatientEditor;
 import com.firefalcon.model.Assignment;
@@ -91,13 +88,6 @@ public class AssignmentController {
         Assignment assignment = new Assignment();
         assignment.setBsn(patient);
         
-        DHXPlanner s = new DHXPlanner("./codebase/", DHXSkin.TERRACE);
-           s.setWidth(900);
-           s.setInitialDate(2013, 0, 21);
-           s.load("events.jsp", DHXDataFormat.JSON);
-           
-           
-        assignmentAddView.addObject("body", s.render());
         assignmentAddView.addObject("assignment", assignment);
         assignmentAddView.addObject("exercises", exercises);
         return assignmentAddView;

@@ -25,6 +25,7 @@ public class User extends Person implements Serializable {
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
+        
     }
 
     public User(String username, String password, String firstName, String lastName , boolean isAdmin) {
@@ -55,7 +56,7 @@ public class User extends Person implements Serializable {
         this.password = password;
     }
 
-    public boolean isAdmin() {
+    public boolean getIsAdmin() {
         return isAdmin;
     }
 
