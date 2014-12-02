@@ -12,18 +12,21 @@ public class RawData {
     private List<double[]> data = new LinkedList<double[]>();
     private List<double[]> dataMA = new LinkedList<double[]>(); //moving average version
     private int repetitions;
-    private int totalTime;
+    private double totalTime;
     private int avgTime;
     private int minTime;
     private int maxTime;
     private int[] maxSpeed;
 
-    private int[] maxHeight;
-    private int[] minHeigth;
+    private double[] maxHeight;
+    private double[] minHeight;
 
     public RawData(List<double[]> data) {
         this.data = data;
         setDataMA();
+        setRepetitions();
+        setTotalTime();
+        System.out.println(totalTime);
     }
 
     public List<double[]> getData() {
@@ -38,7 +41,7 @@ public class RawData {
         return repetitions;
     }
 
-    public int getTotalTime() {
+    public double getTotalTime() {
         return totalTime;
     }
 
@@ -94,30 +97,67 @@ public class RawData {
     //the overloading private setters
 
     private void setDataMA() {
-        int[] windowSizes = {13};
+        int[] windowSizes = {5};
+        List<double[]> dataMA = new LinkedList<double[]>();
         for (int windSize : windowSizes) {
-            MovingAverage ma = new MovingAverage(windSize);
-            for(int i=0;i<data.size();i++) {
-                List<double[]> dataMA = new LinkedList<double[]>();
+            MovingAverage[] ma = {new MovingAverage(windSize),new MovingAverage(windSize),new MovingAverage(windSize)};
+            for (int i = 0; i < data.size(); i++) {
+
                 double[] data2 = new double[data.get(i).length];
-                for(int j=0;j<data.get(i).length;j++) {
-                    ma.newNum(data.get(i)[j]);
-                    System.out.println("Next number = " + data.get(i)[j] + ", SMA = " + ma.getAvg());
-                    data2[j] = ma.getAvg();
+                for (int j = 0; j < 3; j++) {
+                    ma[j].newNum(data.get(i)[j]);
+                    System.out.println("Next number = " + data.get(i)[j] + ", SMA = " + ma[j].getAvg());
+                    data2[j] = ma[j].getAvg();
                 }
                 dataMA.add(data2);
             }
             System.out.println();
         }
+        this.dataMA = dataMA;
     }
 
     private void setRepetitions() {
         setMaxHeight();
-        setMinHeigth();
+        setMinHeight();
+        double[] avg = new double[3];
+        double[] prevVal = new double[3];
+        int[] intersections = new int[3];
+        int repetitions=2000000000;
+
+        for(int i=0;i<minHeight.length;i++) {
+            avg[i] = (minHeight[i] + maxHeight[i])/2;
+            System.out.println(avg[i]);
+            System.out.println(minHeight[i] + " " + maxHeight[i]);
+        }
+        for (int i = 0; i < dataMA.size(); i++) {
+            for (int j = 0; j < 3; j++) {
+                if(prevVal[j] < avg[j] && avg[j] < dataMA.get(i)[j]) {
+                    intersections[j]++;
+                }
+                if(prevVal[j] > avg[j] && avg[j] > dataMA.get(i)[j]) {
+                    intersections[j]++;
+                }
+                if(avg[j] == dataMA.get(i)[j]){
+                    intersections[j]++;
+                }
+                prevVal[j] = dataMA.get(i)[j];
+            }
+        }
+
+        for(int i=0;i<intersections.length;i++) {
+            System.out.println(intersections[i]);
+            if(repetitions > intersections[i]) {
+                repetitions = intersections[i]/2;
+            }
+        }
+        System.out.println(repetitions);
     }
 
     private void setTotalTime() {
-        this.totalTime = totalTime;
+        double start = data.get(0)[3];
+        double end = data.get(data.size()-1)[3];
+        totalTime = end - start;
+
     }
 
     private void setAvgTime() {
@@ -138,10 +178,26 @@ public class RawData {
 
     //extra vars
     private void setMaxHeight() {
-
-
+        double[] maxHeight = {0, 0, 0};
+        for (int i = 0; i < dataMA.size(); i++) {
+            for (int j = 0; j < 3; j++) {
+                if (dataMA.get(i)[j] > maxHeight[j]) {
+                    maxHeight[j] = dataMA.get(i)[j];
+                }
+            }
+        }
+        this.maxHeight = maxHeight;
     }
-    private void setMinHeigth() {
 
+    private void setMinHeight() {
+        double[] minHeight = {0, 0, 0};
+        for (int i = 0; i < dataMA.size(); i++) {
+            for (int j = 0; j < 3; j++) {
+                if (dataMA.get(i)[j] < minHeight[j]) {
+                    minHeight[j] = dataMA.get(i)[j];
+                }
+            }
+        }
+        this.minHeight = minHeight;
     }
 }
