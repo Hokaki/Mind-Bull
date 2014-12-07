@@ -24,80 +24,97 @@
                 width:100%; 
                 height:400px;
             }
+            .btn-group-justified{
+                margin-top: 15px;
+                margin-bottom: 7px;
+                margin-left: 2px;
+                margin-right: 2px;
+            }
+            .form-control{
+                margin-top: 15px;
+                margin-bottom: 7px;
+                margin-left: 2px;
+                margin-right: 2px;
+            }
+            #chart_time{
+                display: none;
+            }
+            #chart_maxSpeed{
+                display: none;
+            }
+            h3{
+                margin-left: 20px;
+                
+            }
         </style>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript">
             var selectedExercise;
             var selectedGraph;
             var counter;
+            var patientFiltered;
+            var patient = [];
             var patientName = "${patient.firstName}" + " " + "${patient.lastName}";
             var patientExerciseName= [];
-            var patientDate= [];
-            var patientRepetitions= [];
-            var patientMaxTime= [];
-            var patientAvgTime= [];
-            var patientMinTime= [];
-            var patientMaxSpeed= [];
+            var index = 0;
             
             <c:forEach var="result" items="${resultList}">
                 patientExerciseName.push("${result.exercise.name}");
-                patientDate.push("${result.date}");
-                patientRepetitions.push("${result.repetitions}");
-                patientMaxTime.push("${result.maxTime}");
-                patientAvgTime.push("${result.avgTime}");
-                patientMinTime.push("${result.minTime}");
-                patientMaxSpeed.push("${result.maxSpeed}");
+                patient[index] = ({
+                    exerciseName: "${result.exercise.name}",
+                    date: "${result.date}",
+                    repetitions: "${result.repetitions}",
+                    maxTime: "${result.maxTime}",
+                    avgTime: "${result.avgTime}",
+                    minTime: "${result.minTime}",
+                    maxSpeed: "${result.maxSpeed}"
+                });
+                index++;
             </c:forEach>
-            selectedExercise = patientExerciseName[0];
-                
-            function selectExercise(input){
-                counter = 0;
-                selectedExercise = input;
-                
-                for (i = 0; i < patientDate.length; i++) {
-                    if(selectedExercise == patientExerciseName[i]){
-                        counter = counter + 1;
+            selectedExercise = patient[0].exerciseName;
+
+            function drawChart() {
+                var tempPatient = [];
+                //nieuwe array voor geselecteerde exercise
+                for (i = 0; i < patient.length; i++) {
+                    if(patient[i].exerciseName === selectedExercise){
+                        tempPatient.push(patient[i]);
                     }
                 }
-                drawChart();
-                loadChart();
-            }
-            function drawChart() {
+                patientFiltered = tempPatient;
                 
                 var repetitionsData = new google.visualization.DataTable();
                 repetitionsData.addColumn('string', 'Date');
                 repetitionsData.addColumn('number', 'repetitions');
-                repetitionsData.addRows(patientDate.length);
-                for (i = 0; i < patientDate.length; i++) {
-                    if(patientExerciseName[i] == selectedExercise){
-                        repetitionsData.setCell(i, 0, ""+patientDate[i]);
-                        repetitionsData.setCell(i, 1, patientRepetitions[i]);
-                    }
+                repetitionsData.addRows(tempPatient.length);
+                for (i = 0; i < tempPatient.length; i++) {
+                        repetitionsData.setCell(i, 0, tempPatient[i].date);
+                        repetitionsData.setCell(i, 1, tempPatient[i].repetitions);
                 }
                 var timeData = new google.visualization.DataTable();
                 timeData.addColumn('string', 'Date');
+                timeData.addColumn('number', 'Min Time');
                 timeData.addColumn('number', 'Avg Time');
-                timeData.addColumn('number', 'min Time');
-                timeData.addColumn('number', 'max Time');
-                timeData.addRows(patientDate.length);
-                for (i = 0; i < patientDate.length; i++) {
-                    if(patientExerciseName[i] == selectedExercise){
-                        timeData.setCell(i, 0, ""+patientDate[i]);
-                        timeData.setCell(i, 1, patientAvgTime[i]);
-                        timeData.setCell(i, 2, patientMinTime[i]);
-                        timeData.setCell(i, 3, patientMaxTime[i]);
-                    }
+                timeData.addColumn('number', 'Max Time');
+                timeData.addRows(tempPatient.length);
+                for (i = 0; i < tempPatient.length; i++) {
+                        timeData.setCell(i, 0, tempPatient[i].date);
+                        timeData.setCell(i, 1, tempPatient[i].minTime);
+                        timeData.setCell(i, 2, tempPatient[i].avgTime);
+                        timeData.setCell(i, 3, tempPatient[i].maxTime);
                 }
                 var maxSpeedData = new google.visualization.DataTable();
                 maxSpeedData.addColumn('string', 'Date');
                 maxSpeedData.addColumn('number', 'Max speed');
-                maxSpeedData.addRows(patientDate.length);
-                for (i = 0; i < patientDate.length; i++) {
-                    if(patientExerciseName[i] == selectedExercise){
-                        maxSpeedData.setCell(i, 0, ""+patientDate[i]);
-                        maxSpeedData.setCell(i, 1, patientMaxSpeed[i]);
-                    }
+                maxSpeedData.addRows(tempPatient.length);
+                for (i = 0; i < tempPatient.length; i++) {
+                        maxSpeedData.setCell(i, 0, tempPatient[i].date);
+                        maxSpeedData.setCell(i, 1, tempPatient[i].maxSpeed);
                 }
+                
+                var repetitions = new google.visualization.ColumnChart(document.getElementById('chart_repetitions'));
+                var time = new google.visualization.ColumnChart(document.getElementById('chart_time'));
+                var maxSpeed = new google.visualization.ColumnChart(document.getElementById('chart_maxSpeed'));
                 
                 var options1 = {
                     title: selectedExercise,
@@ -117,9 +134,6 @@
                     legend: 'none'
                 };
 
-                var repetitions = new google.visualization.ColumnChart(document.getElementById('chart_repetitions'));
-                var time = new google.visualization.ColumnChart(document.getElementById('chart_time'));
-                var maxSpeed = new google.visualization.ColumnChart(document.getElementById('chart_maxSpeed'));
                 repetitions.draw(repetitionsData, options1);
                 time.draw(timeData, options2);
                 maxSpeed.draw(maxSpeedData, options3);           
@@ -143,7 +157,7 @@
             function showonlyone(thechosenone) {
                 selectedGraph = thechosenone;
                 $('.newboxes').each(function(index) {
-                    if ($(this).attr("id") == thechosenone) {
+                    if ($(this).attr("id") === thechosenone) {
                         $(this).show();
                     }
                     else {
@@ -153,11 +167,23 @@
                 drawChart();
                 loadChart();
             }
-            var uniqueName = [];
-            $.each(patientExerciseName, function(i, uniqueCheck){
-                if($.inArray(uniqueCheck, uniqueName) === -1) uniqueName.push(uniqueCheck);
-            });
+            
+            var uniqueName = patientExerciseName.filter(function(elem, pos) {
+                return patientExerciseName.indexOf(elem) === pos;
+            }); 
 
+            function selectExercise(input){
+                counter = 0;
+                selectedExercise = input;
+                
+                for (i = 0; i < patient.length; i++) {
+                    if(selectedExercise === patient[i].exerciseName){
+                        counter = counter + 1;
+                    }
+                }
+                drawChart();
+                loadChart();
+            }
             function exerciseChange(input){
                 selectExercise(input.value);
             }
@@ -172,22 +198,44 @@
                     <h2>${patient.firstName} ${patient.lastName}</h2>
                     <div class="well">
                         <div class="row">
-                            <div class="col-md-2">
-                                <h3>Select exercise</h3>
-                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
+                                <h3>Exercise</h3>
                                 <div class="btn-group-justified">
                                     <a class="btn btn-primary" id="myHeader1" href="javascript:showonlyone('chart_repetitions');" >Repetitions </a>
                                     <a class="btn btn-primary" id="myHeader2" href="javascript:showonlyone('chart_time');" >Duration </a>
                                     <a class="btn btn-primary" id="myHeader3" href="javascript:showonlyone('chart_maxSpeed');" >Max speed</a>
                                 </div>
-                                <br>
                                 <select class="form-control" id="exerciseSelect" onchange="exerciseChange(this);">
                                     <script type="text/javascript">
                                      for(i=0;i<uniqueName.length;i++){
                                         document.write('<option value="' + uniqueName[i]+ '">' + uniqueName[i] + '</option>');
                                     }
                                     </script>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <h3>Year</h3>
+                                <select class="form-control" id="monthSelect">
+                                    <option value="2013">2013</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2015">2015</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <h3>Month</h3>
+                                <select class="form-control" id="monthSelect">
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
                                 </select>
                             </div>
                         </div>
@@ -219,6 +267,7 @@
                                                 <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/RawData/show/">View</a></td>
                                             </tr>
                                         </c:forEach>
+                                            
                                     </tbody>
                                 </table>
                             </div>        
