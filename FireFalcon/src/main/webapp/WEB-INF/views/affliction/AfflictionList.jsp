@@ -30,7 +30,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
-                                        <tr>
+                                        <tr class="info">
                                             <th>BSN</th>
                                             <th>Description</th>
                                             <th>Side Note</th>
@@ -45,7 +45,7 @@
                                                 <td>${affliction.bsn.bsn}</td>
                                                 <td>${affliction.description}</td>
                                                 <td>${affliction.sideNote} </td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/affliction/edit/${affliction.id}">Edit</a></td>
+                                                <td><a class="btn btn-info glyphicon glyphicon-pencil" href="${pageContext.request.contextPath}/affliction/edit/${affliction.id}"></a></td>
 
                                             </tr>
                                         </c:forEach>

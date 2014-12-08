@@ -124,13 +124,12 @@
         <div class="container-fluid">
             <h2>Users</h2>
             <h3>${message}</h3>
-            <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/user/add">Add User</a></td>
             <c:choose>
                 <c:when test="${userList.size() != 0}">
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover table-striped">
                             <thead>
-                                <tr>
+                                <tr class="info">
                                     <th>Username</th>
                                     <th>Name</th>
                                     <th>Admin</th>
@@ -138,13 +137,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens 
                                 <c:forEach var="user" items="${userList}">
                                     <tr>
                                         <td>${user.username}</td>
                                         <td>${user.firstName} ${user.lastName}</td>
                                         <td>${user.isAdmin}</td>
-                                        <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/user/edit/${user.username}">Edit</a></td>
+                                        <td><a class="btn btn-info glyphicon glyphicon-pencil" href="${pageContext.request.contextPath}/user/edit/${user.username}"></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -155,6 +153,7 @@
                     There were no users found.
                 </c:otherwise>
             </c:choose>
+            <a class="btn btn-success" href="${pageContext.request.contextPath}/user/add">Add User</a>
         </div>
         <!--.container-fluid--> 
     </div>

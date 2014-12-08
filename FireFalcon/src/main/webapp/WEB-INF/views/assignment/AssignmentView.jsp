@@ -26,7 +26,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
-                                        <tr>
+                                        <tr class="info">
                                             <th>ID Assignment</th>
                                             <th>Patient Name</th>
                                             <th>Exercise Name</th>

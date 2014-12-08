@@ -26,16 +26,16 @@
                 <div class="container-fluid">
                     <h2>exercises</h2>
                     <h3>${message}</h3>
-                    <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/exercise/add">add</a></td>
                     <c:choose>
                         <c:when test="${exerciseList.size() != 0}">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
-                                        <tr>
+                                        <tr class="info">
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Description</th>
+                                            <th>Edit</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -45,7 +45,7 @@
                                                 <td>${exercise.id}</td>
                                                 <td>${exercise.name}</td>
                                                 <td>${exercise.description}</td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/exercise/edit/${exercise.id}">Edit</a></td>
+                                                <td><a class="btn btn-info glyphicon glyphicon-pencil" href="${pageContext.request.contextPath}/exercise/edit/${exercise.id}"></a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -56,6 +56,7 @@
                             There were no exercises found.
                         </c:otherwise>
                     </c:choose>
+                            <p><a class="btn btn-success" href="${pageContext.request.contextPath}/exercise/add">Add Exercise</a></p>
                 </div>
                 <!-- /.container-fluid -->
             </div>
