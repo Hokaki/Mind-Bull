@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Recording {
-	private List<Float[]> data;
+	private List<Object[]> data;
 	
 	private String name;
 
-	public List<Float[]> getData() {
+	public List<Object[]> getData() {
 		return data;
 	}
 
-	public void setData(List<Float[]> data) {
+	public void setData(List<Object[]> data) {
 		this.data = data;
 	}
 	
-	public void addData(float[] dataF) {
-		Float[] newDataF = { dataF[0], dataF[1], dataF[2] };
+	public void addData(Object[] dataF) {
+		Object[] newDataF = { dataF[0], dataF[1], dataF[2], dataF[3] };
 		if (data == null) {
-			data = new ArrayList<Float[]>();
+			data = new ArrayList<Object[]>();
 		}
 		data.add(newDataF);
 	}

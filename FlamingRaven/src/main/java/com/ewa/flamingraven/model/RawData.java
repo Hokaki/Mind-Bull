@@ -13,20 +13,24 @@ public class RawData {
     private List<double[]> dataMA = new LinkedList<double[]>(); //moving average version
     private int repetitions;
     private double totalTime;
-    private int avgTime;
-    private int minTime;
-    private int maxTime;
+    private double avgTime;
+    private double minTime;
+    private double maxTime;
     private int[] maxSpeed;
 
     private double[] maxHeight;
     private double[] minHeight;
+    private  List<Double> intersectionTime;
 
     public RawData(List<double[]> data) {
         this.data = data;
         setDataMA();
         setRepetitions();
         setTotalTime();
+        setAvgTime();
+        setMinAndMaxTime();
         System.out.println(totalTime);
+        System.out.println(minTime + " " + maxTime);
     }
 
     public List<double[]> getData() {
@@ -45,15 +49,15 @@ public class RawData {
         return totalTime;
     }
 
-    public int getAvgTime() {
+    public double getAvgTime() {
         return avgTime;
     }
 
-    public int getMinTime() {
+    public double getMinTime() {
         return minTime;
     }
 
-    public int getMaxTime() {
+    public double getMaxTime() {
         return maxTime;
     }
 
@@ -122,23 +126,30 @@ public class RawData {
         double[] avg = new double[3];
         double[] prevVal = new double[3];
         int[] intersections = new int[3];
+        List<Double>[] intersectionTime = (LinkedList<Double>[])new LinkedList<?>[3];
+        intersectionTime[0] = new LinkedList<Double>();
+        intersectionTime[1] = new LinkedList<Double>();
+        intersectionTime[2] = new LinkedList<Double>();
         int repetitions=2000000000;
+        int finalGraph =0;
 
         for(int i=0;i<minHeight.length;i++) {
             avg[i] = (minHeight[i] + maxHeight[i])/2;
-            System.out.println(avg[i]);
-            System.out.println(minHeight[i] + " " + maxHeight[i]);
         }
         for (int i = 0; i < dataMA.size(); i++) {
             for (int j = 0; j < 3; j++) {
                 if(prevVal[j] < avg[j] && avg[j] < dataMA.get(i)[j]) {
                     intersections[j]++;
+                    System.out.println(data.get(i)[3]);
+                    intersectionTime[j].add(data.get(i)[3]);
                 }
                 if(prevVal[j] > avg[j] && avg[j] > dataMA.get(i)[j]) {
                     intersections[j]++;
+                    intersectionTime[j].add(data.get(i)[3]);
                 }
                 if(avg[j] == dataMA.get(i)[j]){
                     intersections[j]++;
+                    intersectionTime[j].add(data.get(i)[3]);
                 }
                 prevVal[j] = dataMA.get(i)[j];
             }
@@ -148,9 +159,12 @@ public class RawData {
             System.out.println(intersections[i]);
             if(repetitions > intersections[i]) {
                 repetitions = intersections[i]/2;
+                finalGraph = i;
             }
         }
         System.out.println(repetitions);
+        this.intersectionTime = intersectionTime[finalGraph];
+        this.repetitions = repetitions;
     }
 
     private void setTotalTime() {
@@ -161,15 +175,28 @@ public class RawData {
     }
 
     private void setAvgTime() {
-        this.avgTime = avgTime;
+        avgTime = totalTime/repetitions;
     }
 
-    private void setMinTime() {
-        this.minTime = minTime;
-    }
-
-    private void setMaxTime() {
+    private void setMinAndMaxTime() {
+        double prev = intersectionTime.get(0);
+        double[] time = new double[repetitions];
+        for(int i=2;i<intersectionTime.size();i+=2) {
+            time[(i/2)-1] = intersectionTime.get(i) - prev;
+            prev = intersectionTime.get(i);
+        }
+        double minTime=2000000000;
+        double maxTime=0;
+        for(int i=0;i<time.length;i++) {
+            if (minTime > time[i]) {
+                minTime = time[i];
+            }
+            if (maxTime < time[i]) {
+                maxTime = time[i];
+            }
+        }
         this.maxTime = maxTime;
+        this.minTime = minTime;
     }
 
     private void setMaxSpeed() {
