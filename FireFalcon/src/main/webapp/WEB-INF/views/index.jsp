@@ -69,10 +69,6 @@
                                         <div class="col-xs-3">
                                             <i class="fa fa-user-md fa-5x"></i>
                                         </div>
-                                        <div class="col-xs-9 text-right">
-                                            <div class="huge">0</div>
-                                            <div>New messages</div>
-                                        </div>
                                     </div>
                                 </div>
                                 <a href="${pageContext.request.contextPath}/user/list">
@@ -105,10 +101,6 @@
                                         <div class="col-xs-3">
                                             <i class="fa fa-user-md fa-5x"></i>
                                         </div>
-                                        <div class="col-xs-9 text-right">
-                                            <div class="huge">0</div>
-                                            <div>New messages</div>
-                                        </div>
                                     </div>
                                 </div>
                                 <a href="${pageContext.request.contextPath}/user/list">
@@ -127,10 +119,6 @@
                                         <div class="col-xs-3">
                                             <i class="fa fa-calendar fa-5x"></i>
                                         </div>
-                                        <div class="col-xs-9 text-right">
-                                            <div class="huge">0</div>
-                                            <div>New items</div>
-                                        </div>
                                     </div>
                                 </div>
                                 <a href="#">
@@ -148,10 +136,6 @@
                                     <div class="row">
                                         <div class="col-xs-3">
                                             <i class="fa icon-strekkende-homo fa-5x"></i>
-                                        </div>
-                                        <div class="col-xs-9 text-right">
-                                            <div class="huge">0</div>
-                                            <div>New excercises</div>
                                         </div>
                                     </div>
                                 </div>

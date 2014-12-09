@@ -31,11 +31,6 @@
                             <h1 class="page-header">
                                 Control panel
                             </h1>
-                            <ol class="breadcrumb">
-                                <li class="active">
-                                    <i class="fa fa-dashboard"></i> Control panel
-                                </li>
-                            </ol>
                         </div>
                     </div>
                     <!-- /.row -->
@@ -50,10 +45,6 @@
                                     <div class="row">
                                         <div class="col-xs-3">
                                             <i class="fa fa-users fa-5x"></i>
-                                        </div>
-                                        <div class="col-xs-9 text-right">
-                                            <div class="huge">0</div>
-                                            <div>New patients</div>
                                         </div>
                                     </div>
                                 </div>
@@ -73,10 +64,6 @@
                                         <div class="col-xs-3">
                                             <i class="fa fa-calendar fa-5x"></i>
                                         </div>
-                                        <div class="col-xs-9 text-right">
-                                            <div class="huge">0</div>
-                                            <div>New items</div>
-                                        </div>
                                     </div>
                                 </div>
                                 <a href="#">
@@ -95,10 +82,6 @@
                                         <div class="col-xs-3">
                                             <i class="fa icon-strekkende-homo fa-5x"></i>
                                         </div>
-                                        <div class="col-xs-9 text-right">
-                                            <div class="huge">0</div>
-                                            <div>New excercises</div>
-                                        </div>
                                     </div>
                                 </div>
                                 <a href="${pageContext.request.contextPath}/exercise/list">
@@ -111,55 +94,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.row -->
-<!--                    <div class="col-lg-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Tasks Panel</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="list-group">
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">just now</span>
-                                        <i class="fa fa-fw fa-calendar"></i> Appoinment with Patient X.
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">4 minutes ago</span>
-                                        <i class="fa fa-fw fa-comment"></i> Message from patient A.
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">23 minutes ago</span>
-                                        <i class="fa fa-fw fa-user"></i> 
-                                        Alert from patient B.
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">46 minutes ago</span>
-                                        <i class="fa fa-fw fa-user"></i> 
-                                        Alert from patient S.
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">1 hour ago</span>
-                                        <i class="fa fa-fw fa-comment"></i> 
-                                        Message from therapist A.
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">2 hours ago</span>
-                                        <i class="fa fa-fw fa-user"></i> 
-                                        Patient C has completed exercise course.
-                                    </a>
-                                </div>
-                                <div class="text-right">
-                                    <a href="#">View All Activity <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
-
-                    <!-- /.row -->
-
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- /#page-wrapper -->
 
