@@ -249,7 +249,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
-                                        <tr>
+                                        <tr class="info">
                                             <th>Patient</th>
                                             <th>Exercise</th>
                                             <th>Date</th>
@@ -264,7 +264,7 @@
                                                 <td>${result.exercise.name}</td>
                                                 <td>${result.date}</td>
                                                 <td>${result.repetitions}</td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/RawData/show/">View</a></td>
+                                                <td><a class="btn btn-success glyphicon glyphicon-eye-open" href="${pageContext.request.contextPath}/RawData/show/"></a></td>
                                             </tr>
                                         </c:forEach>
                                             
