@@ -17,6 +17,7 @@ public class RawData {
     private double minTime;
     private double maxTime;
     private int[] maxSpeed;
+    private long time;
 
     private double[] maxHeight;
     private double[] minHeight;
@@ -31,6 +32,14 @@ public class RawData {
         setMinAndMaxTime();
         System.out.println(totalTime);
         System.out.println(minTime + " " + maxTime);
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 
     public List<double[]> getData() {
@@ -101,16 +110,16 @@ public class RawData {
     //the overloading private setters
 
     private void setDataMA() {
-        int[] windowSizes = {5};
+        int[] windowSizes = {20};
         List<double[]> dataMA = new LinkedList<double[]>();
         for (int windSize : windowSizes) {
             MovingAverage[] ma = {new MovingAverage(windSize),new MovingAverage(windSize),new MovingAverage(windSize)};
-            for (int i = 0; i < data.size(); i++) {
+            for (int i = 1; i < data.size()-1; i++) {
 
                 double[] data2 = new double[data.get(i).length];
                 for (int j = 0; j < 3; j++) {
-                    ma[j].newNum(data.get(i)[j]);
-                    System.out.println("Next number = " + data.get(i)[j] + ", SMA = " + ma[j].getAvg());
+                    ma[j].newNum(data.get(i)[j+1]);
+                    System.out.println("Next number = " + data.get(i)[j+1] + ", SMA = " + ma[j].getAvg());
                     data2[j] = ma[j].getAvg();
                 }
                 dataMA.add(data2);
@@ -140,16 +149,16 @@ public class RawData {
             for (int j = 0; j < 3; j++) {
                 if(prevVal[j] < avg[j] && avg[j] < dataMA.get(i)[j]) {
                     intersections[j]++;
-                    System.out.println(data.get(i)[3]);
-                    intersectionTime[j].add(data.get(i)[3]);
+                    System.out.println(data.get(i)[4]);
+                    intersectionTime[j].add(data.get(i)[4]);
                 }
                 if(prevVal[j] > avg[j] && avg[j] > dataMA.get(i)[j]) {
                     intersections[j]++;
-                    intersectionTime[j].add(data.get(i)[3]);
+                    intersectionTime[j].add(data.get(i)[4]);
                 }
                 if(avg[j] == dataMA.get(i)[j]){
                     intersections[j]++;
-                    intersectionTime[j].add(data.get(i)[3]);
+                    intersectionTime[j].add(data.get(i)[4]);
                 }
                 prevVal[j] = dataMA.get(i)[j];
             }
@@ -158,18 +167,19 @@ public class RawData {
         for(int i=0;i<intersections.length;i++) {
             System.out.println(intersections[i]);
             if(repetitions > intersections[i]) {
-                repetitions = intersections[i]/2;
+                repetitions = intersections[i];
                 finalGraph = i;
             }
         }
-        System.out.println(repetitions);
+        System.out.println(repetitions/2);
         this.intersectionTime = intersectionTime[finalGraph];
-        this.repetitions = repetitions;
+        this.repetitions = repetitions/2;
     }
 
     private void setTotalTime() {
-        double start = data.get(0)[3];
-        double end = data.get(data.size()-1)[3];
+        double start = data.get(0)[4];
+        double end = data.get(data.size()-1)[4];
+        time = Long.parseLong(String.valueOf(end));
         totalTime = end - start;
 
     }
