@@ -51,12 +51,71 @@
         <script type="text/javascript">
             var selectedExercise;
             var selectedGraph;
-            var counter;
             var patientFiltered;
             var patient = [];
             var patientName = "${patient.firstName}" + " " + "${patient.lastName}";
             var patientExerciseName= [];
             var index = 0;
+            
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            } 
+
+            if(mm<10) {
+                mm='0'+mm
+            } 
+//                        today = mm+'/'+dd+'/'+yyyy;
+            today = yyyy+'-'+mm+'-'+ dd;
+            var startDate;
+            defaultOverview();  
+            function defaultOverview(){
+                var month = '01';
+                startDate = yyyy + '-' + month + '-' + dd;
+            }
+            
+            function monthOverview(){
+                var month = mm;
+                var year = yyyy;
+                if(month !== 01){
+                    month = parseInt(month);
+                    month = month - 1;
+                    if(month < 10){
+                        month = '0' + month;
+                    }else{
+                        month = '' + month;
+                    }
+                }else{
+                    year = parseInt(year);
+                    year = year - 1;
+                    year = '' + year;
+                }
+                startDate = year + '-' + month + '-' + dd;
+            }
+            
+            function threeMonthsOverview(){
+                var month = mm;
+                var year = yyyy;
+                month = parseInt(month);
+                if(month > 3){
+                    month = month - 3;
+                }else{
+                    month = month + 12 - 3;
+                    year = parseInt(year);
+                    year = year - 1;
+                    year = '' + year;
+                }
+                if(month < 10){
+                    month = '0' + month;
+                }else{
+                    month = '' + month;
+                }
+                startDate = year + '-' + month + '-' + dd;
+            }
             
             <c:forEach var="result" items="${resultList}">
                 patientExerciseName.push("${result.exercise.name}");
@@ -78,7 +137,9 @@
                 //nieuwe array voor geselecteerde exercise
                 for (i = 0; i < patient.length; i++) {
                     if(patient[i].exerciseName === selectedExercise){
+                        if(patient[i].date > startDate){
                         tempPatient.push(patient[i]);
+                        }
                     }
                 }
                 patientFiltered = tempPatient;
@@ -170,22 +231,23 @@
             
             var uniqueName = patientExerciseName.filter(function(elem, pos) {
                 return patientExerciseName.indexOf(elem) === pos;
-            }); 
+            });
 
-            function selectExercise(input){
-                counter = 0;
-                selectedExercise = input;
-                
-                for (i = 0; i < patient.length; i++) {
-                    if(selectedExercise === patient[i].exerciseName){
-                        counter = counter + 1;
-                    }
-                }
+            function exerciseChange(input){
+                selectedExercise = input.value;
                 drawChart();
                 loadChart();
             }
-            function exerciseChange(input){
-                selectExercise(input.value);
+            function monthChange(input){
+                if(input.value  === '1'){
+                    monthOverview();
+                }
+                if(input.value === '2'){
+                    threeMonthsOverview();
+                }
+                drawChart();
+                loadChart();
+                document.getElementById('paragraph').innerHTML = startDate.toString();
             }
         </script>
     </head>
@@ -213,30 +275,16 @@
                                     </script>
                                 </select>
                             </div>
-                            <div class="col-md-2">
-                                <h3>Year</h3>
-                                <select class="form-control" id="monthSelect">
-                                    <option value="2013">2013</option>
-                                    <option value="2014">2014</option>
-                                    <option value="2015">2015</option>
-                                </select>
+                            <div class="col-md-1">                  
                             </div>
-                            <div class="col-md-2">
-                                <h3>Month</h3>
-                                <select class="form-control" id="monthSelect">
-                                    <option value="1">January</option>
-                                    <option value="2">February</option>
-                                    <option value="3">March</option>
-                                    <option value="4">April</option>
-                                    <option value="5">May</option>
-                                    <option value="6">June</option>
-                                    <option value="7">July</option>
-                                    <option value="8">August</option>
-                                    <option value="9">September</option>
-                                    <option value="10">October</option>
-                                    <option value="11">November</option>
-                                    <option value="12">December</option>
+                            <div class="col-md-3">
+                                <h3>View</h3>
+                                <select class="form-control" id="monthSelect" onchange="monthChange(this);">
+                                    <option value="1">Last month</option>
+                                    <option value="2">Last three months</option>
                                 </select>
+                                <br>
+                                <p>Start date: <span id="paragraph"></span></p>
                             </div>
                         </div>
                     </div>
@@ -249,7 +297,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
-                                        <tr>
+                                        <tr class="info">
                                             <th>Patient</th>
                                             <th>Exercise</th>
                                             <th>Date</th>
@@ -264,10 +312,9 @@
                                                 <td>${result.exercise.name}</td>
                                                 <td>${result.date}</td>
                                                 <td>${result.repetitions}</td>
-                                                <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/RawData/show/">View</a></td>
+                                                <td><a class="btn btn-success glyphicon glyphicon-eye-open" href="${pageContext.request.contextPath}/RawData/show/"></a></td>
                                             </tr>
                                         </c:forEach>
-                                            
                                     </tbody>
                                 </table>
                             </div>        

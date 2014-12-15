@@ -13,20 +13,33 @@ public class RawData {
     private List<double[]> dataMA = new LinkedList<double[]>(); //moving average version
     private int repetitions;
     private double totalTime;
-    private int avgTime;
-    private int minTime;
-    private int maxTime;
+    private double avgTime;
+    private double minTime;
+    private double maxTime;
     private int[] maxSpeed;
+    private long time;
 
     private double[] maxHeight;
     private double[] minHeight;
+    private  List<Double> intersectionTime;
 
     public RawData(List<double[]> data) {
         this.data = data;
         setDataMA();
         setRepetitions();
         setTotalTime();
+        setAvgTime();
+        setMinAndMaxTime();
         System.out.println(totalTime);
+        System.out.println(minTime + " " + maxTime);
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 
     public List<double[]> getData() {
@@ -45,15 +58,15 @@ public class RawData {
         return totalTime;
     }
 
-    public int getAvgTime() {
+    public double getAvgTime() {
         return avgTime;
     }
 
-    public int getMinTime() {
+    public double getMinTime() {
         return minTime;
     }
 
-    public int getMaxTime() {
+    public double getMaxTime() {
         return maxTime;
     }
 
@@ -97,16 +110,16 @@ public class RawData {
     //the overloading private setters
 
     private void setDataMA() {
-        int[] windowSizes = {5};
+        int[] windowSizes = {20};
         List<double[]> dataMA = new LinkedList<double[]>();
         for (int windSize : windowSizes) {
             MovingAverage[] ma = {new MovingAverage(windSize),new MovingAverage(windSize),new MovingAverage(windSize)};
-            for (int i = 0; i < data.size(); i++) {
+            for (int i = 1; i < data.size()-1; i++) {
 
                 double[] data2 = new double[data.get(i).length];
                 for (int j = 0; j < 3; j++) {
-                    ma[j].newNum(data.get(i)[j]);
-                    System.out.println("Next number = " + data.get(i)[j] + ", SMA = " + ma[j].getAvg());
+                    ma[j].newNum(data.get(i)[j+1]);
+                    System.out.println("Next number = " + data.get(i)[j+1] + ", SMA = " + ma[j].getAvg());
                     data2[j] = ma[j].getAvg();
                 }
                 dataMA.add(data2);
@@ -122,23 +135,30 @@ public class RawData {
         double[] avg = new double[3];
         double[] prevVal = new double[3];
         int[] intersections = new int[3];
+        List<Double>[] intersectionTime = (LinkedList<Double>[])new LinkedList<?>[3];
+        intersectionTime[0] = new LinkedList<Double>();
+        intersectionTime[1] = new LinkedList<Double>();
+        intersectionTime[2] = new LinkedList<Double>();
         int repetitions=2000000000;
+        int finalGraph =0;
 
         for(int i=0;i<minHeight.length;i++) {
             avg[i] = (minHeight[i] + maxHeight[i])/2;
-            System.out.println(avg[i]);
-            System.out.println(minHeight[i] + " " + maxHeight[i]);
         }
         for (int i = 0; i < dataMA.size(); i++) {
             for (int j = 0; j < 3; j++) {
                 if(prevVal[j] < avg[j] && avg[j] < dataMA.get(i)[j]) {
                     intersections[j]++;
+                    System.out.println(data.get(i)[4]);
+                    intersectionTime[j].add(data.get(i)[4]);
                 }
                 if(prevVal[j] > avg[j] && avg[j] > dataMA.get(i)[j]) {
                     intersections[j]++;
+                    intersectionTime[j].add(data.get(i)[4]);
                 }
                 if(avg[j] == dataMA.get(i)[j]){
                     intersections[j]++;
+                    intersectionTime[j].add(data.get(i)[4]);
                 }
                 prevVal[j] = dataMA.get(i)[j];
             }
@@ -147,29 +167,46 @@ public class RawData {
         for(int i=0;i<intersections.length;i++) {
             System.out.println(intersections[i]);
             if(repetitions > intersections[i]) {
-                repetitions = intersections[i]/2;
+                repetitions = intersections[i];
+                finalGraph = i;
             }
         }
-        System.out.println(repetitions);
+        System.out.println(repetitions/2);
+        this.intersectionTime = intersectionTime[finalGraph];
+        this.repetitions = repetitions/2;
     }
 
     private void setTotalTime() {
-        double start = data.get(0)[3];
-        double end = data.get(data.size()-1)[3];
+        double start = data.get(0)[4];
+        double end = data.get(data.size()-1)[4];
+        time = Long.parseLong(String.valueOf(end));
         totalTime = end - start;
 
     }
 
     private void setAvgTime() {
-        this.avgTime = avgTime;
+        avgTime = totalTime/repetitions;
     }
 
-    private void setMinTime() {
-        this.minTime = minTime;
-    }
-
-    private void setMaxTime() {
+    private void setMinAndMaxTime() {
+        double prev = intersectionTime.get(0);
+        double[] time = new double[repetitions];
+        for(int i=2;i<intersectionTime.size();i+=2) {
+            time[(i/2)-1] = intersectionTime.get(i) - prev;
+            prev = intersectionTime.get(i);
+        }
+        double minTime=2000000000;
+        double maxTime=0;
+        for(int i=0;i<time.length;i++) {
+            if (minTime > time[i]) {
+                minTime = time[i];
+            }
+            if (maxTime < time[i]) {
+                maxTime = time[i];
+            }
+        }
         this.maxTime = maxTime;
+        this.minTime = minTime;
     }
 
     private void setMaxSpeed() {

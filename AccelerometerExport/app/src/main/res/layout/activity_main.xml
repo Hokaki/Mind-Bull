@@ -1,0 +1,82 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <EditText
+        android:id="@+id/txtRecordingName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="42dp"
+        android:ems="10" >
+    </EditText>
+
+    <ToggleButton
+        android:id="@+id/btnRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtRecordingName"
+        android:layout_below="@+id/txtRecordingName"
+        android:layout_marginTop="32dp"
+        android:textOn="Stoppen"
+        android:textOff="Opnemen"
+        android:onClick="btnRecordAction"/>
+
+    <LinearLayout
+        android:id="@+id/graphLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnRecord"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/graphLayoutX"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/graphLayoutY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/graphLayoutX"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/graphLayoutZ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/graphLayoutY"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnExport"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnRecord"
+        android:layout_alignBottom="@+id/btnRecord"
+        android:layout_toRightOf="@+id/btnRecord"
+        android:enabled="false"
+        android:text="Exporteer"
+        android:onClick="btnExportAction" />
+
+    <TextView
+        android:id="@+id/lblCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="updates:" />
+
+</RelativeLayout>
