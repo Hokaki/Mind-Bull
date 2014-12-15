@@ -5,7 +5,6 @@
  */
 package com.firefalcon.model;
 
-import com.dhtmlx.planner.DHXEvent;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,15 +27,17 @@ public class Assignment implements Serializable{
     private String repetitions;
     private String start_date;
     private String end_date;
- 
+    private String days;
     
-    public Assignment(Exercise exerciseId, Patient bsn, String repetitions, String start_date, String end_date){
-        
+    
+    public Assignment(Exercise exerciseId, Patient bsn, String repetitions, String start_date, String end_date, String days){
+       
         this.bsn = bsn;
         this.exerciseId = exerciseId;
         this.repetitions = repetitions;
         this.start_date = start_date;
         this.end_date = end_date;
+        this.days = days;
     }
     
     public Assignment(){
@@ -66,7 +67,7 @@ public class Assignment implements Serializable{
     }
 
    @ManyToOne
-   @JoinColumn(name = "id")
+   @JoinColumn(name = "exerciseId")
    public Exercise getExerciseId() {
        return exerciseId;
    }
@@ -98,7 +99,13 @@ public class Assignment implements Serializable{
     public void setEnd_date(String end_date) {
         this.end_date = end_date;
     }
-   
-   
+
+    public String getDays() {
+        return days;
+    }
+
+    public void setDays(String days) {
+        this.days = days;
+    }
    
 }

@@ -12,3 +12,52 @@ body{}
     padding:8px;
     margin:16px;
 }
+
+
+.planner_container input[type="button"]{
+    width: 49%;
+    border:none;
+    border-radius: 0px 0px 5px 5px;
+    
+}
+
+.planner_container input[type="button"]:hover{
+    background-color: green;
+    color: #fff;
+}
+
+.planner_container input[type="submit"]{
+    width: 49%;
+    border:none;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.planner_container input[type="submit"]:hover{
+    background-color: blue;
+    color: #fff;
+}
+
+.planner_container{
+    width: 307px;;
+    height: 300px;
+    margin: 2%;
+    border: 1px black solid;
+    border-radius: 5px;
+}
+
+.header{
+    
+    text-align: center;
+    border-bottom: 1px black solid;
+}
+
+.exercises table tr td{
+    width: 100%;
+    border: 1px black solid;
+}
+
+.last input[type="checkbox"]{
+    padding: 0;
+    margin-right: 7px;
+}
+
