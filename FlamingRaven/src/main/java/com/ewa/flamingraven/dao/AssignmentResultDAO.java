@@ -1,11 +1,14 @@
 package com.ewa.flamingraven.dao;
 
+import com.ewa.flamingraven.connectivity.DbConnectionSQL;
 import com.ewa.flamingraven.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.ewa.flamingraven.model.*;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import java.util.List;
 
@@ -16,6 +19,8 @@ import java.util.List;
 @Repository
 public class AssignmentResultDAO {
     @Autowired
+    DbConnectionSQL conn = new DbConnectionSQL();
+
     private SessionFactory sessionFactory;
 
     private Session getCurrentSession() {
@@ -61,4 +66,33 @@ public class AssignmentResultDAO {
         }
 
     }
+
+    public void add(AssignmentResult assignmentResult) throws SQLException {
+        PreparedStatement prdstmt = null;
+        String query = "INSERT INTO `assignmentresult` (id, "
+                + "avgTime, date, maxSpeed, maxTime, minTime, repetitions, totalTime, exercise_id)"
+                + "Values(?,?,?,?,?,?,?,?,?)";
+
+        conn.startConnection();
+        prdstmt = conn.getConnection().prepareStatement(query);
+        prdstmt.setInt(1, assignmentResult.getId());
+        prdstmt.setInt(2, assignmentResult.getAvgTime());
+        prdstmt.setString(3, assignmentResult.getDate());
+        prdstmt.setInt(4, assignmentResult.getMaxSpeed());
+        prdstmt.setInt(5, assignmentResult.getMaxTime());
+        prdstmt.setInt(6, assignmentResult.getMinTime());
+        prdstmt.setInt(7, assignmentResult.getRepetitions());
+        prdstmt.setInt(8, assignmentResult.getTotalTime());
+        prdstmt.setInt(9, assignmentResult.getExercise().getId());
+
+
+        prdstmt.executeUpdate();
+
+        if (conn != null) {
+            conn.closeConnection();
+        }
+    }
 }
+
+
+
