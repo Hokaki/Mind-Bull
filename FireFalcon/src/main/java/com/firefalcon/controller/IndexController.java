@@ -36,24 +36,22 @@ public class IndexController {
     
     
         @RequestMapping(value = {"/Activeindex"}, method = RequestMethod.GET)
-	public ModelAndView index(@Valid @ModelAttribute("user") User user, BindingResult result,
-            HttpServletRequest request) throws IOException{
-            
-            HttpSession session = request.getSession();
+	public ModelAndView index(User user, HttpSession session) throws IOException{
+    
             user = (User) session.getAttribute("user");
-            Boolean isAdmin = user.getIsAdmin();
-            session.setAttribute(isAdmin.toString(), isAdmin);
-            
+            String name = user.getUsername();
             ModelAndView mavIndex = new ModelAndView("index");
-            mavIndex.addObject("isAdmin", isAdmin);
+
             
             if (user.getIsAdmin()) {
                 mavIndex = new ModelAndView("index/adminIndex");
-                mavIndex.addObject("isAdmin", isAdmin);
+                mavIndex.addObject("name", name);
+
                 return mavIndex;
             } else {
                 mavIndex = new ModelAndView("index/therapistIndex");
-                mavIndex.addObject("isAdmin", isAdmin);
+                mavIndex.addObject("name", name);
+                
                 return mavIndex;
             }
         }

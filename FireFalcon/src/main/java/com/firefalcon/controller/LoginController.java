@@ -79,8 +79,8 @@ public class LoginController {
         }
     }
 
-    @RequestMapping(value = "/logout")
-    public ModelAndView logout(HttpServletRequest request) {
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ModelAndView logout(HttpServletRequest request, @ModelAttribute("user") User user) {
         ModelAndView mavLogout = new ModelAndView("login");
 
         HttpSession session = request.getSession();

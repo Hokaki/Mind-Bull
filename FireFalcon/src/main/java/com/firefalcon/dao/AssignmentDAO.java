@@ -36,7 +36,6 @@ public class AssignmentDAO{
 
      public void updateAssignment(Assignment assignment) {
          Assignment assignmentToUpdate = getAssignment(assignment.getIdAssignment());
-         assignmentToUpdate.setExerciseId(assignment.getExerciseId());
          assignmentToUpdate.setBsn(assignment.getBsn());
          getCurrentSession().update(assignmentToUpdate);
      }

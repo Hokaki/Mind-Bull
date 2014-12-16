@@ -78,7 +78,7 @@ public class AssignmentController {
         return assignmentListView;
     }
     
-      @RequestMapping(value = "/add/{bsn}", method = RequestMethod.GET)
+     @RequestMapping(value = "/add/{bsn}", method = RequestMethod.GET)
     public ModelAndView assignmentAddPage(@PathVariable int bsn) throws IOException, Exception {
 
         ModelAndView assignmentAddView = new ModelAndView("assignment/AddAssignment");
@@ -110,6 +110,7 @@ public class AssignmentController {
         return assignmentListView;
 
     }
+    
     
     
        @RequestMapping(value = "/edit/{bsn}", method = RequestMethod.GET)

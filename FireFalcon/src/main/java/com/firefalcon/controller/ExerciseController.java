@@ -50,17 +50,6 @@ public class ExerciseController implements Serializable{
      @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView exerciseAdd(@ModelAttribute Exercise exercise)  {
         
-//        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-//        Session session = sessionFactory.openSession();
-//        session.beginTransaction();
-//        
-//        Query query = session.createQuery("SELECT MAX(id) FROM exercise");
-//        List list = query.list();
-//        query.list();
-//        session.getTransaction().commit();
-//        session.close();
-
-//        String hql = "INSERT INTO firefalcon.exercise  ()"
  
         ModelAndView exerciseAddView = new ModelAndView("exercise/ExerciseList");
         exerciseService.addExercise(exercise);

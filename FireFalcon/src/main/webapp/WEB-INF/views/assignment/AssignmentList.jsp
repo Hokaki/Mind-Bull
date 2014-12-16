@@ -29,24 +29,24 @@
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
                                         <tr class="info">
-                                            <th>ID Assignment</th>
                                             <th>Patient Name</th>
-                                            <th>Exercise Name</th>
-                                            <th>Repetition</th>
-                                            <th>Start date</th>
-                                            <th>End date</th>
+                                            <th>exercise</th>
+                                            <th>repetitions</th>
+                                            <th>start date</th>
+                                            <th>end date</th>
+                                            <th>days</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <c:forEach var="assignments" items="${assignment}">
                                             <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                                             <tr>
-                                                <td>${assignments.idAssignment}</td>
                                                 <td>${assignments.bsn.firstName} ${assignments.bsn.lastName}</td>
                                                 <td>${assignments.exerciseId.name}</td>
                                                 <td>${assignments.repetitions}</td>
                                                 <td>${assignments.start_date}</td>
                                                 <td>${assignments.end_date}</td>
+                                                <td class="days">${assignments.days}</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -69,3 +69,37 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     </body>
 </html>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                testDays();
+            });
+
+            function testDays() {
+                var daysOfWeek = [];
+                daysOfWeek.push("Mon");
+                daysOfWeek.push("Tue");
+                daysOfWeek.push("Wed");
+                daysOfWeek.push("Thu");
+                daysOfWeek.push("Fri");
+                daysOfWeek.push("Sat");
+                daysOfWeek.push("Sun");
+
+                var columns = $('.days');
+
+                columns.each(function () {
+                    var temp = "";
+
+                    var days = $(this).html().split('');
+
+                    for (var i = 0; i < days.length; i++) {
+                        console.log(days[i]);
+                        if (days[i] === '1') {
+                            temp = temp + daysOfWeek[i] + ", ";
+
+                        }
+                    }
+                    $(this).html(temp);
+                });
+            }
+
+        </script>
