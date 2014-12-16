@@ -34,6 +34,7 @@ import static java.lang.Math.sqrt;
 public class MainActivity extends Activity implements SensorEventListener {
 	private SensorManager sensorManager;
 
+
 	private Sensor accelerometer;
 
 	private List<Recording> recordings;

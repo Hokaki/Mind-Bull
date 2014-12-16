@@ -18,13 +18,13 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("hallo");
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("files\\KniestrekkenAhmed.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("files\\Kniestrekken4.txt"));
             String line = null;
             List<double[]> rawData = new LinkedList<double[]>();
             line = reader.readLine();
             while ((line = reader.readLine()) != null) {
-               String[] rawdata = line.split(",");
-                double[] data2 = new double[6];
+               String[] rawdata = line.split(";");
+                double[] data2 = new double[5];
                 for(int i=0;i<rawdata.length;i++) {
                     data2[i] = Double.parseDouble(rawdata[i]);
 
