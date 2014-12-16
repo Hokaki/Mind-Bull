@@ -179,7 +179,7 @@ public class RawData {
     private void setTotalTime() {
         double start = data.get(0)[4];
         double end = data.get(data.size()-1)[4];
-        time = Long.parseLong(String.valueOf(end));
+        time = System.currentTimeMillis();
         totalTime = end - start;
 
     }
