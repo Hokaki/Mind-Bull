@@ -36,7 +36,11 @@ public class AssignmentDAO{
 
      public void updateAssignment(Assignment assignment) {
          Assignment assignmentToUpdate = getAssignment(assignment.getIdAssignment());
-         assignmentToUpdate.setBsn(assignment.getBsn());
+         assignmentToUpdate.setExerciseId(assignment.getExerciseId());
+         assignmentToUpdate.setRepetitions(assignment.getRepetitions());
+         assignmentToUpdate.setDays(assignment.getDays());
+         assignmentToUpdate.setStart_date(assignment.getStart_date());
+         assignmentToUpdate.setEnd_date(assignment.getEnd_date());
          getCurrentSession().update(assignmentToUpdate);
      }
 
@@ -45,8 +49,8 @@ public class AssignmentDAO{
         return assignment;
     }
 
-    public void deleteAssignment(int id) {
-        Assignment assignment = getAssignment(id);
+    public void deleteAssignment(int idAssignment) {
+        Assignment assignment = getAssignment(idAssignment);
         if (assignment != null) {
             getCurrentSession().delete(assignment);
         }

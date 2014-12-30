@@ -98,12 +98,9 @@ public class AssignmentController {
     public ModelAndView assignmentAdd(@ModelAttribute Assignment assignment)  {
 
        ModelAndView assignmentListView = new ModelAndView("assignment/AssignmentList");
-
        assignmentService.addAssignment(assignment);
-
        assignmentListView.addObject("assignment", assignmentService.getAssignments());
         
-       
         String message = "assignment was successfully added.";
         assignmentListView.addObject("message", message);
 
@@ -113,11 +110,13 @@ public class AssignmentController {
     
     
     
-       @RequestMapping(value = "/edit/{bsn}", method = RequestMethod.GET)
-    public ModelAndView assignmentEditPage(@PathVariable int bsn) throws IOException {
-
+       @RequestMapping(value = "/edit/{idAssignment}", method = RequestMethod.GET)
+    public ModelAndView assignmentEditPage(@PathVariable int idAssignment) throws IOException {
+        List<Exercise> exercises = exerciseService.getExercises();
+        
         ModelAndView assignmentAddView = new ModelAndView("assignment/EditAssignment");
-        assignmentAddView.addObject("assignment", assignmentService.getAssignment(bsn));
+        assignmentAddView.addObject("assignment", assignmentService.getAssignment(idAssignment));
+          assignmentAddView.addObject("exercises", exercises);
         return assignmentAddView;
 
     }
@@ -135,4 +134,13 @@ public class AssignmentController {
 
    }
     
+        @RequestMapping(value = "/delete/{idAssignment}", method = RequestMethod.GET)
+    public ModelAndView deleteAssignment(@PathVariable Integer idAssignment) {
+        ModelAndView assignmentListView = new ModelAndView("assignment/AssignmentList");
+        assignmentService.deleteAssignment(idAssignment);
+        assignmentListView.addObject("assignment", assignmentService.getAssignments());
+
+        return assignmentListView;
+    }
+
 }

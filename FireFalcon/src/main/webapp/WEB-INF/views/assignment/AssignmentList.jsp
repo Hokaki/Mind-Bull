@@ -34,7 +34,9 @@
                                             <th>repetitions</th>
                                             <th>start date</th>
                                             <th>end date</th>
-                                            <th>days</th>
+                                            <th>days</th>  
+                                            <th>edit</th>
+                                            <th>delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -45,8 +47,10 @@
                                                 <td>${assignments.exerciseId.name}</td>
                                                 <td>${assignments.repetitions}</td>
                                                 <td>${assignments.start_date}</td>
-                                                <td>${assignments.end_date}</td>
-                                                <td class="days">${assignments.days}</td>
+                                                <td class="end_date">${assignments.end_date}</td>
+                                                <td class="days">${assignments.days}</td>  
+                                                <td><a class="btn btn-info glyphicon glyphicon-pencil" href="${pageContext.request.contextPath}/assignment/edit/${assignments.idAssignment}"></a></td>
+                                                <td><a href="${pageContext.request.contextPath}/assignment/delete/${assignments.idAssignment}">delete</a></td>                    
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -69,6 +73,48 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     </body>
 </html>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            testDate();
+        });
+        
+    function testDate() {      
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; 
+        var yyyy = today.getFullYear();
+        var end_date = $(this).html.split(' ');
+ 
+        if(dd<10){
+            dd='0'+dd;
+        }
+
+        if(mm<10){ 
+         mm='0'+mm;
+        }
+
+        today = mm+'/'+dd+'/'+yyyy;
+        
+        var columns = $('.end_date');
+
+                columns.each(function () {
+                   var set_date = ""; 
+                    if(today > console.log(end_date))
+                        {
+                         set_date = set_date.fontcolor("red");
+                        }
+                    else
+                    {
+                      set_date = set_date.fontcolor("green");     
+                    }    
+                $(this).html(set_date);
+//                document.write(set_date);
+        }
+    }
+    </script>
+        
+
         <script type="text/javascript">
             $(document).ready(function () {
                 testDays();

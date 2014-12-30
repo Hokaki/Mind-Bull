@@ -33,7 +33,9 @@
                                             <th>Repetition</th>
                                             <th>Start date</th>
                                             <th>End date</th>
-
+                                             <th>edit</th>
+                                            <th>delete</th>        
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -46,6 +48,8 @@
                                                 <td>${assignments.repetitions}</td>
                                                 <td>${assignments.start_date}</td>
                                                 <td>${assignments.end_date}</td>
+                                                <td><a class="btn btn-info glyphicon glyphicon-pencil" href="${pageContext.request.contextPath}/assignment/edit/${assignments.idAssignment}"></a></td>
+                                                <td><a href="${pageContext.request.contextPath}/assignment/delete/${assignments.idAssignment}">delete</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
