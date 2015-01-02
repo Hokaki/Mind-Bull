@@ -41,16 +41,21 @@ public class IndexController {
             user = (User) session.getAttribute("user");
             String name = user.getUsername();
             ModelAndView mavIndex = new ModelAndView("index");
+            Boolean isAdmin = user.getIsAdmin();
+            session.setAttribute(isAdmin.toString(), isAdmin);
+            mavIndex.addObject("isAdmin", isAdmin);
 
             
             if (user.getIsAdmin()) {
                 mavIndex = new ModelAndView("index/adminIndex");
                 mavIndex.addObject("name", name);
+                mavIndex.addObject("isAdmin", isAdmin);
 
                 return mavIndex;
             } else {
                 mavIndex = new ModelAndView("index/therapistIndex");
                 mavIndex.addObject("name", name);
+                mavIndex.addObject("isAdmin", isAdmin);
                 
                 return mavIndex;
             }
