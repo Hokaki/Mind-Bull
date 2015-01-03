@@ -70,7 +70,7 @@
                         <div class="form-group">                                
                             <div class="col-sm-2"></div>
                             <div class="col-sm-4">  
-                                <input id="slider1" type="range" min="0" max="50" step="1" onchange="printValue('slider1', 'rangeValue1')"/>
+                                <input id="slider1" type="range" min="0" max="20" step="1" onchange="printValue('slider1', 'rangeValue1')"/>
                                 <form:input path="repetitions" class="form-control" id="rangeValue1" type="text" size="2"/>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                             <input type=checkbox id="chkBox5" value="5"/> Fri
                             <input type=checkbox id="chkBox6"  value="6"/> Sat
                             <input type=checkbox id="chkBox7"  value="7"/> Sun
-                            <form:input id="binaryDays" type="hidden" path="days" />
+                            <form:input id="binaryDays" class="form-control" type="hidden" path="days" />
                         </div>
                     </div> 
                         
@@ -102,7 +102,7 @@
                     <div class="form-group">                                
                         <div class="col-sm-2"></div>
                         <div class="col-sm-4">     
-                            <input class="btn btn-default" type="submit" value="Edit" />
+                            <input class="btn btn-default" type="submit" value="Edit" onClick="validate()"/>
                         </div>
                     </div>
                      <form:hidden path="idAssignment"/>

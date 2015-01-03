@@ -100,7 +100,7 @@
                     <div class="form-group">                                
                         <div class="col-sm-2"></div>
                         <div class="col-sm-4">     
-                            <input class="btn btn-default" type="submit" value="Add" />
+                            <input class="btn btn-default" type="submit" value="Add" onClick="validate()"/>
                         </div>
                     </div>
                     <form:hidden path="bsn" value="${assignment.bsn.bsn}"/>
