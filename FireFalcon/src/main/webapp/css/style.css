@@ -3,7 +3,7 @@ body{}
 .message{color:red};
 
 .error {
-    color: #ff0000;
+    color: red;
 }
 .errorblock{
     color: #000;

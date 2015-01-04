@@ -43,7 +43,7 @@
                                         <c:forEach var="assignments" items="${assignment}">
                                             <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                                             <tr>
-                                                <td>${assignments.bsn.firstName} ${assignments.bsn.lastName}</td>
+                                                <td><a href="${pageContext.request.contextPath}/patient/view/${assignments.bsn.bsn}">${assignments.bsn.firstName} ${assignments.bsn.lastName}</a></td>
                                                 <td>${assignments.exerciseId.name}</td>
                                                 <td>${assignments.repetitions}</td>
                                                 <td>${assignments.start_date}</td>

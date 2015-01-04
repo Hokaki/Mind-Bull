@@ -25,18 +25,21 @@
                             <label for="inputID" class="col-sm-2 control-label">ID</label>
                             <div class="col-sm-10">                                
                                 <form:input path="id" class="form-control" id="inputID" placeholder="Id" />
+                                <form:errors path="id" class="error"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputName" class="col-sm-2 control-label">Name</label>
                             <div class="col-sm-10">     
                                 <form:input path="name" class="form-control" id="inputName" placeholder="Name" />
+                                <form:errors path="name" class="error"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputDescription" class="col-sm-2 control-label">Description</label>
                             <div class="col-sm-10">
                                 <form:input path="description" class="form-control" id="inputDescription" placeholder="Description" />
+                                <form:errors path="description" class="error"/>
                             </div>
                         </div>
                         <div class="form-group">                                

@@ -16,6 +16,8 @@
         <link href="<c:url value="/css/datepicker3.css" />" rel="stylesheet" >
         <link href="<c:url value="/css/codebase/dhtmlxscheduler.css" />" rel="stylesheet" type="text/css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src="<c:url value="/css/bootstrap-datepicker.js" />" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript">
             $(function () {
@@ -83,6 +85,7 @@
                             <input type=checkbox id="chkBox6"  value="6"/> Sat
                             <input type=checkbox id="chkBox7"  value="7"/> Sun
                             <form:input id="binaryDays" type="hidden" path="days" />
+                            <form:errors path="days" />
                         </div>
                     </div> 
 
@@ -91,8 +94,10 @@
                         <label class="col-sm-2 control-label">Date</label>
                         <div class="input-daterange input-group" id="datepicker">
                             <form:input path="start_date" type="text" class="input-sm form-control" name="start" />
+                            <form:errors path="start_date" />
                             <span class="input-group-addon">to</span>
                             <form:input path="end_date" type="text" class="input-sm form-control" name="end" />
+                            <form:errors path="end_date" />
                         </div>
                     </div>
 
@@ -119,8 +124,6 @@
         </div>
         <!-- /#page-wrapper -->
     </div>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>
 <script type="text/javascript">

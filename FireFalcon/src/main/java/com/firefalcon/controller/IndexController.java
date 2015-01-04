@@ -12,14 +12,12 @@ package com.firefalcon.controller;
 
 import com.firefalcon.model.User;
 import com.firefalcon.services.UserService;
-import com.firefalcon.validator.ObjectValidator;
 import java.io.IOException;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.firefalcon.validator.ObjectValidator;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +29,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class IndexController {
     @Autowired
     UserService userService;
-
-    ObjectValidator objectValidator;    
         
         @RequestMapping(value = {"/Activeindex"}, method = RequestMethod.GET)
  public ModelAndView index(User user, HttpSession session) throws IOException{

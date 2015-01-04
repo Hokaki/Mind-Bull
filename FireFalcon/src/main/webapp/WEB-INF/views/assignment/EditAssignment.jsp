@@ -16,6 +16,8 @@
         <link href="<c:url value="/css/datepicker3.css" />" rel="stylesheet" >
         <link href="<c:url value="/css/codebase/dhtmlxscheduler.css" />" rel="stylesheet" type="text/css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src="<c:url value="/css/bootstrap-datepicker.js" />" type="text/javascript" charset="utf-8"></script>
         
 <!--           <script>
@@ -78,7 +80,7 @@
                         <div class="form-group">                                
                             <div class="col-sm-2"></div>
                             <div class="col-sm-4">  
-                                <input id="slider1" type="range" min="0" max="20" step="1" onchange="printValue('slider1', 'rangeValue1')"/>
+                                <input id="slider1" type="range" min="0" max="100" step="5" onchange="printValue('slider1', 'rangeValue1')"/>
                                 <form:input path="repetitions" class="form-control" id="rangeValue1" type="text" size="2"/>
                             </div>
                         </div>
@@ -121,8 +123,6 @@
         </div>
         <!-- /#page-wrapper -->
     </div>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>
 <script type="text/javascript">

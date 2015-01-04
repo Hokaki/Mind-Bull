@@ -2,6 +2,8 @@ package com.firefalcon.controller;
 
 import com.firefalcon.model.Exercise;
 import com.firefalcon.services.ExerciseService;
+import com.firefalcon.validator.ExerciseValidator;
+import com.firefalcon.validator.PatientValidator;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -13,6 +15,7 @@ import java.io.Serializable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,14 +51,22 @@ public class ExerciseController implements Serializable{
     }
     
      @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView exerciseAdd(@ModelAttribute Exercise exercise)  {
+    public ModelAndView exerciseAdd(@ModelAttribute Exercise exercise, BindingResult result)  {
         
- 
-        ModelAndView exerciseAddView = new ModelAndView("exercise/ExerciseList");
+        ModelAndView exerciseAddView = new ModelAndView("exercise/AddExercise");
+        
+        ExerciseValidator exerciseValidator = new ExerciseValidator();
+        exerciseValidator.validate(exercise, result);
+        
+        if(result.hasErrors()){
+         return exerciseAddView;
+        }else{
+        ModelAndView exerciseListView = new ModelAndView("exercise/ExerciseList");
         exerciseService.addExercise(exercise);
-        exerciseAddView.addObject("exerciseList", exerciseService.getExercises());
+        exerciseListView.addObject("exerciseList", exerciseService.getExercises());
 
-        return exerciseAddView;
+        return exerciseListView;
+        }
     }
     
       @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
