@@ -2,6 +2,7 @@ package com.firefalcon.controller;
 
 import com.firefalcon.model.User;
 import com.firefalcon.services.UserService;
+import com.firefalcon.validator.UserValidator;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,27 +44,30 @@ public class UserController {
     public ModelAndView userAddPage() throws IOException {
 
         ModelAndView userAddView = new ModelAndView("user/AddUser");
-        userAddView.addObject("newUser", new User());
+        userAddView.addObject("user", new User());
         return userAddView;
 
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView userAdd(@ModelAttribute User newUser, User user,
-            HttpServletRequest request)  {
+    public ModelAndView userAdd(@ModelAttribute User user, 
+            HttpServletRequest request, BindingResult result)  {
 
         ModelAndView userListView = new ModelAndView("user/UserList");
+        ModelAndView userAddView = new ModelAndView("user/AddUser");
+
+       UserValidator userValidator = new UserValidator();
+       userValidator.validate(user, result);
         
-        HttpSession session = request.getSession();
-        user = (User)session.getAttribute("user");
-        String name = user.getUsername();
-        
-        userListView.addObject("oldUser", userService.getUser(name));
-        
-        userService.addUser(newUser);
+        if(result.hasErrors()){
+           return userAddView;
+       }else{
+
+        userService.addUser(user);
         userListView.addObject("userList", userService.getUsers());
 
         return userListView;
+        }
 
     }
     

@@ -31,6 +31,7 @@
                             <label for="description" class="col-sm-2 control-label">description</label>
                             <div class="col-sm-10">     
                                 <form:input path="description" class="form-control" id="description" placeholder="description" />
+                                <form:errors path="description" class="error" />
                             </div>
                         </div>
                         <div class="form-group">

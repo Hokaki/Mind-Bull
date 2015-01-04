@@ -18,10 +18,11 @@ public class User extends Person implements Serializable {
     
     @Column(name = "password")
     private String password;
+    
     @Column(name = "isAdmin")
     private boolean isAdmin;
 
-    public User(String username, String password, boolean isAdmin) {
+    public User(String username, String password,  boolean isAdmin) {
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
@@ -55,7 +56,7 @@ public class User extends Person implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    
     public boolean getIsAdmin() {
         return isAdmin;
     }

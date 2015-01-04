@@ -5,10 +5,33 @@
  */
 package com.firefalcon.validator;
 
+import com.firefalcon.model.User;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
+import org.springframework.validation.Validator;
+
 /**
  *
  * @author Mohamed
  */
-public class LoginValidator {
+public class LoginValidator implements Validator{
+    
+    @Override
+	public boolean supports(Class clazz) {
+		//just validate the Customer instances
+		return User.class.isAssignableFrom(clazz);
+
+	}
+
+        @Override
+	public void validate(Object target, Errors errors) {
+		
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username",
+				"user.username", "Field name is required.");
+                
+                ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password",
+				"user.password", "Field name is required.");
+
+	}
     
 }

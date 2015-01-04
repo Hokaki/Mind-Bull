@@ -24,19 +24,22 @@
                         <div class="form-group">
                             <label for="inputBSN" class="col-sm-2 control-label">BSN</label>
                             <div class="col-sm-10">                                
-                                <form:input path="bsn" class="form-control"  />
+                                <form:input path="bsn" class="form-control"/>
+                                <form:errors path="bsn" class="error" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputFN" class="col-sm-2 control-label">First name</label>
                             <div class="col-sm-10">     
                                 <form:input path="firstName" class="form-control" id="inputFN" placeholder="First name" />
+                                <form:errors path="firstName" class="error" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputLN" class="col-sm-2 control-label">Last name</label>
                             <div class="col-sm-10">
                                 <form:input path="lastName" class="form-control" id="inputLN" placeholder="Last name" />
+                                <form:errors path="lastName" class="error" />
                             </div>
                         </div>
                         <div class="form-group">                                

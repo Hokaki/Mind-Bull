@@ -22,7 +22,7 @@
                 <div class="container-fluid">
 
                     <h2>Assignments</h2>
-
+                   
                     <c:choose>
                         <c:when test="${assignments.size() != 0}">
                             <div class="table-responsive">

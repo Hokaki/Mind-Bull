@@ -67,7 +67,7 @@
                         <div class="form-group">                                
                             <div class="col-sm-2"></div>
                             <div class="col-sm-4">  
-                                <input id="slider1" type="range" min="0" max="20" step="1" onchange="printValue('slider1', 'rangeValue1')"/>
+                                <input id="slider1" type="range" min="0" max="100" step="5" onchange="printValue('slider1', 'rangeValue1')"/>
                                 <form:input path="repetitions" id="rangeValue1" type="text" size="2"/>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
         for (var i = 1, max = 7; i <= max; i++) {
             if (document.getElementById('chkBox'+i).checked) {
                 days = days + "1";
-
+                document.getElementById('binaryDays').value;
             } else {
                 days = days + "0";
             }

@@ -30,7 +30,7 @@
                             <div style="margin-bottom: 25px" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                     <form:password path="password" class="form-control" placeholder="password" />
-                                    <form:errors path="password" class="error" ></form:errors>
+                                    <form:errors path="password" class="error" />
                             </div>
                             <div class="col-sm-12 controls">
                                 <form:button type="submit" value="login" class="btn btn-danger">Login</form:button>

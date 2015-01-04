@@ -6,6 +6,7 @@ package com.firefalcon.controller;
  */
 import com.firefalcon.model.User;
 import com.firefalcon.services.UserService;
+import com.firefalcon.validator.LoginValidator;
 
 import java.io.IOException;
 import javax.servlet.http.HttpSession;
@@ -25,8 +26,6 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-    ObjectValidator objectValidator;
-
     @RequestMapping(value = {"/", "/login"})
     public ModelAndView login(@ModelAttribute User user) throws IOException {
         ModelAndView mav = new ModelAndView("login");
@@ -41,8 +40,8 @@ public class LoginController {
         ModelAndView mavLogin = new ModelAndView("login");
         mavLogin.addObject("user", new User());
 
-        objectValidator = new ObjectValidator();
-        objectValidator.validate(user, result);
+        LoginValidator loginValidator = new LoginValidator();
+        loginValidator.validate(user, result);
 
         int numRow = userService.checkRow(user);
         user = userService.getUser(user.getUsername());
@@ -50,22 +49,26 @@ public class LoginController {
        
 
         HttpSession session = request.getSession();
-        session.setAttribute("user", user);
-        user = (User) session.getAttribute("user");
-        String name = user.getUsername();
-        session.setAttribute(name, name);
-        Boolean isAdmin = user.getIsAdmin();
-        session.setAttribute(isAdmin.toString(), isAdmin);
-        
+        session.setAttribute("user", user);    
 
         if (numRow == 1) {
             if (user.getIsAdmin()) {
                 ModelAndView mavIndex = new ModelAndView("index/adminIndex");
+                user = (User) session.getAttribute("user");
+                Boolean isAdmin = user.getIsAdmin();
+                String name = user.getUsername();
+                session.setAttribute(name, name);
+                session.setAttribute(isAdmin.toString(), isAdmin);
                 mavIndex.addObject("name", name);
                 mavIndex.addObject("isAdmin", isAdmin);
                 return mavIndex;
             } else {
                 ModelAndView mavIndex = new ModelAndView("index/therapistIndex");
+                user = (User) session.getAttribute("user");
+                Boolean isAdmin = user.getIsAdmin();
+                String name = user.getUsername();
+                session.setAttribute(isAdmin.toString(), isAdmin);
+                session.setAttribute(name, name);
                 mavIndex.addObject("name", name);
                 mavIndex.addObject("isAdmin", isAdmin);
                 return mavIndex;

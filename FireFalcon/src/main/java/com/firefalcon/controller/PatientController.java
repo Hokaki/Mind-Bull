@@ -1,12 +1,14 @@
 package com.firefalcon.controller;
 import com.firefalcon.model.Patient;
 import com.firefalcon.services.PatientService;
+import com.firefalcon.validator.PatientValidator;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,14 +42,22 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView patientAdd(@ModelAttribute Patient patient)  {
+    public ModelAndView patientAdd(@ModelAttribute Patient patient, BindingResult result)  {
 
         ModelAndView patientListView = new ModelAndView("patient/PatientList");
+        ModelAndView patientAddView = new ModelAndView("patient/AddPatient");
+        
+        PatientValidator patientValidator = new PatientValidator();
+        patientValidator.validate(patient, result);
+        
+        if(result.hasErrors()){
+         return patientAddView;
+        }else{
         patientService.addPatient(patient);
         patientListView.addObject("patientList", patientService.getPatients());
 
         return patientListView;
-
+        }
     }
     
     @RequestMapping(value = "/edit/{bsn}", method = RequestMethod.GET)

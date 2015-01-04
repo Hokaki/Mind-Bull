@@ -30,7 +30,7 @@
                 <!-- Top Menu Items -->
                 <ul class="nav navbar-right top-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${user.username}<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${oldUser.username}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="${pageContext.request.contextPath}/login"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
@@ -86,37 +86,42 @@
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <h2>Add User</h2>
-                    <form:form class="form-horizontal" role="form" method="POST" commandName="newUser" action="${pageContext.request.contextPath}/user/add">  
+                    <form:form class="form-horizontal" role="form" method="POST" commandName="user" action="${pageContext.request.contextPath}/user/add">  
                         <div class="form-group">
                         </div>
                         <div class="form-group">
-                            <label for="inputFN" class="col-sm-2 control-label">First name</label>
+                            <label for="firstName" class="col-sm-2 control-label">First name</label>
                             <div class="col-sm-2">     
-                                <form:input path="firstName" class="form-control" id="inputFN" placeholder="First name" />
+                                <form:input path="firstName" class="form-control" id="firstName" placeholder="First name" />
+                                <form:errors path="firstName" class="error" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputLN" class="col-sm-2 control-label">Last name</label>
+                            <label for="lastName" class="col-sm-2 control-label">Last name</label>
                             <div class="col-sm-2">
-                                <form:input path="lastName" class="form-control" id="inputLN" placeholder="Last name" />
+                                <form:input path="lastName" class="form-control" id="lastName" placeholder="Last name" />
+                                <form:errors path="lastName" class="error" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputUN" class="col-sm-2 control-label">User name</label>
+                            <label for="username" class="col-sm-2 control-label">User name</label>
                             <div class="col-sm-2">     
-                                <form:input path="username" class="form-control" id="inputUN" placeholder="User Name" />
+                                <form:input path="username" class="form-control" id="username" placeholder="User Name" />
+                                <form:errors path="username" class="error" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPW" class="col-sm-2 control-label">Password</label>
+                            <label for="password" class="col-sm-2 control-label">Password</label>
                             <div class="col-sm-2">
-                                <form:password path="password" class="form-control" id="inputPW" placeholder="Password" />
+                                <form:password path="password" class="form-control" id="password" placeholder="Password" />
+                                <form:errors path="password" class="error" />
                             </div>
                         </div>
+                            
                         <div class="form-group">
-                            <label for="inputCheck" class="col-sm-2 control-label">Admin</label>
+                            <label for="isAdmin" class="col-sm-2 control-label">Admin</label>
                             <div class="col-sm-1">
-                                <form:checkbox path="isAdmin" class="form-control" id="inputCheck" />
+                                <form:checkbox path="isAdmin" class="form-control" id="isAdmin" />
                             </div>
                         </div>
                         <div class="form-group">                                

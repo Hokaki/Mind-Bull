@@ -10,10 +10,12 @@ import com.firefalcon.model.Affliction;
 import com.firefalcon.model.Patient;
 import com.firefalcon.services.AfflictionService;
 import com.firefalcon.services.PatientService;
+import com.firefalcon.validator.AfflictionValidator;
 
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -64,10 +66,16 @@ public class AfflictionController {
     }
     
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView afflictionAdd(@ModelAttribute Affliction affliction)  {
+    public ModelAndView afflictionAdd(@ModelAttribute Affliction affliction, BindingResult result)  {
 
        ModelAndView afflictionListView = new ModelAndView("affliction/AfflictionList");
-
+       ModelAndView afflictionAddView = new ModelAndView("affliction/AddAffliction");
+       
+       AfflictionValidator afflictionValidator = new AfflictionValidator();
+       afflictionValidator.validate(affliction, result);
+       if(result.hasErrors()){
+           return afflictionAddView;
+       }else{
        afflictionService.addAffliction(affliction);
 
        afflictionListView.addObject("affliction", afflictionService.getAfflictions());
@@ -77,7 +85,7 @@ public class AfflictionController {
         afflictionListView.addObject("message", message);
 
         return afflictionListView;
-
+       }
     }
     
     
