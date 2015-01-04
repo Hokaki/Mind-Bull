@@ -95,21 +95,21 @@ public class AssignmentController {
     }
     
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView assignmentAdd(@ModelAttribute Assignment assignment)  {
+    public ModelAndView assignmentAdd(@ModelAttribute Assignment assignment) throws Exception  {
 
-       ModelAndView assignmentListView = new ModelAndView("assignment/AssignmentList");
        assignmentService.addAssignment(assignment);
-       assignmentListView.addObject("assignment", assignmentService.getAssignments());
-        
-        String message = "assignment was successfully added.";
-        assignmentListView.addObject("message", message);
-
-        return assignmentListView;
-
+       int bsn = (Integer) assignment.getBsn().getBsn();
+       return assignmentAddPage(bsn);
     }
     
-    
-    
+    @RequestMapping(value = "/finish")
+    public ModelAndView assignmentFinish()  {
+
+       ModelAndView assignmentListView = new ModelAndView("assignment/AssignmentList");
+       assignmentListView.addObject("assignment", assignmentService.getAssignments());
+       return assignmentListView;
+    }
+
        @RequestMapping(value = "/edit/{idAssignment}", method = RequestMethod.GET)
     public ModelAndView assignmentEditPage(@PathVariable int idAssignment) throws IOException {
         List<Exercise> exercises = exerciseService.getExercises();

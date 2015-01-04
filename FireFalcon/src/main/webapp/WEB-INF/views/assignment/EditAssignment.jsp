@@ -17,6 +17,14 @@
         <link href="<c:url value="/css/codebase/dhtmlxscheduler.css" />" rel="stylesheet" type="text/css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="<c:url value="/css/bootstrap-datepicker.js" />" type="text/javascript" charset="utf-8"></script>
+        
+<!--           <script>
+        window.onload = function ()
+            {
+                check();
+            }
+        </script>-->
+        
         <script type="text/javascript">
             $(function () {
                 $('.input-daterange').datepicker();
@@ -115,6 +123,27 @@
     </div>
 </body>
 </html>
+<script type="text/javascript">
+//    function check(){     
+//        for (var i = 1, max = 7; i <= max; i++) {
+//          binaryDays = document.getElementById('binaryDays').getAttribute().charAt(i);
+//          if(binaryDays === '1')
+//          document.getElementById('chkBox'+i).checked = true;
+//        else
+//          document.getElementById('chkBox'+i).checked = false;
+//        
+//        }   
+//    }
+</script>
+
+<!--<script type="text/javascript">
+    function check(){
+        if(chkBox === '1'){
+          document.getElementById("chkBox1").checked = true;
+        }
+    }
+</script>-->
+
 <script type="text/javascript">
     var days = "";
 
