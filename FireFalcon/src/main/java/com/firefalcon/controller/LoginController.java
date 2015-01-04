@@ -17,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import com.firefalcon.validator.ObjectValidator;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -37,8 +36,8 @@ public class LoginController {
     @RequestMapping(value = {"/index"}, method = RequestMethod.POST)
     public ModelAndView checkLogin(@Valid @ModelAttribute("user") User user, BindingResult result,
             HttpServletRequest request) {
+        
         ModelAndView mavLogin = new ModelAndView("login");
-        mavLogin.addObject("user", new User());
 
         LoginValidator loginValidator = new LoginValidator();
         loginValidator.validate(user, result);
@@ -74,6 +73,11 @@ public class LoginController {
                 return mavIndex;
             }
 
+        } else if(numRow == 0 && !(result.hasErrors())){
+            String message = "The user doesn't exsist.";
+            mavLogin.addObject("message", message);
+            return mavLogin;
+            
         } else if (result.hasErrors()) {
 
             return mavLogin;

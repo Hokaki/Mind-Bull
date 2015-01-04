@@ -22,10 +22,11 @@
                     </div>
                     <div style="padding-top:30px" class="panel-body" >
                         <form:form class="form-horizontal" role="form" method="POST" commandName="user" action="${pageContext.request.contextPath}/index">
+                            ${message}
                             <div style="margin-bottom: 25px" class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
-                                    <form:input path="username" class="form-control" placeholder="username" />
-                                    <form:errors path="username" class="error"/>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>    
+                                <form:input path="username" class="form-control" placeholder="username" />
+                                <form:errors path="username" class="error"/>
                             </div>
                             <div style="margin-bottom: 25px" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
