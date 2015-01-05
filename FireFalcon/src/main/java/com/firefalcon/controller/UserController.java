@@ -103,4 +103,14 @@ public class UserController {
         return userListView;
 
     }
+    
+      @RequestMapping(value = "/delete/{username}", method = RequestMethod.GET)
+        public ModelAndView deleteUser(@PathVariable String username) {
+        ModelAndView userListView = new ModelAndView("user/UserList");
+        userService.deleteUser(username);
+        userListView.addObject(userService.getUsers());
+        
+        
+        return userListView;
+    }
 }
