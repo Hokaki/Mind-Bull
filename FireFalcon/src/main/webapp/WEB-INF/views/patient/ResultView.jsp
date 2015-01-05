@@ -18,56 +18,31 @@
         <link href="<c:url value="/css/font-awesome-4.1.0/css/font-awesome.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/therapist-control.css" />" rel="stylesheet" >
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
+        <link href="http://cdn.datatables.net/1.10.4/css/jquery.dataTables.css" rel="stylesheet" >
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <link href="<c:url value="/css/ResultViewStyle.css" />" rel="stylesheet" >
         <title>patient graph</title>
-        <style>
-            .newboxes{
-                width:100%; 
-                height:400px;
-            }
-            .btn-group-justified{
-                margin-top: 15px;
-                margin-bottom: 7px;
-                margin-left: 2px;
-                margin-right: 2px;
-            }
-            .form-control{
-                margin-top: 15px;
-                margin-bottom: 7px;
-                margin-left: 2px;
-                margin-right: 2px;
-            }
-            #chart_time{
-                display: none;
-            }
-            #chart_maxSpeed{
-                display: none;
-            }
-            h3{
-                margin-left: 20px;
-                
-            }
-        </style>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript">
             var selectedExercise;
             var selectedGraph;
-            var patientFiltered;
             var patient = [];
             var patientName = "${patient.firstName}" + " " + "${patient.lastName}";
             var patientExerciseName= [];
             var index = 0;
-            
+            var filteredPatient = [];
             var today = new Date();
             var dd = today.getDate();
             var mm = today.getMonth()+1; //January is 0!
             var yyyy = today.getFullYear();
 
             if(dd<10) {
-                dd='0'+dd
+                dd='0'+dd;
             } 
 
             if(mm<10) {
-                mm='0'+mm
+                mm='0'+mm;
             } 
 //                        today = mm+'/'+dd+'/'+yyyy;
             today = yyyy+'-'+mm+'-'+ dd;
@@ -75,26 +50,11 @@
             defaultOverview();  
             function defaultOverview(){
                 var month = '01';
-                startDate = yyyy + '-' + month + '-' + dd;
+                startDate = yyyy + '-' + month + '-' + '01';
             }
             
             function monthOverview(){
-                var month = mm;
-                var year = yyyy;
-                if(month !== 01){
-                    month = parseInt(month);
-                    month = month - 1;
-                    if(month < 10){
-                        month = '0' + month;
-                    }else{
-                        month = '' + month;
-                    }
-                }else{
-                    year = parseInt(year);
-                    year = year - 1;
-                    year = '' + year;
-                }
-                startDate = year + '-' + month + '-' + dd;
+                startDate = yyyy + '-' + mm + '-' + '01';
             }
             
             function threeMonthsOverview(){
@@ -142,7 +102,8 @@
                         }
                     }
                 }
-                patientFiltered = tempPatient;
+                
+                filteredPatient = tempPatient;
                 
                 var repetitionsData = new google.visualization.DataTable();
                 repetitionsData.addColumn('string', 'Date');
@@ -247,8 +208,31 @@
                 }
                 drawChart();
                 loadChart();
-                document.getElementById('paragraph').innerHTML = startDate.toString();
+                document.getElementById('paragraph').innerHTML = "Start date: "+ startDate.toString();
             }
+        </script> 
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="http://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript">
+        var dataSet2 = [];
+        var index = 0;
+            <c:forEach var="result" items="${resultList}">
+                dataSet2[index] = ["${result.exercise.name}","${result.date}","${result.repetitions}","${result.maxTime}","${result.avgTime}", "${result.minTime}","${result.maxSpeed}"];
+                index++;
+            </c:forEach>
+        $(document).ready(function() {
+            $('#result_table').dataTable( {
+                "data": dataSet2,
+                "columns": [
+                    { "title": "Exercise" },
+                    { "title": "Date" },
+                    { "title": "Repetitions" },
+                    { "title": "Max Time" },
+                    { "title": "Avg Time"},
+                    { "title": "Min Time"}
+                ]
+            } ); 
+        } );
         </script>
     </head>
     <body>  
@@ -280,55 +264,29 @@
                             <div class="col-md-3">
                                 <h3>View</h3>
                                 <select class="form-control" id="monthSelect" onchange="monthChange(this);">
-                                    <option value="1">Last month</option>
+                                    <option value="1">This month</option>
                                     <option value="2">Last three months</option>
                                 </select>
                                 <br>
-                                <p>Start date: <span id="paragraph"></span></p>
+                                <p><span id="paragraph"></span></p>
                             </div>
                         </div>
                     </div>
-                            <div class="newboxes" id="chart_repetitions"></div>
-                            <div class="newboxes" id="chart_time"></div>
-                            <div class="newboxes" id="chart_maxSpeed"></div>
-                    <c:choose>
-                        <c:when test="${resultList.size() != 0}">
-
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover table-striped">
-                                    <thead>
-                                        <tr class="info">
-                                            <th>Patient</th>
-                                            <th>Exercise</th>
-                                            <th>Date</th>
-                                            <th>Repetitions</th>
-                                            <th>Raw data</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="result" items="${resultList}">
-                                            <tr>
-                                                <td>${result.patient.firstName} ${result.patient.lastName}</td>
-                                                <td>${result.exercise.name}</td>
-                                                <td>${result.date}</td>
-                                                <td>${result.repetitions}</td>
-                                                <td><a class="btn btn-success glyphicon glyphicon-eye-open" href="${pageContext.request.contextPath}/RawData/show/"></a></td>
-                                            </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>        
-                        </c:when>
-                        <c:otherwise>
-                            There were no results found.
-                        </c:otherwise>
-                    </c:choose>
+                    <div class="newboxes" id="chart_repetitions"></div>
+                    <div class="newboxes" id="chart_time"></div>
+                    <div class="newboxes" id="chart_maxSpeed"></div>
+                    <div id="table_holder">
+                        <table id="result_table" class="display" cellspacing="0" width="100%"></table>
+                    </div>
+                    <script>
+                        for (i = 0; i < tempPatient.length; i++) {
+                        document.write(tempPatient[i].date + ', ' + tempPatient[i].repetitions + ', ');
+                        }
+                    </script>
                 </div>
                 <!-- /.container-fluid -->
             </div>
             <!-- /#page-wrapper -->
         </div>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     </body>
 </html>
