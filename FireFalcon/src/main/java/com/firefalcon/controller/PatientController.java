@@ -1,5 +1,9 @@
 package com.firefalcon.controller;
+
+import com.firefalcon.editor.PatientEditor;
+import com.firefalcon.editor.UserEditor;
 import com.firefalcon.model.Patient;
+import com.firefalcon.model.User;
 import com.firefalcon.services.PatientService;
 import com.firefalcon.validator.PatientValidator;
 import java.io.IOException;
@@ -23,7 +27,15 @@ public class PatientController {
 
     @Autowired
     private PatientService patientService;
-    
+
+    @Autowired
+    private UserEditor userEditor;
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(User.class, this.userEditor);
+    }
+
     @RequestMapping(value = "/list")
     public ModelAndView patientList() throws IOException {
         ModelAndView patientListView = new ModelAndView("patient/PatientList");
@@ -31,8 +43,8 @@ public class PatientController {
 
         return patientListView;
     }
-    
-     @RequestMapping(value = "/add", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView patientAddPage() throws IOException {
 
         ModelAndView patientAddView = new ModelAndView("patient/AddPatient");
@@ -42,24 +54,24 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView patientAdd(@ModelAttribute Patient patient, BindingResult result)  {
+    public ModelAndView patientAdd(@ModelAttribute Patient patient, BindingResult result) {
 
         ModelAndView patientListView = new ModelAndView("patient/PatientList");
         ModelAndView patientAddView = new ModelAndView("patient/AddPatient");
-        
+
         PatientValidator patientValidator = new PatientValidator();
         patientValidator.validate(patient, result);
-        
-        if(result.hasErrors()){
-         return patientAddView;
-        }else{
-        patientService.addPatient(patient);
-        patientListView.addObject("patientList", patientService.getPatients());
 
-        return patientListView;
+        if (result.hasErrors()) {
+            return patientAddView;
+        } else {
+            patientService.addPatient(patient);
+            patientListView.addObject("patientList", patientService.getPatients());
+
+            return patientListView;
         }
     }
-    
+
     @RequestMapping(value = "/edit/{bsn}", method = RequestMethod.GET)
     public ModelAndView patientEditPage(@PathVariable int bsn) throws IOException {
 
@@ -70,7 +82,7 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ModelAndView patientEditAdd(@ModelAttribute Patient patient)  {
+    public ModelAndView patientEditAdd(@ModelAttribute Patient patient) {
 
         ModelAndView patientListView = new ModelAndView("patient/PatientList");
         patientService.updatePatient(patient);
@@ -79,8 +91,8 @@ public class PatientController {
         return patientListView;
 
     }
-    
-        @RequestMapping(value = "/view/{bsn}", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/view/{bsn}", method = RequestMethod.GET)
     public ModelAndView patienGraph(@PathVariable int bsn) throws IOException {
 
         ModelAndView patientGraphView = new ModelAndView("patient/ResultView");
