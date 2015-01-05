@@ -112,7 +112,7 @@
                     </div>
                     <form:hidden path="bsn" value="${assignment.bsn.bsn}"/>
                 </form:form>
-                    <form:form class="form-horizontal" role="form" method="POST" commandName="assignment" action="${pageContext.request.contextPath}/assignment/finish">  
+                     <form:form class="form-horizontal" role="form" method="GET" commandName="assignment" action="${pageContext.request.contextPath}/assignment/finish/${assignment.bsn.bsn}">  
                       <div class="form-group">                                
                         <div class="col-sm-5"></div>
                         <div class="col-sm-4">     
