@@ -20,8 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class AfflictionService {
-    
-      @Autowired
+
+    @Autowired
     private AfflictionDAO afflictionDAO;
 
     public void addAffliction(Affliction affliction) {
@@ -30,7 +30,7 @@ public class AfflictionService {
 
     public void updateAffliction(Affliction affliction) {
         afflictionDAO.updateAffliction(affliction);
-        
+
     }
 
     public Affliction getAffliction(int bsn) {
@@ -45,11 +45,14 @@ public class AfflictionService {
         return afflictionDAO.getAfflictions();
     }
 
+    public List<Affliction> getAfflictionsByPatients(String bsn) {
+        return afflictionDAO.getAfflictionsByPatients(bsn);
+    }
+
     public void storeAllAfflictions(List<Affliction> afflictions) {
 
         afflictionDAO.storeAllAfflictions(afflictions);
 
     }
-    
-}
 
+}

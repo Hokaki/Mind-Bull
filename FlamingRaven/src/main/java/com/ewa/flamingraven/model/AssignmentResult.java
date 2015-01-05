@@ -2,14 +2,9 @@ package com.ewa.flamingraven.model;
 
 
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -109,4 +104,19 @@ public class AssignmentResult implements Serializable {
         return repetitions;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public void setExercise(Exercise exercise) {
+        this.exercise = exercise;
+    }
+
+    public void setRepetitions(int repetitions) {
+        this.repetitions = repetitions;
+    }
 }

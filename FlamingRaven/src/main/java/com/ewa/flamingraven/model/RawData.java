@@ -32,6 +32,7 @@ public class RawData {
         setMinAndMaxTime();
         System.out.println(totalTime);
         System.out.println(minTime + " " + maxTime);
+        System.out.println(avgTime);
     }
 
     public long getTime() {
@@ -198,7 +199,7 @@ public class RawData {
         double minTime=2000000000;
         double maxTime=0;
         for(int i=0;i<time.length;i++) {
-            if (minTime > time[i]) {
+            if (minTime > time[i] && time[i]!= 0) {
                 minTime = time[i];
             }
             if (maxTime < time[i]) {

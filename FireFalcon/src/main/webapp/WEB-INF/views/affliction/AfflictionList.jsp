@@ -57,6 +57,7 @@
                             There were no patients found.
                         </c:otherwise>
                     </c:choose>
+                    <a class="btn btn-success" href="${pageContext.request.contextPath}/affliction/add/${affliction[0].bsn.encrypt()}">Add Affliction</a>
 
                 </div>
                 <!-- /.container-fluid -->

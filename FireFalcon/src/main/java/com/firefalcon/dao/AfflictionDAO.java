@@ -13,16 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.firefalcon.model.Affliction;
 import org.springframework.stereotype.Repository;
 
-
-
-
 /**
  *
  * @author chrisvanderheijden
  */
 @Repository
 public class AfflictionDAO {
-     
+
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -58,6 +55,11 @@ public class AfflictionDAO {
         return getCurrentSession().createQuery("From Affliction").list();
     }
 
+    @SuppressWarnings("unchecked")
+    public List<Affliction> getAfflictionsByPatients(String bsn) {
+        return getCurrentSession().createQuery("From Affliction WHERE bsn = '" + bsn+"'").list();
+    }
+
     public void storeAllAfflictions(List<Affliction> afflictions) {
 
         for (Affliction affliction : afflictions) {
@@ -65,5 +67,5 @@ public class AfflictionDAO {
         }
 
     }
-   
+
 }

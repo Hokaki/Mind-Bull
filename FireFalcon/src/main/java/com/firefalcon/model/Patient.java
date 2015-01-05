@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jasypt.salt.ZeroSaltGenerator;
 
 /**
  *
@@ -19,7 +21,7 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Patient extends Person implements Serializable {
-    
+
     private int bsn;
     private User user;
 
@@ -31,7 +33,7 @@ public class Patient extends Person implements Serializable {
         this.bsn = bsn;
         this.user = user;
     }
-    
+
     @Id
     @Column(name = "bsn")
     @Type(type = "encryptedIntegerAsString")
@@ -44,12 +46,28 @@ public class Patient extends Person implements Serializable {
     }
 
     @ManyToOne
-    @Type(type="encryptedString")
+    @Type(type = "encryptedString")
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String encrypt() {
+        StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+        encryptor.setAlgorithm("PBEWithMD5AndDES");
+        encryptor.setPassword("FireFalcon");
+        encryptor.setSaltGenerator(new ZeroSaltGenerator());
+        return encryptor.encrypt(bsn + "");
+    }
+
+    public String decrypt(String input) {
+        StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+        encryptor.setAlgorithm("PBEWithMD5AndDES");
+        encryptor.setPassword("FireFalcon");
+        encryptor.setSaltGenerator(new ZeroSaltGenerator());
+        return encryptor.decrypt(input);
     }
 }

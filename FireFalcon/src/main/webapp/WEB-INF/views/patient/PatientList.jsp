@@ -42,9 +42,9 @@
                                             <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                                             <tr>
                                                 <td>${patient.bsn}</td>
-                                                <td><a href="${pageContext.request.contextPath}/patient/view/${patient.bsn}">${patient.firstName} ${patient.lastName}</a></td>
+                                                <td><a href="${pageContext.request.contextPath}/patient/view/${patient.encrypt()}">${patient.firstName} ${patient.lastName}</a></td>
                                                 <td><a class="btn btn-info glyphicon glyphicon-pencil" href="${pageContext.request.contextPath}/patient/edit/${patient.bsn}"></a></td>
-                                                <td><a class="btn btn-info fa fa-medkit" style="line-height:1.5" href="${pageContext.request.contextPath}/affliction/add/${patient.bsn}"></a></td>
+                                                <td><a class="btn btn-info fa fa-medkit" style="line-height:1.5" href="${pageContext.request.contextPath}/affliction/list/${patient.encrypt()}"></a></td>
                                                 <td><a class="btn btn-info glyphicon glyphicon-plus-sign" href="${pageContext.request.contextPath}/assignment/add/${patient.bsn}"></a></td>
                                             </tr>
                                         </c:forEach>

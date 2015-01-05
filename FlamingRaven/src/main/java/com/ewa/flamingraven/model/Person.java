@@ -5,11 +5,11 @@
  */
 package com.ewa.flamingraven.model;
 
-import java.io.Serializable;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 
 /**
  *

@@ -83,7 +83,7 @@ public class AssignmentResultDAO {
         prdstmt.setInt(6, assignmentResult.getMinTime());
         prdstmt.setInt(7, assignmentResult.getRepetitions());
         prdstmt.setInt(8, assignmentResult.getTotalTime());
-        prdstmt.setInt(9, assignmentResult.getExercise().getId());
+        prdstmt.setInt(9, 1);
 
 
         prdstmt.executeUpdate();
