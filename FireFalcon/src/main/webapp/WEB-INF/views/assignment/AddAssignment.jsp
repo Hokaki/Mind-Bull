@@ -57,7 +57,7 @@
                     <form:form class="form-horizontal" role="form" method="POST" commandName="assignment" action="${pageContext.request.contextPath}/assignment/add">  
 
                         <div class="form-group">
-                            <label for="inputExercise" class="col-sm-2 control-label">exercise</label>
+                            <label for="inputExercise" class="col-sm-2 control-label">Exercise</label>
                             <div class="combobox">
                                 <form:select path="exerciseId">
                                     <form:option value="0">Select exercise</form:option>
@@ -66,8 +66,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group">                                
-                            <div class="col-sm-2"></div>
+                        <div class="form-group">  
+                           <label for="inputExercise" class="col-sm-2 control-label">Repetitions</label> 
+                            
+                           
                             <div class="col-sm-4">  
                                 <input id="slider1" type="range" min="0" max="100" step="5" onchange="printValue('slider1', 'rangeValue1')"/>
                                 <form:input path="repetitions" id="rangeValue1" type="text" size="2"/>

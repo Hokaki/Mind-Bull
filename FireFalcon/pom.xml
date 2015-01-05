@@ -20,11 +20,7 @@
 
    <dependencies>
        
-       <dependency>
-	   <groupId>com.dhtmlx</groupId>
-	   <artifactId>javaplanner</artifactId>
-	   <version>1.5</version>
-	</dependency>
+     
        
 	<dependency>
 	   <groupId>org.codehaus.jackson</groupId>
