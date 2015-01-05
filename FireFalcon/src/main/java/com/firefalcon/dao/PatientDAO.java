@@ -53,6 +53,11 @@ public class PatientDAO {
     public List<Patient> getPatients() {
         return getCurrentSession().createQuery("from Patient").list();
     }
+    
+    @SuppressWarnings("unchecked")
+    public List<Patient> getPatientsByUser(String username) {
+        return getCurrentSession().createQuery("From Patient WHERE user = '" + username +"'").list();
+    }
 
     @SuppressWarnings("unchecked")
     public List<AssignmentResult> getResults(int bsn) {

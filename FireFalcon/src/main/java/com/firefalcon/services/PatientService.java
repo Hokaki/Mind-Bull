@@ -43,6 +43,10 @@ public class PatientService {
     public List<Patient> getPatients() {
         return patientDAO.getPatients();
     }
+    
+    public List<Patient> getPatientsByUser(String username) {
+        return patientDAO.getPatientsByUser(username);
+    }
 
     public List<AssignmentResult> getResults(int bsn) {
         return patientDAO.getResults(bsn);

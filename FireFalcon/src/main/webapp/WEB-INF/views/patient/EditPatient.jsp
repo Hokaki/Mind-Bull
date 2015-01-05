@@ -40,6 +40,7 @@
                             </div>
                         </div>
                          <form:hidden path="bsn"/>
+                         <form:hidden path="user.username"/>
                     </form:form>
                 </div>
                 <!-- /.container-fluid -->

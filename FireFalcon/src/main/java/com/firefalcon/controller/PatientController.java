@@ -36,10 +36,10 @@ public class PatientController {
         binder.registerCustomEditor(User.class, this.userEditor);
     }
 
-    @RequestMapping(value = "/list")
-    public ModelAndView patientList() throws IOException {
+    @RequestMapping(value = "/list/{username}")
+    public ModelAndView patientList(@PathVariable String username) throws IOException {
         ModelAndView patientListView = new ModelAndView("patient/PatientList");
-        patientListView.addObject("patientList", patientService.getPatients());
+        patientListView.addObject("patientList", patientService.getPatientsByUser(username));
 
         return patientListView;
     }
@@ -66,7 +66,7 @@ public class PatientController {
             return patientAddView;
         } else {
             patientService.addPatient(patient);
-            patientListView.addObject("patientList", patientService.getPatients());
+            patientListView.addObject("patientList", patientService.getPatientsByUser(patient.getUser().getUsername()));
 
             return patientListView;
         }
@@ -86,7 +86,7 @@ public class PatientController {
 
         ModelAndView patientListView = new ModelAndView("patient/PatientList");
         patientService.updatePatient(patient);
-        patientListView.addObject("patientList", patientService.getPatients());
+        patientListView.addObject("patientList", patientService.getPatientsByUser(patient.getUser().getUsername()));
 
         return patientListView;
 
