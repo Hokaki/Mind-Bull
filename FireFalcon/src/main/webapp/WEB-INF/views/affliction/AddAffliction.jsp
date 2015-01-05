@@ -22,9 +22,9 @@
                     <h2>Add Affliction</h2>
                     <form:form class="form-horizontal" role="form" method="POST" commandName="affliction" action="${pageContext.request.contextPath}/affliction/add">  
                         <div class="form-group">
-                            <label for="bsn" class="col-sm-2 control-label">bsn</label>
+                            <label for="bsn" class="col-sm-2 control-label">Naam</label>
                             <div class="col-sm-10">
-                                <label class="control-label">${affliction.bsn.bsn}</label>
+                                <label class="control-label">${affliction.bsn.firstName} ${affliction.bsn.lastName}</label>
                             </div>
                         </div>
                         <div class="form-group">
