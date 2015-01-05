@@ -42,6 +42,7 @@
                                 <form:errors path="lastName" class="error" />
                             </div>
                         </div>
+                            <form:hidden path="user" value="${user.username}" id="user" />
                         <div class="form-group">                                
                             <div class="col-sm-2"></div>
                             <div class="col-sm-4">     

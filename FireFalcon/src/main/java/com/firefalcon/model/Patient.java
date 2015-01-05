@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -20,13 +21,15 @@ import javax.persistence.Id;
 public class Patient extends Person implements Serializable {
     
     private int bsn;
+    private User user;
 
     public Patient() {
     }
 
-    public Patient(int bsn, String firstName, String lastName) {
+    public Patient(int bsn, String firstName, String lastName, User user) {
         super(firstName, lastName);
         this.bsn = bsn;
+        this.user = user;
     }
     
     @Id
@@ -40,4 +43,13 @@ public class Patient extends Person implements Serializable {
         this.bsn = bsn;
     }
 
+    @ManyToOne
+    @Type(type="encryptedString")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
