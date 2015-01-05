@@ -113,11 +113,28 @@ public class AssignmentController {
         }
     }
 
-    @RequestMapping(value = "/finish")
-    public ModelAndView assignmentFinish() {
+//    @RequestMapping(value = "/finish")
+//    public ModelAndView assignmentFinish() {
+//
+//        ModelAndView assignmentListView = new ModelAndView("assignment/AssignmentList");
+//        assignmentListView.addObject("assignment", assignmentService.getAssignments());
+//        return assignmentListView;
+//    }
+    
+       @RequestMapping(value = "/finish/{bsn}", method = RequestMethod.GET)
+    public ModelAndView assignmentFinish(@PathVariable int bsn) {
 
         ModelAndView assignmentListView = new ModelAndView("assignment/AssignmentList");
-        assignmentListView.addObject("assignment", assignmentService.getAssignments());
+
+        List<Assignment> assignment = assignmentService.getAssignments();
+        List<Assignment> newAssignment = new ArrayList<Assignment>();
+        for (Assignment x : assignment) {
+            if ((x.getBsn().getBsn() == bsn)) {
+                newAssignment.add(x);
+            }
+        }
+        assignmentListView.addObject("assignment", newAssignment);
+
         return assignmentListView;
     }
 

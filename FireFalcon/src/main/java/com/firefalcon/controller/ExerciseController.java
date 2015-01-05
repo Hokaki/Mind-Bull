@@ -1,11 +1,15 @@
 package com.firefalcon.controller;
 
+import com.firefalcon.model.Assignment;
 import com.firefalcon.model.Exercise;
+import com.firefalcon.services.AssignmentService;
 import com.firefalcon.services.ExerciseService;
 import com.firefalcon.validator.ExerciseValidator;
 import com.firefalcon.validator.PatientValidator;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 //import java.util.List;
 //import org.hibernate.Query;
@@ -32,6 +36,8 @@ public class ExerciseController implements Serializable{
 
     @Autowired
     private ExerciseService exerciseService;
+    @Autowired
+    private AssignmentService assignmentService;
 
     @RequestMapping(value = "/list")
     public ModelAndView exerciseList() throws IOException {
@@ -86,6 +92,31 @@ public class ExerciseController implements Serializable{
         
         return exerciseListView;
  
+    }
+    
+       @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public ModelAndView deleteExercise(@PathVariable int id) {
+        ModelAndView exerciseListView = new ModelAndView("exercise/ExerciseList");
+        List<Assignment> assignment = assignmentService.getAssignments();
+        List<Assignment> newAssignment = new ArrayList<Assignment>();
+        for (Assignment x : assignment) {
+                 newAssignment.add(x);
+        }
+                 for (int i = 0; i < newAssignment.size();) {
+                    if(newAssignment.get(i).getBsn().getBsn() != id){        
+                        i++;
+                    }else{                                       
+                    String message = "This exercise is being used.";
+                    exerciseListView.addObject("message", message);
+                    exerciseListView.addObject("exerciseList", exerciseService.getExercises()); 
+                    return exerciseListView;
+                }
+              
+            }
+                 exerciseService.deleteExercise(id);  
+                    exerciseListView.addObject("exerciseList", exerciseService.getExercises()); 
+                    return exerciseListView;
+
     }
 }
 

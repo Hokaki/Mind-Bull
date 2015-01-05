@@ -71,14 +71,14 @@
                             <label for="inputExercise" class="col-sm-2 control-label">exercise</label>
                             <div class="combobox">
                                 <form:select path="exerciseId">
-                                    <form:option value="0">${assignment.exerciseId.name}</form:option>
+                                    <form:option value="${assignment.exerciseId.id}">${assignment.exerciseId.name}</form:option>
                                     <form:options items="${exercises}" itemValue="id" itemLabel="name"/>
                                 </form:select>
                             </div>
                         </div>
 
                         <div class="form-group">                                
-                            <div class="col-sm-2"></div>
+                            <label for="inputRepetition" class="col-sm-2 control-label">repetition</label> 
                             <div class="col-sm-4">  
                                 <input id="slider1" type="range" min="0" max="100" step="5" onchange="printValue('slider1', 'rangeValue1')"/>
                                 <form:input path="repetitions" class="form-control" id="rangeValue1" type="text" size="2"/>
@@ -96,6 +96,7 @@
                             <input type=checkbox id="chkBox6"  value="6"/> Sat
                             <input type=checkbox id="chkBox7"  value="7"/> Sun
                             <form:input id="binaryDays" class="form-control" type="hidden" path="days" />
+                            <form:errors path="days" />
                         </div>
                     </div> 
                         
