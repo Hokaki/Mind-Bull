@@ -57,7 +57,7 @@
                             There were no afflictions found for this patient.
                         </c:otherwise>
                     </c:choose>
-                    <a class="btn btn-success" href="${pageContext.request.contextPath}/affliction/add/${BSN}">Add Affliction</a>
+                    <a class="btn btn-success" href="${pageContext.request.contextPath}/affliction/add/${bsn}">Add Affliction</a>
 
                 </div>
                 <!-- /.container-fluid -->

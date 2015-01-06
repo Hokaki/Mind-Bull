@@ -55,7 +55,6 @@ public class AfflictionController {
 //
 //        return afflictionListView;
 //    }
-
     @RequestMapping(value = "/list/{bsn}")
 
     public ModelAndView AfflictionList(@PathVariable String bsn) throws IOException {
@@ -65,11 +64,11 @@ public class AfflictionController {
         ModelAndView afflictionListView = new ModelAndView("affliction/AfflictionList");
 
         afflictionListView.addObject("affliction", afflictionService.getAfflictionsByPatients(bsn));
-        afflictionListView.addObject("BSN",patient.getBsn());
+        afflictionListView.addObject("BSN", bsn);
 
         return afflictionListView;
     }
-    
+
     @RequestMapping(value = "/add/{bsn}", method = RequestMethod.GET)
     public ModelAndView afflictionAddPage(@PathVariable String bsn) throws IOException {
         Patient patient = new Patient();
@@ -95,6 +94,7 @@ public class AfflictionController {
         } else {
             afflictionService.addAffliction(affliction);
             afflictionListView.addObject("affliction", afflictionService.getAfflictionsByPatients(affliction.getBsn().encrypt()));
+            afflictionListView.addObject("BSN", affliction.getBsn().encrypt());
 
             String message = "affliction was successfully added.";
             afflictionListView.addObject("message", message);
