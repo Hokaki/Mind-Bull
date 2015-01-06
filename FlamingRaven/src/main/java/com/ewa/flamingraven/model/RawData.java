@@ -111,7 +111,7 @@ public class RawData {
     //the overloading private setters
 
     private void setDataMA() {
-        int[] windowSizes = {20};
+        int[] windowSizes = {30};
         List<double[]> dataMA = new LinkedList<double[]>();
         for (int windSize : windowSizes) {
             MovingAverage[] ma = {new MovingAverage(windSize),new MovingAverage(windSize),new MovingAverage(windSize)};

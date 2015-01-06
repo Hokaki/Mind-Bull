@@ -37,6 +37,7 @@ public class Main {
                     rawData.add(data2);
 
                 }
+                AssignmentResultDAO assignmentResultDAO = new AssignmentResultDAO();
                 RawData data = new RawData(rawData);
                 AssignmentResult assignmentResult = new AssignmentResult();
                 assignmentResult.setAvgTime((int) Math.floor(data.getAvgTime()));
@@ -46,8 +47,8 @@ public class Main {
                 assignmentResult.setTotalTime((int) Math.floor(data.getTotalTime()));
                 assignmentResult.setMinTime((int) Math.floor(data.getMinTime()));
                 assignmentResult.setRepetitions(data.getRepetitions());
-                assignmentResult.setId(i);
-                new AssignmentResultDAO().add(assignmentResult);
+                assignmentResult.setId(assignmentResultDAO.nextId()+1);
+                assignmentResultDAO.add(assignmentResult);
             }
 
         } catch (FileNotFoundException e) {

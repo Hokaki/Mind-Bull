@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.ewa.flamingraven.model.*;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.List;
@@ -91,6 +92,26 @@ public class AssignmentResultDAO {
         if (conn != null) {
             conn.closeConnection();
         }
+    }
+    public int nextId() throws SQLException {
+        int id = 0;
+        ResultSet rs = null;
+        PreparedStatement prdstmt = null;
+        String query = "SELECT MAX(id) FROM assignmentresult";
+
+        conn.startConnection();
+
+        prdstmt = conn.getConnection().prepareStatement(query);
+        rs = conn.performSelect(prdstmt);
+        if (rs.next()) {
+            id = rs.getInt("MAX(id)");
+        }
+
+        if (conn != null) {
+            conn.closeConnection();
+        }
+
+        return id;
     }
 }
 
