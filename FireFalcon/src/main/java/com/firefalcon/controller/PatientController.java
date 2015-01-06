@@ -73,10 +73,12 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/edit/{bsn}", method = RequestMethod.GET)
-    public ModelAndView patientEditPage(@PathVariable int bsn) throws IOException {
-
+    public ModelAndView patientEditPage(@PathVariable String bsn) throws IOException {
+        Patient patient = new Patient();
+        patient = patientService.getPatient(Integer.parseInt(patient.decrypt(bsn)));
+        
         ModelAndView patientEditView = new ModelAndView("patient/EditPatient");
-        patientEditView.addObject("patient", patientService.getPatient(bsn));
+        patientEditView.addObject("patient", patientService.getPatient(patient.getBsn()));
         return patientEditView;
 
     }
@@ -93,11 +95,13 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/view/{bsn}", method = RequestMethod.GET)
-    public ModelAndView patienGraph(@PathVariable int bsn) throws IOException {
+    public ModelAndView patienGraph(@PathVariable String bsn) throws IOException {
+        Patient patient = new Patient();
+        patient = patientService.getPatient(Integer.parseInt(patient.decrypt(bsn)));
 
         ModelAndView patientGraphView = new ModelAndView("patient/ResultView");
-        patientGraphView.addObject("patient", patientService.getPatient(bsn));
-        patientGraphView.addObject("resultList", patientService.getResults(bsn));
+        patientGraphView.addObject("patient", patientService.getPatient(patient.getBsn()));
+        patientGraphView.addObject("resultList", patientService.getResults(patient.getBsn()));
 
         return patientGraphView;
 

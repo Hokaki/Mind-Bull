@@ -3,24 +3,144 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <TextView
+            android:id="@+id/label1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="17dp"
+            android:text="De bedoeling is dat je eerst de velden invult voor dat je opneemt en daarna op export klikt om te exporteren. probeer eerst minimaal 2 seconden still te staan zodat we kunnen zien waneer je begint" />
+    //1
+    <TextView
+            android:id="@+id/label1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="92dp"
+            android:text="Team :" />
     <EditText
-        android:id="@+id/txtRecordingName"
+        android:id="@+id/txtRecordingName1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginLeft="142dp"
+        android:layout_marginTop="82dp"
         android:ems="10" >
     </EditText>
+    //2
+    <TextView
+            android:id="@+id/label2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="132dp"
+            android:text="Experiment :" />
+    <EditText
+            android:id="@+id/txtRecordingName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="142dp"
+            android:layout_marginTop="122dp"
+            android:ems="10" >
+    </EditText>
+    //3
+    <TextView
+            android:id="@+id/label3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="172dp"
+            android:text="Oefening :" />
+    <EditText
+            android:id="@+id/txtRecordingName3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="142dp"
+            android:layout_marginTop="162dp"
+            android:ems="10" >
+    </EditText>
+    //4
+    <TextView
+            android:id="@+id/label4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="212dp"
+            android:text="Leeftijd :" />
+    <EditText
+            android:id="@+id/txtRecordingName4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="142dp"
+            android:layout_marginTop="202dp"
+            android:ems="10" >
+    </EditText>
+    //5
+    <TextView
+            android:id="@+id/label5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="252dp"
+            android:text="Geslacht(M/V) :" />
+    <EditText
+            android:id="@+id/txtRecordingName5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="142dp"
+            android:layout_marginTop="242dp"
+            android:ems="10" >
+    </EditText>
+    //6
+    <TextView
+            android:id="@+id/label5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="292dp"
+            android:text="Herhalingen :" />
+    <EditText
+            android:id="@+id/txtRecordingName6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="142dp"
+            android:layout_marginTop="282dp"
+            android:ems="10" >
+    </EditText>
+
 
     <ToggleButton
         android:id="@+id/btnRecord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtRecordingName"
-        android:layout_below="@+id/txtRecordingName"
-        android:layout_marginTop="32dp"
+        android:layout_below="@+id/txtRecordingName6"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="42dp"
         android:textOn="Stoppen"
         android:textOff="Opnemen"
         android:onClick="btnRecordAction"/>

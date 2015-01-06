@@ -180,7 +180,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 		sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 
-		txtRecordingName = (EditText) findViewById(R.id.txtRecordingName);
+		txtRecordingName = (EditText) findViewById(R.id.txtRecordingName1);
 		btnExport = (Button) findViewById(R.id.btnExport);
 	}
 
@@ -217,7 +217,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		//setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_main);
 	}
 
 	public int uploadFile(String sourceFileUri) {
