@@ -18,6 +18,8 @@
         <link href="<c:url value="/css/font-awesome-4.1.0/css/font-awesome.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/therapist-control.css" />" rel="stylesheet" >
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
+        <link href="<c:url value="/css/datepicker3.css" />" rel="stylesheet" >
+        <link href="<c:url value="/css/codebase/dhtmlxscheduler.css" />" rel="stylesheet" type="text/css">
         <link href="http://cdn.datatables.net/1.10.4/css/jquery.dataTables.css" rel="stylesheet" >
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -75,6 +77,10 @@
                     month = '' + month;
                 }
                 startDate = year + '-' + month + '-' + dd;
+            }
+            
+            function dateOverview(input){
+                startDate = input;
             }
             
             <c:forEach var="result" items="${resultList}">
@@ -234,6 +240,23 @@
             } ); 
         } );
         </script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script> 
+        <script src="<c:url value="/css/bootstrap-datepicker.js" />" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(function () {
+//                $('.inputdate').datepicker();
+                $('#datepicker').datepicker({dateFormat: 'yy-mm-dd'});
+            });
+            function dateChange(){
+                var currentDate = $('#datepicker').datepicker('getDate');
+                currentDate = $.datepicker.formatDate('yy-mm-dd', currentDate);
+                dateOverview(currentDate);
+                drawChart();
+                loadChart();
+                document.getElementById('paragraph').innerHTML = "Start date: "+ currentDate;
+                
+            }
+        </script>
     </head>
     <body>  
         <div id="wrapper">
@@ -251,7 +274,7 @@
                                     <a class="btn btn-primary" id="myHeader2" href="javascript:showonlyone('chart_time');" >Duration </a>
                                     <a class="btn btn-primary" id="myHeader3" href="javascript:showonlyone('chart_maxSpeed');" >Max speed</a>
                                 </div>
-                                <select class="form-control" id="exerciseSelect" onchange="exerciseChange(this);">
+                                <select class="form-control" id="exerciseSelect" onchange="exerciseChange();">
                                     <script type="text/javascript">
                                      for(i=0;i<uniqueName.length;i++){
                                         document.write('<option value="' + uniqueName[i]+ '">' + uniqueName[i] + '</option>');
@@ -269,6 +292,11 @@
                                 </select>
                                 <br>
                                 <p><span id="paragraph"></span></p>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <div class="inputdate" id="datepicker" onclick="dateChange(this)">
+                                </div>
                             </div>
                         </div>
                     </div>

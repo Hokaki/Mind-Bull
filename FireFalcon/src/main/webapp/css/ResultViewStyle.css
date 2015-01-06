@@ -1,0 +1,26 @@
+            .newboxes{
+                width:100%; 
+                height:400px;
+            }
+            .btn-group-justified{
+                margin-top: 15px;
+                margin-bottom: 7px;
+                margin-left: 2px;
+                margin-right: 2px;
+            }
+            .form-control{
+                margin-top: 15px;
+                margin-bottom: 7px;
+                margin-left: 2px;
+                margin-right: 2px;
+            }
+            #chart_time{
+                display: none;
+            }
+            #chart_maxSpeed{
+                display: none;
+            }
+            #table_holder{
+                margin-left: 4%;
+                width:80%;
+            }

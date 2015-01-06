@@ -15,7 +15,11 @@
         <link href="/FireFalcon/css/fontello/css/animation.css" rel="stylesheet">
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
         <title>Patient list</title>
-
+        <style>
+            btn-info{
+                width: 45px;
+            }
+        </style>
     </head>
     <body>  
         <div id="wrapper">
@@ -35,6 +39,7 @@
                                             <th>Edit</th>
                                             <th>Affliction</th>
                                             <th>Assign</th>
+                                            <th>Chart</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -46,6 +51,7 @@
                                                 <td><a class="btn btn-info glyphicon glyphicon-pencil" href="${pageContext.request.contextPath}/patient/edit/${patient.encrypt()}"></a></td>
                                                 <td><a class="btn btn-info fa fa-medkit" style="line-height:1.5" href="${pageContext.request.contextPath}/affliction/list/${patient.encrypt()}"></a></td>
                                                 <td><a class="btn btn-info glyphicon glyphicon-plus-sign" href="${pageContext.request.contextPath}/assignment/add/${patient.bsn}"></a></td>
+                                                <td><a class="btn btn-info fa fa-bar-chart-o" href="${pageContext.request.contextPath}/patient/view/${patient.bsn}" style="padding-top:9px;height:34px;"></a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
