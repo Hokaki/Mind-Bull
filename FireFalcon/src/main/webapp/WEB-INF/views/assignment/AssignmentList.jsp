@@ -24,7 +24,7 @@
                     <h2>Assignments</h2>
                    
                     <c:choose>
-                        <c:when test="${assignments.size() != 0}">
+                        <c:when test="${assignment.size() != 0}">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
@@ -50,7 +50,7 @@
                                                 <td class="end_date">${assignments.end_date}</td>
                                                 <td class="days">${assignments.days}</td>  
                                                 <td><a class="btn btn-info glyphicon glyphicon-pencil" href="${pageContext.request.contextPath}/assignment/edit/${assignments.idAssignment}"></a></td>
-                                                <td><a href="${pageContext.request.contextPath}/assignment/delete/${assignments.idAssignment}">delete</a></td>                    
+                                                <td><a class="btn btn-danger glyphicon glyphicon-remove"href="${pageContext.request.contextPath}/assignment/delete/${assignments.idAssignment}"></a></td>                    
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -58,7 +58,7 @@
                             </div>        
                         </c:when>
                         <c:otherwise>
-                            There were no Assingment found.
+                            There were no Assingments found.
                         </c:otherwise>
                     </c:choose>
 

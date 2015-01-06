@@ -47,7 +47,7 @@
                                                 <td>${exercise.name}</td>
                                                 <td>${exercise.description}</td>
                                                 <td><a class="btn btn-info glyphicon glyphicon-pencil" href="${pageContext.request.contextPath}/exercise/edit/${exercise.id}"></a></td>
-                                                <td><a href="${pageContext.request.contextPath}/exercise/delete/${exercise.id}">delete</a></td>   
+                                                <td><a class="btn btn-danger glyphicon glyphicon-remove" href="${pageContext.request.contextPath}/exercise/delete/${exercise.id}"></a></td>   
                                             </tr>
                                         </c:forEach>
                                     </tbody>

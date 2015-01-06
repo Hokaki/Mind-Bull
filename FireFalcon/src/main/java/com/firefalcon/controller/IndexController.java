@@ -34,17 +34,20 @@ public class IndexController {
  public ModelAndView index(User user, HttpSession session) throws IOException{
     
             user = (User) session.getAttribute("user");
+            Boolean isAdmin = user.getIsAdmin();
             String name = user.getUsername();
             
             if (user.getIsAdmin()) {
                 ModelAndView mavIndex = new ModelAndView("index/adminIndex");
                 mavIndex.addObject("name", name);
                 mavIndex.addObject("user", user);
+                mavIndex.addObject("isAdmin", isAdmin);
                 return mavIndex;
             } else {
                 ModelAndView mavIndex = new ModelAndView("index/therapistIndex");
                 mavIndex.addObject("name", name);
                 mavIndex.addObject("user", user);
+                mavIndex.addObject("isAdmin", isAdmin);
                 return mavIndex;
             }
         }

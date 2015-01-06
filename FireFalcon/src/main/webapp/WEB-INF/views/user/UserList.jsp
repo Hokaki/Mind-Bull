@@ -96,7 +96,7 @@
                                     <th>Name</th>
                                     <th>Admin</th>
                                     <th>Edit</th>
-                                    <th>Delete</th>
+                                    <!--<th>Delete</th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -106,7 +106,7 @@
                                         <td>${user.firstName} ${user.lastName}</td>
                                         <td>${user.isAdmin}</td>
                                         <td><a class="btn btn-info glyphicon glyphicon-pencil" href="${pageContext.request.contextPath}/user/edit/${user.username}"></a></td>
-                                        <td><a href="${pageContext.request.contextPath}/user/delete/${user.username}"></a></td>
+                                        <!--<td><a class="btn btn-danger glyphicon glyphicon-remove" href="${pageContext.request.contextPath}/user/delete/${user.username}"></a></td>-->
                                     </tr>
                                 </c:forEach>
                             </tbody>

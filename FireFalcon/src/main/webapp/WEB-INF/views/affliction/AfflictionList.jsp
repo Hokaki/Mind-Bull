@@ -54,7 +54,7 @@
                             </div>        
                         </c:when>
                         <c:otherwise>
-                            There were no patients found.
+                            There were no afflictions found for this patient.
                         </c:otherwise>
                     </c:choose>
                     <a class="btn btn-success" href="${pageContext.request.contextPath}/affliction/add/${affliction[0].bsn.encrypt()}">Add Affliction</a>

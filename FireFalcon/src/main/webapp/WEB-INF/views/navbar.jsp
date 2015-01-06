@@ -90,9 +90,6 @@
                                 <a href="${pageContext.request.contextPath}/patient/list/${user.username}">Patients overview</a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/affliction/list">Affliction overview</a>
-                            </li>
-                            <li>
                                 <a href="${pageContext.request.contextPath}/assignment/list">Assignment overview</a>
                             </li>
                         </ul>
