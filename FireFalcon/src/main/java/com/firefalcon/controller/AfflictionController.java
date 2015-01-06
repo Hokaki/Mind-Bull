@@ -46,16 +46,30 @@ public class AfflictionController {
         binder.registerCustomEditor(Patient.class, this.patientEditor);
     }
 
+//    @RequestMapping(value = "/list/{bsn}")
+//    public ModelAndView AfflictionList(@PathVariable String bsn) throws IOException {
+//        Patient patient = new Patient();
+//        patient = patientService.getPatient(Integer.parseInt(patient.decrypt(bsn)));
+//        ModelAndView afflictionListView = new ModelAndView("affliction/AfflictionList");
+//        afflictionListView.addObject("affliction", afflictionService.getAfflictionsByPatients(bsn));
+//
+//        return afflictionListView;
+//    }
+
     @RequestMapping(value = "/list/{bsn}")
+
     public ModelAndView AfflictionList(@PathVariable String bsn) throws IOException {
+
         Patient patient = new Patient();
         patient = patientService.getPatient(Integer.parseInt(patient.decrypt(bsn)));
         ModelAndView afflictionListView = new ModelAndView("affliction/AfflictionList");
+
         afflictionListView.addObject("affliction", afflictionService.getAfflictionsByPatients(bsn));
+        afflictionListView.addObject("BSN",patient.getBsn());
 
         return afflictionListView;
     }
-
+    
     @RequestMapping(value = "/add/{bsn}", method = RequestMethod.GET)
     public ModelAndView afflictionAddPage(@PathVariable String bsn) throws IOException {
         Patient patient = new Patient();
