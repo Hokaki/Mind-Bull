@@ -26,8 +26,6 @@ public class ExerciseValidator implements Validator{
         @Override
 	public void validate(Object target, Errors errors) {
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id",
-				"", "Field name is required.");
                 
                 ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name",
 				"", "Field name is required.");
@@ -35,11 +33,6 @@ public class ExerciseValidator implements Validator{
                 ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description",
 				"", "Field name is required.");
                 
-                Exercise exercise = (Exercise) target;
-                
-                if(exercise.getId()==0){
-			errors.rejectValue("id", "", "Input can not be 0.");
-		}
 
 	}
     
